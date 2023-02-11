@@ -1,14 +1,9 @@
 import pandas as pd
 
-def load_database(path):
-    """
-    Loads a csv database from a given path.
+paths = {
+  "Caqueta": 'src/data/Caqueta_data.csv',
+  "Narino": 'src/data/Narino_data.csv',
+  "putumayo": 'src/data/Putumayo_data.csv'
+}
 
-    :param path: {path of the csv file}.
-    :type path: str.
-    :return: A dataframe loaded with the csv information.
-    :rtype: DataFrame.
-
-    """
-  df = pd.read_csv(path)
-  return df
+df = pd.read_csv(paths["Caqueta"])
