@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
 
 paths = {
   "caqueta": '../data/raw/Caqueta_data.csv',
@@ -150,6 +151,42 @@ print("****************************** Scaling to a range ***********************
 print(df_clean['Edad'].head())
 print(df_clean.info())
 
+
+def plotCorrelationMatrix(df, graphWidth):
+  # df = df.dropna('columns') # drop columns with NaN
+  df = df[[col for col in df if df[col].nunique() > 1]]
+  if df.shape[1] < 2:
+    print(f'No correlation plots shown: The number of non-NaN or constant columns ({df.shape[1]}) is less than 2')
+    return
+  corr = df.corr()
+  plt.figure(num=None, figsize=(graphWidth, graphWidth), dpi=80, facecolor='w', edgecolor='k')
+  corrMat = plt.matshow(corr, fignum=1)
+  plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+  plt.yticks(range(len(corr.columns)), corr.columns)
+  plt.gca().xaxis.tick_bottom()
+  plt.colorbar(corrMat)
+  plt.title(f'Correlation Matrix for ', fontsize=15)
+  plt.show()
+
+def plotCorrelationMatrix(df, graphWidth):
+
+  # df = df.dropna('columns') # drop columns with NaN
+  df = df[[col for col in df if df[col].nunique() > 1]]
+  if df.shape[1] < 2:
+    print(f'No correlation plots shown: The number of non-NaN or constant columns ({df.shape[1]}) is less than 2')
+    return
+  corr = df.corr()
+  plt.figure(num=None, figsize=(graphWidth, graphWidth), dpi=80, facecolor='w', edgecolor='k')
+  corrMat = plt.matshow(corr, fignum=1)
+  plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+  plt.yticks(range(len(corr.columns)), corr.columns)
+  plt.gca().xaxis.tick_bottom()
+  plt.colorbar(corrMat)
+  plt.title(f'Correlation Matrix for ', fontsize=15)
+  plt.show()
+
+print(df.corr())
+plotCorrelationMatrix(df, 10)
 
 
 
