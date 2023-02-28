@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from scipy import stats
 from sklearn.preprocessing import MinMaxScaler
 
 df_clean_path = '../../data/processed/cleaned_data/Cleaned_data.csv'
@@ -23,13 +24,14 @@ df_clean = pd.get_dummies(df_clean, columns=['OTROS ANTIDIABETICOS'])
 df_clean = pd.get_dummies(df_clean, columns=['OTROS TRATAMIENTOS'])
 df_clean = pd.get_dummies(df_clean, columns=['OBESIDAD'])
 
+
 df_clean['FechaNovedadFallecido'] = df_clean['FechaNovedadFallecido'].replace('no aplica', 0)
 df_clean['FechaNovedadFallecido'][df_clean['FechaNovedadFallecido']!=0] = 1
 df_clean['ADHERENCIA AL TRATAMIENTO'] = df_clean['ADHERENCIA AL TRATAMIENTO'].replace('NO', 0)
 df_clean['ADHERENCIA AL TRATAMIENTO'] = df_clean['ADHERENCIA AL TRATAMIENTO'].replace('SI', 1)
 
-print("****************************** Categorical Data normalization ******************************")
-print(df_clean.info())
+print("****************************** Changing data type ******************************")
+#df_clean = df_clean.astype('float64')
 
 """
 Scaling to a range
@@ -38,16 +40,21 @@ Scaling to a range
 scaler = MinMaxScaler(feature_range=(0, 1))
 df_clean['Edad'] = scaler.fit_transform(df_clean[['Edad']])
 df_clean['CiclosV'] = scaler.fit_transform(df_clean[['CiclosV']])
-df_clean['IMC'] = scaler.fit_transform(df_clean[['IMC']])
-df_clean['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = scaler.fit_transform(df_clean[['CALCULO DE RIESGO DE Framingham (% a 10 años)']])
+#df_clean['IMC'] = scaler.fit_transform(df_clean[['IMC']])
+#df_clean['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = scaler.fit_transform(df_clean[['CALCULO DE RIESGO DE Framingham (% a 10 años)']])
 
 print("****************************** Scaling to a range ******************************")
-print(df_clean['Edad'].head())
 print(df_clean.info())
-pd.set_option('display.max_columns',None)
 print(df_clean.head())
-pd.reset_option('max_columns')
 
+print("****************************** Normalization ******************************")
+
+#df_zscore = df_clean.apply(stats.zscore)
+
+# Print the normalized DataFrame
+#print(df_zscore)
+
+print("****************************** Correlation matrix ******************************")
 def plot_correlation_matrix(df, graph_width):
     df = df.dropna('columns') # drop columns with NaN
     df = df[[col for col in df if df[col].nunique() > 1]]

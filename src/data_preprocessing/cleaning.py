@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 paths = {
     "caqueta": '../../data/raw/Caqueta_data.csv',
@@ -147,4 +148,52 @@ df_clean = df_clean.dropna()
 df_clean.to_csv(paths["clean_data"])
 
 print(df_clean.info())
+
+print("****************************** raw graphs ******************************")
+
+#boxplot de edad
+
+plt.boxplot(df_clean['Edad'])
+plt.show()
+
+#Histograma de edad
+
+df_clean['Edad'].hist(bins=5)
+plt.title('Distribucion de la edad')
+plt.xlabel('Edad')
+plt.ylabel('Cuenta')
+plt.show()
+
+#bar chart género
+gender_counts = df['Cod_Género'].value_counts()
+ax = gender_counts.plot(kind='bar')
+plt.title('Distribucion de género')
+plt.xlabel('Cod_Género')
+plt.ylabel('Número de personas')
+ax.set_xticklabels(['H', 'M'])
+plt.show()
+
+#bar chart de fumador
+smoker_counts = df['Fumador Activo'].value_counts()
+ax = gender_counts.plot(kind='bar')
+plt.title('Distribucion de fumadores activos')
+plt.xlabel('Fumador Activo')
+plt.ylabel('Número de personas')
+ax.set_xticklabels(['No fuma', 'Fuma'])
+plt.show()
+
+#pie chart life cycle
+
+
+cycle_counts = df_clean['CiclosV'].value_counts()
+cycle_percentages = cycle_counts / cycle_counts.sum() * 100
+fig, ax = plt.subplots()
+ax.pie(cycle_counts)
+ax.axis('equal')
+plt.title('Distribucion ciclos de vida')
+labels = [f'{i}: {j:.1f}%' for i, j in zip(cycle_percentages.index, cycle_percentages)]
+plt.legend(bbox_to_anchor=(0.85, 1), loc='upper left',labels=labels)
+plt.show()
+
+
 
