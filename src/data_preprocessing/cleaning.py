@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 
 paths = {
     "caqueta": '../../data/raw/Caqueta_data.csv',
@@ -140,4 +138,5 @@ print(NAN_percentages)
 print(df_clean.info())
 print(columns_droped)
 
+df_clean = df_clean.reset_index(drop=True)
 df_clean.to_csv(paths["clean_data"])
