@@ -24,22 +24,18 @@
 22,Crónicos,DM,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,NO,no aplica,30.91557669,OBESIDAD,10
 23,Crónicos,HTA,86,no aplica,65,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,no aplica,30.42184965,OBESIDAD,13
 24,Crónicos,HTA,86,no aplica,73,6.0,1,DISCAPACIDAD FISICA,TEMPORAL,INDÍGENA,SIN DATO,NO,0,no aplica,no aplica,no aplica,26.15243343,SOBREPESO,22
-25,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,PLANTAS MEDICINALES,25.01352082,SOBREPESO,#DIV/0!
 26,Crónicos,HTA,86,no aplica,39,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,PLANTAS MEDICINALES,33.33333333,OBESIDAD,7
 27,Crónicos,DM,86,no aplica,60,6.0,2,no aplica,no aplica,INDÍGENA,DM INSULINODEPENDIENTE,SI,0,no aplica,no aplica,no aplica,26.66666667,SOBREPESO,18
-28,Crónicos,DM,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,24.44727891,NORMAL,#DIV/0!
 29,Crónicos,HTA,86,no aplica,54,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.64036818,OBESIDAD,13
 30,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,HIPOTIROIDISMO,SI,0,no aplica,no aplica,no aplica,25.59373706,SOBREPESO,13
 31,Crónicos,DM,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,22.03856749,NORMAL,14
 32,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.46753247,OBESIDAD,17
 33,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,PLANTAS MEDICINALES,33.62208773,OBESIDAD,17
-34,Crónicos,HTA,86,no aplica,59,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,Sin Dato,#DIV/0!,SIN DATO,#NUM!
 35,Crónicos,HTA,86,no aplica,59,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.1969212,SOBREPESO,3
 36,Crónicos,HTA,86,no aplica,75,6.0,2,no aplica,no aplica,"NEGRO, MULATO, AFROCOLOMBIANO O AFRODESCENCIENTE",SIN DATO,NO,0,no aplica,no aplica,no aplica,25.71166208,SOBREPESO,44
 37,Crónicos,HTA,86,no aplica,72,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.34375,SOBREPESO,22
 38,Crónicos,DM,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.38501561,OBESIDAD,18
 39,Crónicos,HTA,86,no aplica,75,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.21499516,OBESIDAD,23
-40,Crónicos,HTA + DM,86,44446.0,58,5.0,2,no aplica,no aplica,INDÍGENA,SIN DATO,NO,0,no aplica,no aplica,no aplica,33.32756233,OBESIDAD,#DIV/0!
 41,Crónicos,DM,86,no aplica,73,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.53122945,SOBREPESO,22
 42,Crónicos,HTA,86,no aplica,83,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.81519357,OBESIDAD,29
 43,Crónicos,HTA,86,no aplica,77,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,no aplica,28.72008325,SOBREPESO,41
@@ -101,7 +97,6 @@
 99,Crónicos,HTA + DM,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,SI,no aplica,28.87544005,SOBREPESO,7
 100,Crónicos,HTA,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.6875,SOBREPESO,15
 101,Crónicos,HTA + DM,86,no aplica,40,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,SI,PLANTAS MEDICINALES,30.06210197,OBESIDAD,4
-102,Crónicos,DM,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,SI,no aplica,27.04164413,SOBREPESO,#NUM!
 103,Crónicos,HTA,86,no aplica,62,6.0,1,DISCAPACIDAD MULTIPLE,PERMANENTE,NINGUNA,SIN DATO,SI,0,METOPROLOL,NO,no aplica,28.40909091,SOBREPESO,10
 104,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,NO,24.52681753,NORMAL,18
 105,Crónicos,HTA,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,LEVOTIROXINA,28.44444444,SOBREPESO,20
@@ -131,7 +126,6 @@
 129,Crónicos,HTA + DM,86,no aplica,46,5.0,2,DISCAPACIDAD FISICA,PERMANENTE,INDÍGENA,SIN DATO,SI,0,NO,NO,no aplica,31.86682521,OBESIDAD,3
 130,Crónicos,HTA + DM,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,41.37931034,OBESIDAD,9
 131,Crónicos,HTA,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.25096981,SOBREPESO,11
-132,Crónicos,HTA,86,44349.0,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.31082062,OBESIDAD,#DIV/0!
 133,Crónicos,HTA,86,no aplica,50,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,19.37716263,NORMAL,3
 134,Crónicos,HTA,86,no aplica,65,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,23.66143862,NORMAL,6
 135,Crónicos,HTA,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.85463947,SOBREPESO,4
@@ -294,7 +288,6 @@
 292,Crónicos,HTA,86,no aplica,43,5.0,1,DISCAPACIDAD FISICA,PERMANENTE,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,23.38435374,NORMAL,6
 293,Crónicos,HTA,86,no aplica,58,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,METOPROLOL + AMLODIPINO,NO,no aplica,28.90625,SOBREPESO,30
 294,Crónicos,HTA,86,no aplica,43,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,28.88888889,SOBREPESO,13
-295,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.44444444,NORMAL,#DIV/0!
 296,Crónicos,DM,86,44204.0,58,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,PLANTAS MEDICINALES,26.64359862,SOBREPESO,19
 297,Crónicos,HTA + DM,86,44347.0,48,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28,SOBREPESO,12
 298,Crónicos,DM,86,no aplica,46,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,SI,no aplica,19.97918835,NORMAL,6
@@ -322,7 +315,6 @@
 320,Crónicos,HTA,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,ALZHEIMER,SI,0,no aplica,no aplica,no aplica,25.01352082,SOBREPESO,10
 321,Crónicos,HTA,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,32.02908587,OBESIDAD,40
 322,Crónicos,HTA,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.23140988,OBESIDAD,11
-323,Crónicos,HTA,86,no aplica,51,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.34649403,SOBREPESO,#DIV/0!
 324,Crónicos,HTA,86,no aplica,55,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.34375,SOBREPESO,15
 325,Crónicos,HTA,86,no aplica,54,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,22.35434007,NORMAL,10
 326,Crónicos,HTA + DM,86,no aplica,66,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,SI,PLANTAS MEDICINALES,25.18078512,SOBREPESO,41
@@ -330,7 +322,6 @@
 328,Crónicos,HTA + DM,86,no aplica,66,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,30.0232438,OBESIDAD,25
 329,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,32.04614645,OBESIDAD,13
 330,Crónicos,HTA,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.5625,SOBREPESO,31
-331,Crónicos,DM,86,44725.0,102,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,20.76124567,NORMAL,#DIV/0!
 332,Crónicos,DM,86,no aplica,85,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,30.77870114,OBESIDAD,21
 333,Crónicos,HTA + DM,86,no aplica,61,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.55555556,SOBREPESO,21
 334,Crónicos,DM,86,no aplica,75,6.0,2,no aplica,no aplica,"NEGRO, MULATO, AFROCOLOMBIANO O AFRODESCENCIENTE",SIN DATO,SI,0,no aplica,no aplica,no aplica,33.05785124,OBESIDAD,38
@@ -384,7 +375,6 @@
 382,Crónicos,HTA,86,no aplica,65,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,VALSARTAN,NO,no aplica,26.07897153,SOBREPESO,21
 383,Crónicos,DM,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,22.10028959,NORMAL,15
 384,Crónicos,HTA,86,no aplica,44,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.03441286,OBESIDAD,7
-385,Crónicos,HTA,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,30.47052154,OBESIDAD,#DIV/0!
 386,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.52595156,OBESIDAD,19
 387,Crónicos,HTA,86,no aplica,55,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.1671624,NORMAL,19
 388,Crónicos,HTA,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.73094582,OBESIDAD,5
@@ -411,7 +401,6 @@
 409,Crónicos,HTA,86,no aplica,53,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,26.22222222,SOBREPESO,10
 410,Crónicos,HTA,86,no aplica,65,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.63371488,OBESIDAD,15
 411,Crónicos,HTA,86,44550.0,48,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,24.62296091,NORMAL,6
-412,Crónicos,HTA,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,22.86236854,NORMAL,#DIV/0!
 413,Crónicos,HTA,86,no aplica,69,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.31412397,NORMAL,14
 414,Crónicos,HTA + DM,86,no aplica,40,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.46618106,OBESIDAD,6
 415,Crónicos,HTA + DM,86,no aplica,58,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.63605442,SOBREPESO,21
@@ -420,12 +409,9 @@
 418,Crónicos,DM,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.71768524,SOBREPESO,9
 419,Crónicos,HTA,86,no aplica,66,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.4661455,OBESIDAD,23
 420,Crónicos,HTA,86,no aplica,59,5.0,2,no aplica,no aplica,INDÍGENA,SIN DATO,SI,0,BISOPROLOL, NO,no aplica,19.55555556,NORMAL,22
-421,Crónicos,HTA,86,no aplica,68,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,30.11940191,OBESIDAD,#DIV/0!
-422,Crónicos,HTA,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,37.25364525,OBESIDAD,#DIV/0!
 423,Crónicos,DM,86,no aplica,78,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,METFORMINA + VILDGLIPTINA,no aplica,25.71166208,SOBREPESO,49
 424,Crónicos,HTA,86,no aplica,70,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.390625,SOBREPESO,39
 425,Crónicos,HTA,86,no aplica,45,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.98961938,SOBREPESO,5
-426,Crónicos,DM,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,DM-ICC,SI,0,no aplica,no aplica,no aplica,30.13148283,OBESIDAD,#NUM!
 427,Crónicos,DM,86,no aplica,46,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.13631634,SOBREPESO,10
 428,Crónicos,HTA,86,no aplica,50,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,33.203125,OBESIDAD,7
 429,Crónicos,HTA,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.8125,OBESIDAD,6
@@ -446,7 +432,6 @@
 444,Crónicos,HTA,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.54820937,SOBREPESO,23
 445,Crónicos,HTA,86,no aplica,69,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,37.18226068,OBESIDAD,41
 446,Crónicos,DM,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.91222346,OBESIDAD,18
-447,Crónicos,HTA,86,44444.0,98,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 448,Crónicos,DM,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,LINFOMA HODKING,NO,0,no aplica,no aplica,PLANTAS MEDICINALES,23.38435374,NORMAL,23
 449,Crónicos,HTA,86,no aplica,65,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.43664485,OBESIDAD,17
 450,Crónicos,HTA,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.18163009,SOBREPESO,16
@@ -456,15 +441,10 @@
 454,Crónicos,HTA,86,no aplica,44,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.55555556,SOBREPESO,16
 455,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.46618106,OBESIDAD,27
 456,Crónicos,HTA,86,no aplica,64,6.0,1,no aplica,no aplica,INDÍGENA,SIN DATO,SI,0,NO,no aplica,ASA,28.125,SOBREPESO,21
-457,Crónicos,DM,86,no aplica,66,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,34.28571429,OBESIDAD,#DIV/0!
-458,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 459,Crónicos,HTA + DM,86,no aplica,69,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.03125,OBESIDAD,24
-460,Crónicos,HTA,86,44592.0,65,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 461,Crónicos,HTA,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0, NO,NO,no aplica,24.53512397,NORMAL,12
 462,Crónicos,HTA,86,no aplica,85,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,36.62851197,OBESIDAD,47
 463,Crónicos,HTA,86,no aplica,50,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,ASA,25.5588462,SOBREPESO,8
-464,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,HIPOTIROIDISMO,SI,0,no aplica,no aplica,no aplica,25.43268596,SOBREPESO,#DIV/0!
-465,Crónicos,HTA,86,44453.0,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 466,Crónicos,HTA,86,no aplica,91,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.81663021,SOBREPESO,29
 467,Crónicos,HTA,86,no aplica,71,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.8125,OBESIDAD,38
 468,Crónicos,HTA,86,no aplica,71,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,27.10204082,SOBREPESO,13
@@ -474,10 +454,8 @@
 472,Crónicos,HTA,86,no aplica,46,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,23.73866213,NORMAL,6
 473,Crónicos,HTA,86,no aplica,74,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,no aplica,28.02768166,SOBREPESO,27
 474,Crónicos,HTA,86,no aplica,69,6.0,2,no aplica,no aplica,NINGUNA,HIPERCOLESTEROLEMIA,SI,0,no aplica,no aplica,no aplica,40.12190888,OBESIDAD,31
-475,Crónicos,HTA,86,no aplica,71,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 476,Crónicos,HTA,86,no aplica,80,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,41.52249135,OBESIDAD,37
 477,Crónicos,HTA,86,44615.0,62,6.0,2,no aplica,no aplica,NINGUNA,CARDIOPATIA-ANTECEDENTE DE REVASCULARIZACION MIOCARDICA,SI,0,no aplica,no aplica,ATORVASTATINA,30.859375,OBESIDAD,22
-478,Crónicos,HTA,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.01117686,NORMAL,#DIV/0!
 479,Crónicos,HTA + DM,86,no aplica,42,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,SI,PLANTAS MEDICINALES,27.94214333,SOBREPESO,17
 480,Crónicos,HTA,86,no aplica,53,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,29.24210864,SOBREPESO,5
 481,Crónicos,HTA,86,no aplica,73,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.00059488,SOBREPESO,15
@@ -491,9 +469,7 @@
 489,Crónicos,HTA,86,no aplica,41,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.78125,SOBREPESO,0
 490,Crónicos,HTA,86,no aplica,43,5.0,2,no aplica,no aplica,NINGUNA, LESIONES NODULARES TIROIDEAS TIRADS 5 ,SI,0,no aplica,no aplica,no aplica,25,SOBREPESO,4
 491,Crónicos,HTA,86,no aplica,74,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.73469388,SOBREPESO,26
-492,Crónicos,HTA,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.3446712,SOBREPESO,#DIV/0!
 493,Crónicos,DM,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.390625,SOBREPESO,0
-494,Crónicos,HTA,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,Sin Dato,30.81854043,OBESIDAD,#DIV/0!
 495,Crónicos,HTA,86,no aplica,71,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,39.0625,OBESIDAD,19
 496,Crónicos,HTA,86,no aplica,48,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.14186851,OBESIDAD,0
 497,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.24242424,NORMAL,0
@@ -504,27 +480,22 @@
 502,Crónicos,HTA,86,no aplica,42,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.40292024,SOBREPESO,0
 503,Crónicos,HTA,86,no aplica,38,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.30533236,SOBREPESO,0
 504,Crónicos,DM,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,HIPERCOLESTEROLEMIA +OBESIDAD,SI,0,no aplica,no aplica,no aplica,26.14268848,SOBREPESO,14
-505,Crónicos,HTA,86,no aplica,68,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,33.30498866,OBESIDAD,#DIV/0!
 506,Crónicos,HTA,86,no aplica,53,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.36560303,SOBREPESO,0
 507,Crónicos,HTA + DM,86,no aplica,55,5.0,2,no aplica,no aplica,NINGUNA,ICC,SI,0,no aplica,no aplica,no aplica,27.94214333,SOBREPESO,0
 508,Crónicos,HTA + DM,86,44753.0,75,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.73469388,SOBREPESO,7
 509,Crónicos,HTA,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.96712018,NORMAL,13
 510,Crónicos,HTA + DM,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,29.06976744,SOBREPESO,27
 511,Crónicos,HTA,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,27.94214333,SOBREPESO,9
-512,Crónicos,HTA,86,no aplica,68,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,35.430839,OBESIDAD,#DIV/0!
 513,Crónicos,HTA,86,no aplica,74,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,22.34778209,NORMAL,0
-514,Crónicos,HTA,86,no aplica,58,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 515,Crónicos,HTA,86,no aplica,75,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,33.46222487,OBESIDAD,17
 516,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,no aplica,24.1671624,NORMAL,27
 517,Crónicos,HTA + DM,86,no aplica,48,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,ACUPUNTURA,34.22004132,OBESIDAD,5
-518,Crónicos,DM,86,no aplica,70,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,22.36744002,NORMAL,#DIV/0!
 519,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.65013774,SOBREPESO,0
 520,Crónicos,HTA,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.13365651,SOBREPESO,27
 521,Crónicos,DM,86,no aplica,73,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,SI,no aplica,27.63605442,SOBREPESO,27
 522,Crónicos,HTA,86,no aplica,46,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.67262608,SOBREPESO,8
 523,Crónicos,DM,86,no aplica,75,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.96801606,SOBREPESO,13
 524,Crónicos,HTA,86,no aplica,48,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.14151925,NORMAL,10
-525,Crónicos,HTA,86,no aplica,83,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.27796045,SOBREPESO,#NUM!
 526,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.06642387,SOBREPESO,8
 527,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,OBESIDAD,NO,0,ASA,no aplica,no aplica,26.44628099,SOBREPESO,17
 528,Crónicos,DM,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.93759487,SOBREPESO,13
@@ -559,7 +530,6 @@
 557,Crónicos,HTA,86,no aplica,66,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,34.15977961,OBESIDAD,20
 558,Crónicos,HTA,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.50780533,NORMAL,4
 559,Crónicos,HTA,86,no aplica,42,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.78125,SOBREPESO,2
-560,Crónicos,HTA,86,no aplica,55,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,23.4375,NORMAL,#DIV/0!
 561,Crónicos,HTA,86,no aplica,68,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.32323232,OBESIDAD,20
 562,Crónicos,HTA,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.28282828,SOBREPESO,6
 563,Crónicos,DM,86,no aplica,65,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.55254943,SOBREPESO,18
@@ -572,7 +542,6 @@
 570,Crónicos,HTA,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,24.91349481,NORMAL,15
 571,Crónicos,DM,86,no aplica,63,6.0,2,no aplica,no aplica,INDÍGENA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.296875,SOBREPESO,29
 572,Crónicos,DM,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,28.25096981,SOBREPESO,3
-573,Crónicos,HTA,86,no aplica,75,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,LEVOTIROXINA,28.32658037,SOBREPESO,#DIV/0!
 574,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.87070855,OBESIDAD,15
 575,Crónicos,HTA + DM,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,19.56295525,NORMAL,13
 576,Crónicos,HTA,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.390625,SOBREPESO,11
@@ -590,17 +559,11 @@
 588,Crónicos,HTA,86,no aplica,59,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.83518006,SOBREPESO,16
 589,Crónicos,HTA + DM,86,44724.0,50,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.4532872,NORMAL,4
 590,Crónicos,HTA,86,no aplica,71,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,30.40762656,OBESIDAD,34
-591,Crónicos,HTA,86,no aplica,103,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.89706023,NORMAL,#DIV/0!
 592,Crónicos,HTA,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,26.70940171,SOBREPESO,9
-593,Crónicos,HTA,86,no aplica,47,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,40.234375,OBESIDAD,#DIV/0!
 594,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.48315806,OBESIDAD,15
 595,Crónicos,DM,86,no aplica,71,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.88888889,NORMAL,19
-596,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.66524436,NORMAL,#DIV/0!
-597,Crónicos,DM,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.71166208,SOBREPESO,#DIV/0!
-598,Crónicos,HTA + DM,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,SI,no aplica,25.23634033,SOBREPESO,#DIV/0!
 599,Crónicos,HTA,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.11111111,OBESIDAD,20
 600,Crónicos,HTA,86,no aplica,47,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.33333333,SOBREPESO,11
-601,Crónicos,HTA,86,no aplica,81,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.41176471,SOBREPESO,#NUM!
 602,Crónicos,HTA,86,no aplica,65,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.28282828,SOBREPESO,16
 603,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.77777778,SOBREPESO,19
 604,Crónicos,HTA,86,no aplica,59,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.37798917,OBESIDAD,16
@@ -614,54 +577,35 @@
 612,Crónicos,DM,86,no aplica,70,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.48979592,NORMAL,21
 613,Crónicos,HTA,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.3958034,SOBREPESO,7
 614,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.34435262,SOBREPESO,15
-615,Crónicos,HTA,86,no aplica,50,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.69054178,OBESIDAD,#DIV/0!
 616,Crónicos,HTA,86,no aplica,76,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.84066824,SOBREPESO,35
 617,Crónicos,HTA + DM,86,no aplica,69,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,35.64013841,OBESIDAD,22
-618,Crónicos,HTA,86,no aplica,68,6.0,2,no aplica,no aplica,"NEGRO, MULATO, AFROCOLOMBIANO O AFRODESCENCIENTE",SIN DATO,SI,0,no aplica,no aplica,no aplica,33.21799308,OBESIDAD,#DIV/0!
 619,Crónicos,HTA + DM,86,no aplica,65,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,31.95592287,OBESIDAD,15
-620,Crónicos,HTA,86,no aplica,74,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.14186851,OBESIDAD,#DIV/0!
 621,Crónicos,HTA,86,no aplica,51,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.84153181,SOBREPESO,11
 622,Crónicos,HTA,86,no aplica,74,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.02758248,SOBREPESO,26
-623,Crónicos,HTA,86,no aplica,67,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,23.80540166,NORMAL,#DIV/0!
-624,Crónicos,HTA,86,no aplica,79,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,22.12973973,NORMAL,#DIV/0!
 625,Crónicos,HTA,86,no aplica,80,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.75758456,SOBREPESO,32
 626,Crónicos,HTA + DM,86,no aplica,70,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.82931354,SOBREPESO,23
 627,Crónicos,HTA,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.76709812,SOBREPESO,29
 628,Crónicos,HTA,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.09428234,SOBREPESO,16
 629,Crónicos,HTA,86,no aplica,67,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.47138398,SOBREPESO,21
-630,Crónicos,HTA,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.38237298,NORMAL,#DIV/0!
 631,Crónicos,HTA,86,no aplica,67,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,VALSARTAN,no aplica,no aplica,24.85795455,NORMAL,13
 632,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,no aplica,37.01553201,OBESIDAD,4
-633,Crónicos,HTA,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.18078512,SOBREPESO,#DIV/0!
 634,Crónicos,HTA,86,no aplica,66,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.67262608,SOBREPESO,39
 635,Crónicos,HTA,86,no aplica,76,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.875,NORMAL,30
-636,Crónicos,DM,86,no aplica,67,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.18458712,OBESIDAD,#DIV/0!
 637,Crónicos,HTA,86,no aplica,66,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.78125,SOBREPESO,23
-638,Crónicos,HTA,86,no aplica,33,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.01117686,NORMAL,#DIV/0!
 639,Crónicos,DM,86,no aplica,73,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,27.11111111,SOBREPESO,21
-640,Crónicos,HTA,86,no aplica,48,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.58579882,SOBREPESO,#DIV/0!
 641,Crónicos,HTA,86,no aplica,53,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,NO,29.296875,SOBREPESO,3
-642,Crónicos,HTA,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.78125,SOBREPESO,#DIV/0!
-643,Crónicos,HTA,86,no aplica,61,6.0,2,no aplica,no aplica,INDÍGENA,SIN DATO,SI,0,no aplica,no aplica,no aplica,20.2020202,NORMAL,#DIV/0!
 644,Crónicos,HTA,86,no aplica,38,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,25.77777778,SOBREPESO,11
 645,Crónicos,HTA,86,no aplica,65,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.81854043,OBESIDAD,16
-646,Crónicos,HTA,86,no aplica,65,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,39.03926234,OBESIDAD,#DIV/0!
 647,Crónicos,HTA,86,no aplica,36,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,ACUPUNTURA,19.46740129,NORMAL,2
 648,Crónicos,HTA + DM,86,no aplica,51,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,VERAPAMILO,NO,ACUPUNTURA,30.66666667,OBESIDAD,7
 649,Crónicos,HTA + DM,86,no aplica,73,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,29.0174472,SOBREPESO,20
-650,Crónicos,HTA + DM,86,no aplica,70,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,25.81663021,SOBREPESO,#DIV/0!
 651,Crónicos,HTA,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,no aplica,25.96952909,SOBREPESO,11
 652,Crónicos,DM,86,no aplica,75,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,25.33333333,SOBREPESO,30
 653,Crónicos,HTA,86,no aplica,82,6.0,1,no aplica,no aplica,INDÍGENA,SIN DATO,NO,0,no aplica,no aplica,no aplica,36.33217993,OBESIDAD,22
 654,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,no aplica,24.24391847,NORMAL,12
 655,Crónicos,DM,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25,SOBREPESO,10
 656,Crónicos,HTA,86,no aplica,59,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,no aplica,24.97398543,NORMAL,37
-657,Crónicos,HTA,86,44733.0,72,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,Sin Dato,#DIV/0!,SIN DATO,#NUM!
-658,Crónicos,DM,86,44731.0,83,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,Sin Dato,0,no aplica,no aplica,Sin Dato,#DIV/0!,SIN DATO,#NUM!
-659,Crónicos,DM,86,44547.0,70,6.0,2,DISCAPACIDAD FISICA,TEMPORAL,NINGUNA,SIN DATO,Sin Dato,0,no aplica,no aplica,Sin Dato,#DIV/0!,SIN DATO,#NUM!
 660,Crónicos,HTA,86,44296.0,76,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,30.84627667,OBESIDAD,14
-661,Crónicos,DM,86,43994.0,56,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-662,Crónicos,HTA,86,44074.0,48,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 663,Crónicos,HTA + DM,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.46875,OBESIDAD,12
 664,Crónicos,HTA + DM,86,no aplica,75,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.93496879,OBESIDAD,28
 665,Crónicos,HTA,86,no aplica,45,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.5349084,NORMAL,5
@@ -669,43 +613,28 @@
 667,Crónicos,HTA,86,no aplica,45,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.18367347,NORMAL,5
 668,Crónicos,HTA,86,no aplica,46,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.86451247,SOBREPESO,2
 669,Crónicos,HTA,86,no aplica,50,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.76190476,SOBREPESO,5
-670,Crónicos,HTA,86,no aplica,48,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 671,Crónicos,HTA + DM,86,no aplica,55,5.0,1,no aplica,no aplica,NINGUNA,DM INSULINODEPENDIENTE,SI,0,no aplica,no aplica,no aplica,35.26170799,OBESIDAD,13
-672,Crónicos,HTA,86,no aplica,46,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,ASA SALMETROL,#DIV/0!,SIN DATO,#NUM!
-673,Crónicos,HTA,86,no aplica,58,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 674,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.95155709,SOBREPESO,15
 675,Crónicos,HTA + DM,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.58832922,NORMAL,15
-676,Crónicos,HTA,86,no aplica,62,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-677,Crónicos,HTA,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 678,Crónicos,DM,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.46875,OBESIDAD,10
 679,Crónicos,HTA + DM,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,26.953125,SOBREPESO,10
 680,Crónicos,DM,86,no aplica,50,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.45765595,OBESIDAD,6
 681,Crónicos,HTA,86,no aplica,74,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.41176471,SOBREPESO,41
 682,Crónicos,HTA,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.06976744,SOBREPESO,10
-683,Crónicos,HTA,86,no aplica,71,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 684,Crónicos,HTA,86,no aplica,72,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.03673779,SOBREPESO,22
 685,Crónicos,HTA,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,CARVELIDOL,35.36290746,OBESIDAD,12
 686,Crónicos,HTA,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.22945431,OBESIDAD,2
 687,Crónicos,HTA + DM,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.24523701,OBESIDAD,13
-688,Crónicos,HTA + DM,86,no aplica,59,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 689,Crónicos,HTA,86,no aplica,69,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.25,OBESIDAD,14
-690,Crónicos,HTA,86,no aplica,70,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-691,Crónicos,DM,86,no aplica,55,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 692,Crónicos,HTA,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.35154137,SOBREPESO,6
 693,Crónicos,HTA,86,no aplica,68,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.28780718,SOBREPESO,19
-694,Crónicos,HTA,86,no aplica,69,6.0,1,no aplica,no aplica,"NEGRO, MULATO, AFROCOLOMBIANO O AFRODESCENCIENTE",SIN DATO,SI,0,no aplica,no aplica,no aplica,24.56747405,NORMAL,#DIV/0!
 695,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,ASA+ESPIRINOLACTONA,no aplica,no aplica,31.634582,OBESIDAD,4
 696,Crónicos,DM,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,28.39372634,SOBREPESO,10
-697,Crónicos,DM,86,no aplica,71,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-698,Crónicos,DM,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,PLANTAS MEDICINALES,26.5625,SOBREPESO,#DIV/0!
 699,Crónicos,HTA,86,no aplica,41,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,ALOPURINOL,no aplica,CARVELIDOL+ASA+FUROSEMIDA+LEVOTIROXINA,28.36035153,SOBREPESO,1
-700,Crónicos,HTA,86,no aplica,47,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 701,Crónicos,HTA + DM,86,no aplica,47,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.46198063,SOBREPESO,12
-702,Crónicos,HTA,86,no aplica,51,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 703,Crónicos,HTA + DM,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,34.13111342,OBESIDAD,17
 704,Crónicos,HTA + DM,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.95155709,SOBREPESO,9
 705,Crónicos,DM,86,no aplica,58,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,22.03856749,NORMAL,13
-706,Crónicos,DM,86,no aplica,59,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 707,Crónicos,HTA,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.55932916,SOBREPESO,16
 708,Crónicos,DM,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.87755102,NORMAL,6
 709,Crónicos,HTA + DM,86,no aplica,75,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,PLANTAS MEDICINALES,23.05175491,NORMAL,18
@@ -715,46 +644,24 @@
 713,Crónicos,DM,86,no aplica,70,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,34.94809689,OBESIDAD,0
 714,Crónicos,HTA,86,no aplica,68,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.74419988,SOBREPESO,21
 715,Crónicos,HTA,86,no aplica,77,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.3877551,SOBREPESO,16
-716,Crónicos,HTA,86,no aplica,84,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 717,Crónicos,HTA,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.875,NORMAL,5
 718,Crónicos,HTA + DM,86,no aplica,47,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.22788762,NORMAL,13
 719,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,21.90758246,NORMAL,15
 720,Crónicos,HTA + DM,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,27.88518739,SOBREPESO,20
-721,Crónicos,HTA,86,no aplica,27,4.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,ASA,no aplica,no aplica,28.44444444,SOBREPESO,#DIV/0!
-722,Crónicos,HTA,86,no aplica,54,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.23822715,NORMAL,#DIV/0!
-723,Crónicos,HTA,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-724,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 725,Crónicos,HTA,86,no aplica,69,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.27134547,SOBREPESO,32
-726,Crónicos,HTA,86,no aplica,45,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 727,Crónicos,HTA,86,no aplica,38,5.0,2,no aplica,no aplica,NINGUNA,HIPERGLICEMIA,SI,0,no aplica,no aplica,no aplica,24.48979592,NORMAL,12
 728,Crónicos,HTA + DM,86,no aplica,53,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.35925114,OBESIDAD,10
-729,Crónicos,DM,86,no aplica,66,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-730,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 731,Crónicos,HTA + DM,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.1102789,OBESIDAD,14
-732,Crónicos,HTA,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 733,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,OBESIDAD+DISLIPIDEMIAS,SI,0,no aplica,no aplica,no aplica,31.04455807,OBESIDAD,19
-734,Crónicos,HTA,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.77777778,SOBREPESO,#DIV/0!
-735,Crónicos,HTA,86,no aplica,55,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 736,Crónicos,DM,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,ARTRITIS,SI,0,no aplica,no aplica,no aplica,24.609375,NORMAL,15
-737,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 738,Crónicos,DM,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,GLIBENCLAMIDA,23.42355741,NORMAL,28
-739,Crónicos,HTA,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-740,Crónicos,HTA,86,no aplica,44,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 741,Crónicos,DM,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,SI,NO,29.13631634,SOBREPESO,26
 742,Crónicos,HTA,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.66666667,OBESIDAD,16
-743,Crónicos,HTA + DM,86,no aplica,53,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 744,Crónicos,HTA,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.94214333,SOBREPESO,6
 745,Crónicos,HTA + DM,86,no aplica,55,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.4375,NORMAL,10
-746,Crónicos,DM,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-747,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-748,Crónicos,HTA,86,no aplica,67,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 749,Crónicos,HTA + DM,86,no aplica,69,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.24879441,OBESIDAD,20
-750,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32.8731098,OBESIDAD,#DIV/0!
-751,Crónicos,HTA,86,no aplica,69,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,28.99930748,SOBREPESO,#DIV/0!
-752,Crónicos,HTA,86,no aplica,80,6.0,2,no aplica,no aplica,INDÍGENA,SIN DATO,SI,0,IECA +HCTZ,no aplica,NO,24.34175829,NORMAL,#DIV/0!
 753,Crónicos,HTA,86,no aplica,54,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,34.72222222,OBESIDAD,26
 754,Crónicos,HTA + DM,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.15589569,SOBREPESO,31
-755,Crónicos,HTA,86,no aplica,50,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 756,Crónicos,HTA + DM,86,no aplica,47,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,29.13631634,SOBREPESO,6
 757,Crónicos,HTA,86,no aplica,50,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.03460984,NORMAL,15
 758,Crónicos,HTA + DM,86,no aplica,52,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32,OBESIDAD,8
@@ -774,87 +681,39 @@
 772,Crónicos,HTA + DM,86,no aplica,70,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.2226847,SOBREPESO,30
 773,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,28.04037814,SOBREPESO,22
 774,Crónicos,HTA,86,no aplica,67,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,no aplica,26.44628099,SOBREPESO,32
-775,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 776,Crónicos,HTA,86,no aplica,60,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,32,OBESIDAD,13
-777,Crónicos,HTA,86,no aplica,68,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-778,Crónicos,HTA,86,no aplica,83,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 779,Crónicos,HTA,86,no aplica,57,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,27.88518739,SOBREPESO,13
 780,Crónicos,DM,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,18.08021039,BAJO PESO,16
-781,Crónicos,DM,86,no aplica,63,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-782,Crónicos,HTA,86,no aplica,78,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 783,Crónicos,HTA + DM,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.55555556,OBESIDAD,25
 784,Crónicos,HTA,86,no aplica,63,6.0,2,no aplica,no aplica,"NEGRO, MULATO, AFROCOLOMBIANO O AFRODESCENCIENTE",SIN DATO,SI,0,no aplica,no aplica,no aplica,29.7210791,SOBREPESO,26
-785,Crónicos,HTA,86,no aplica,76,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 786,Crónicos,HTA,86,no aplica,66,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,27.47138398,SOBREPESO,7
-787,Crónicos,DM,86,no aplica,74,6.0,2,no aplica,no aplica,INDÍGENA,SIN DATO,NO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 788,Crónicos,HTA + DM,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,30.078125,OBESIDAD,27
-789,Crónicos,HTA,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 790,Crónicos,HTA + DM,86,no aplica,58,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,16
 791,Crónicos,HTA + DM,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,19.26530612,NORMAL,7
-792,Crónicos,HTA,86,no aplica,67,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-793,Crónicos,HTA,86,no aplica,72,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 794,Crónicos,DM,86,no aplica,73,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,PLANTAS MEDICINALES,31.99217133,OBESIDAD,28
-795,Crónicos,DM,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,23.59700421,NORMAL,#DIV/0!
-796,Crónicos,HTA,86,no aplica,69,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 797,Crónicos,HTA + DM,86,no aplica,67,6.0,1,no aplica,no aplica,"NEGRO, MULATO, AFROCOLOMBIANO O AFRODESCENCIENTE",SIN DATO,SI,0,no aplica,no aplica,no aplica,31.48788927,OBESIDAD,30
 798,Crónicos,DM,86,no aplica,64,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,34.72088268,OBESIDAD,24
 799,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.53375883,SOBREPESO,9
-800,Crónicos,HTA,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 801,Crónicos,HTA + DM,86,no aplica,62,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,31.14186851,OBESIDAD,7
 802,Crónicos,HTA + DM,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,27.77670615,SOBREPESO,10
-803,Crónicos,HTA + DM,86,no aplica,63,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,no aplica,no aplica,26.25958475,SOBREPESO,#NUM!
-804,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,Sin Dato,#DIV/0!,SIN DATO,#NUM!
-805,Crónicos,DM,86,no aplica,76,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
-806,Crónicos,HTA,86,no aplica,67,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,SIN DATO,#DIV/0!,SIN DATO,#NUM!
 807,Crónicos,HTA,86,no aplica,67,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,ATORVASTATINA,30.8012487,OBESIDAD,40
 808,Crónicos,DM,86,no aplica,56,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,NO,no aplica,27.6816609,SOBREPESO,12
-809,Crónicos,HTA,86,no aplica,50,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,24.97704316,NORMAL,#DIV/0!
-810,Crónicos,HTA,86,no aplica,78,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,no aplica,30.11937557,OBESIDAD,#DIV/0!
 811,Crónicos,HTA,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,ERC+ANTECEDENTE DE ACV,SIN DATO,0,ASA+ATORVASTATINA,no aplica,no aplica,26.21882086,SOBREPESO,14
 812,Crónicos,HTA,86,no aplica,51,5.0,1,no aplica,no aplica,NINGUNA,ICC ,NO,0,no aplica,no aplica,no aplica,25.53544639,SOBREPESO,2
-813,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,26.53375883,SOBREPESO,#DIV/0!
-814,Crónicos,HTA,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-815,Crónicos,DM,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,no aplica,28.71972318,SOBREPESO,#DIV/0!
-816,Crónicos,HTA,86,no aplica,59,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,no aplica,24.6097337,NORMAL,#DIV/0!
 817,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,7
-818,Crónicos,HTA,86,no aplica,58,5.0,1,no aplica,no aplica,NINGUNA,ANSIEDAD DEPRESION,SIN DATO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#DIV/0!
-819,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SIN DATO,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 820,Crónicos,HTA,86,no aplica,59,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,NO,28,SOBREPESO,28
 821,Crónicos,HTA,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,NO,35.11966701,OBESIDAD,1
 822,Crónicos,HTA,86,no aplica,58,5.0,2,no aplica,no aplica,NINGUNA,OBESIDAD,SI,0,NO,NO,NO,29.96432818,SOBREPESO,19
 823,Crónicos,HTA + DM,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,NO,NO,NO,25.0995016,SOBREPESO,26
-824,Crónicos,HTA,86,no aplica,51,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,ASA,29.76190476,SOBREPESO,#DIV/0!
-825,Crónicos,DM,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,NO,no aplica,29.6875,SOBREPESO,#DIV/0!
-826,Crónicos,DM,86,no aplica,52,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,NO,0,no aplica,NO,NO,22.85714286,NORMAL,#DIV/0!
 827,Crónicos,HTA + DM,86,no aplica,57,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,LEVOTIROXINA,29.06976744,SOBREPESO,14
-828,Crónicos,HTA + DM,86,no aplica,55,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,INSULINA,ROSUVASTATINA+ASA+CARVERIDOL,23.7953599,NORMAL,#DIV/0!
 829,Crónicos,HTA,86,no aplica,58,5.0,1,no aplica,no aplica,NINGUNA,HIPERCOLESTEROLEMIA,SI,0,no aplica,no aplica,LEVOTIROXINA,27.71768524,SOBREPESO,14
 830,Crónicos,HTA,86,no aplica,54,5.0,1,no aplica,no aplica,NINGUNA,HIPERCOLESTEROLEMIA,SI,0,METOPROLOL,no aplica,ROSUVASTATINA+PROPAFENONA,29.296875,SOBREPESO,9
 831,Crónicos,HTA,86,no aplica,56,5.0,1,no aplica,no aplica,NINGUNA,OBESIDAD+HIPERLIPIDEMIA,SI,0,no aplica,no aplica,CARVEDILOL +ASA+ATORVASTATINA+PRAZOSINA,32.43542581,OBESIDAD,25
 832,Crónicos,HTA,86,no aplica,61,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,25.71166208,SOBREPESO,13
 833,Crónicos,DM,86,no aplica,70,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,NO,NO,28.69174881,SOBREPESO,34
-834,Crónicos,HTA,86,no aplica,62,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,NO,#DIV/0!,SIN DATO,#NUM!
-835,Crónicos,HTA,86,no aplica,67,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,NO,#DIV/0!,SIN DATO,#NUM!
-836,Crónicos,HTA,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,ATORVASTATINA,39.78286734,OBESIDAD,#DIV/0!
 837,Crónicos,HTA,86,no aplica,84,6.0,1,no aplica,no aplica,NINGUNA ,OBESIDAD,NO,0,NO,NO,NO,34.60207612,OBESIDAD,44
 838,Crónicos,HTA,86,no aplica,65,6.0,2,no aplica,no aplica,NINGUNA ,OBESIDAD,NO,0,NO,NO,NO,28.44095498,SOBREPESO,41
 839,Crónicos,DM,86,no aplica,72,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,NO,no aplica,32.32323232,OBESIDAD,39
-840,Crónicos,DM,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,NO,no aplica,27.88761707,SOBREPESO,#DIV/0!
-841,Crónicos,HTA,86,no aplica,59,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,SIN DATO,22.49134948,NORMAL,#DIV/0!
-842,Crónicos,HTA,86,no aplica,77,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-843,Crónicos,DM,86,no aplica,77,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-844,Crónicos,HTA,86,no aplica,84,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-845,Crónicos,HTA,86,no aplica,93,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-846,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-847,Crónicos,HTA,86,no aplica,55,5.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-848,Crónicos,HTA,86,no aplica,64,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,37.25364525,OBESIDAD,#DIV/0!
-849,Crónicos,HTA,86,no aplica,60,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
-850,Crónicos,HTA,86,no aplica,70,6.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,NO,no aplica,NO,29.48317725,SOBREPESO,#DIV/0!
-851,Crónicos,HTA,86,no aplica,49,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,ASA,no aplica,no aplica,21.30394858,NORMAL,#DIV/0!
-852,Crónicos,HTA,86,no aplica,66,,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,ASA,no aplica,NO,26.66666667,SOBREPESO,#DIV/0!
-853,Crónicos,HTA + DM,86,no aplica,44,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,DAPAGLIFLOZINA,NO,no aplica,25.80645161,SOBREPESO,#DIV/0!
-854,Crónicos,HTA,86,no aplica,72,5.0,1,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,ATORVASTATINA,#DIV/0!,SIN DATO,#DIV/0!
-855,Crónicos,HTA,86,no aplica,49,6.0,2,no aplica,no aplica,NINGUNA,SIN DATO,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,#NUM!
 856,Crónicos,DM,52,no aplica,64,6.0,2,no aplica,no aplica,Ninguna,DM,SI,1,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,0
 857,Crónicos,DM,52,no aplica,56,5.0,1,no aplica,no aplica,Ninguna,DM,SI,0,no aplica,no aplica,no aplica,#DIV/0!,SIN DATO,0
 858,Crónicos,HTA + DM,52,no aplica,60,6.0,1,no aplica,no aplica,Ninguna,HTA + DM,SI,0,no aplica,no aplica,no aplica,33.09042237,OBESIDAD,24
