@@ -151,9 +151,12 @@ print(df_clean.info())
 
 print("****************************** raw graphs ******************************")
 
-#boxplot de edad
+#boxplot de RIESGO DE Framingham
 
-plt.boxplot(df_clean['Edad'])
+
+df_clean['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_clean['CALCULO DE RIESGO DE Framingham (% a 10 años)'].astype(int)
+plt.boxplot(df_clean['CALCULO DE RIESGO DE Framingham (% a 10 años)'])
+plt.title('Distribucion de riesgo de Framingham')
 plt.show()
 
 #Histograma de edad
@@ -183,7 +186,6 @@ ax.set_xticklabels(['No fuma', 'Fuma'])
 plt.show()
 
 #pie chart life cycle
-
 
 cycle_counts = df_clean['CiclosV'].value_counts()
 cycle_percentages = cycle_counts / cycle_counts.sum() * 100
