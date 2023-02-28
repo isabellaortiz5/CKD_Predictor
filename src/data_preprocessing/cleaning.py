@@ -85,8 +85,8 @@ df["OTROS ANTIDIABETICOS"] = df["OTROS ANTIDIABETICOS"].fillna('no aplica')
 df["OTROS TRATAMIENTOS"] = df["OTROS TRATAMIENTOS"].fillna('no aplica')
 df["OTROS FARMACOS ANTIHIPERTENSIVOS"] = df["OTROS FARMACOS ANTIHIPERTENSIVOS"].fillna('no aplica')
 
-df["CALCULO DE RIESGO DE Framingham (% a 10 años)"] = df["CALCULO DE RIESGO DE Framingham (% a 10 años)"].replace("#DIV/0!", np.nan)
-df["CALCULO DE RIESGO DE Framingham (% a 10 años)"] = df["CALCULO DE RIESGO DE Framingham (% a 10 años)"].replace("#NUM!", np.nan)
+df = df.replace("#DIV/0!", np.nan)
+df = df.replace("#NUM!", np.nan)
 
 print("****************************** blank to no aplica ******************************")
 
