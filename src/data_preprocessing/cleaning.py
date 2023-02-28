@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+from sklearn import linear_model
 
 paths = {
     "caqueta": '../../data/raw/Caqueta_data.csv',
@@ -143,6 +146,20 @@ print(columns_droped)
 
 df_clean = df_clean.reset_index(drop=True)
 
+# Imputing with MICE
+
+
+df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)'], axis=1).copy()
+
+# Define MICE Imputer and fill missing values
+mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None, imputation_order='ascending')
+
+df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
+
+print("************************* imputed ********************")
+print(df_mice_imputed.info())
+
+""" **************************************** """
 df_clean = df_clean.dropna()
 
 df_clean.to_csv(paths["clean_data"])
