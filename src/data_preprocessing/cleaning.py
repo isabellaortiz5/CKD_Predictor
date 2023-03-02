@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn import linear_model
+import missingno as msno
 
 paths = {
     "caqueta": '../../data/raw/Caqueta_data.csv',
@@ -55,7 +56,7 @@ putumayo_drops = [
     "FECHA DE TOMA DE POTASIO", "FECHA DE TOMA DE MICROALBINURIA", "FECHA DE TOMA DE CREATINURIA", "OBSERVACIONES",
     "FECHA DE TOMA DE TGD > 150 MG/DL_DIC",
 
-    "HEMOGRAMA", "POTASIO", "MICROALBINURIA", "CREATINURIA"
+
 ]
 
 caqueta_df = pd.read_csv(paths["caqueta"])
@@ -79,7 +80,10 @@ print(putumayo_df_clean.info())
 
 df = pd.concat([putumayo_df_clean, narino_df_clean, caqueta_df_clean], axis=0)
 print(df.info())
-
+msno.matrix(df);
+plt.title("Missingness - unified data frame")
+plt.show()
+print("****************************** blank to no aplica ******************************")
 df = df.replace(r'^\s*$', np.nan, regex=True)
 df["FechaNovedadFallecido"] = df["FechaNovedadFallecido"].fillna('no aplica')
 df["Coomorbilidad"] = df["Coomorbilidad"].fillna('no aplica')
@@ -92,10 +96,32 @@ df["OTROS FARMACOS ANTIHIPERTENSIVOS"] = df["OTROS FARMACOS ANTIHIPERTENSIVOS"].
 df = df.replace("#DIV/0!", np.nan)
 df = df.replace("#NUM!", np.nan)
 
-print("****************************** blank to no aplica ******************************")
-
+# Plot correlation heatmap of missingness
 print(df.info())
+msno.matrix(df);
+plt.title("Data after main drops")
+plt.show()
+msno.heatmap(df, cmap='rainbow');
+plt.title("Missingness - Data after main drops")
+plt.rc('font', size=1)
+plt.show()
 
+print("************************* Imputing with MICE ********************")
+
+df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)','COLESTEROL TOTAL > 200 MG/DL_DIC'], axis=1).copy()
+
+# Define MICE Imputer and fill missing values
+mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None, imputation_order='ascending')
+
+df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
+
+print("************************* imputed ********************")
+print(df_mice_imputed.info())
+df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed['CALCULO DE RIESGO DE Framingham (% a 10 años)']
+df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
+msno.matrix(df);
+plt.title("Missingness Data after imputation")
+plt.show()
 
 def get_nan_per_col(df):
     """
@@ -144,24 +170,9 @@ print("****************************** nans drops ******************************"
 print(NAN_percentages)
 print(columns_droped)
 
-df_clean = df_clean.reset_index(drop=True)
-
-# Imputing with MICE
-
-
-df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)'], axis=1).copy()
-
-# Define MICE Imputer and fill missing values
-mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None, imputation_order='ascending')
-
-df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
-
-print("************************* imputed ********************")
-print(df_mice_imputed.info())
-
 """ **************************************** """
 df_clean = df_clean.dropna()
-
+df_clean = df_clean.reset_index(drop=True)
 df_clean.to_csv(paths["clean_data"])
 
 print(df_clean.info())

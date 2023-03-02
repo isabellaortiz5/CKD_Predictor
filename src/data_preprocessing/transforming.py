@@ -3,11 +3,14 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.preprocessing import MinMaxScaler
+import missingno as msno
 
 df_clean_path = '../../data/processed/cleaned_data/Cleaned_data.csv'
 df_clean = pd.read_csv(df_clean_path)
 df_clean = df_clean.drop(["Unnamed: 0"],axis=1)
-
+msno.matrix(df_clean);
+plt.title("heatmap of missingness")
+plt.show()
 """
 Categorical Data normalization
 """
