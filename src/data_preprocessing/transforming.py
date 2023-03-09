@@ -72,7 +72,7 @@ def plot_correlation_matrix(df, graph_width):
     plt.gca().xaxis.tick_bottom()
     plt.colorbar(corrMat)
     plt.title(f'Correlation Matrix for ', fontsize=15)
-    plt.tick_params(labelsize=1)
+    plt.tick_params(labelsize=10)
     plt.title('Correlation Matrix', fontsize=1)
     plt.show()
     print(corr)

@@ -59,6 +59,9 @@ putumayo_drops = [
 
 ]
 
+"""
+****************************** read csv and make drops ******************************
+"""
 caqueta_df = pd.read_csv(paths["caqueta"])
 narino_df = pd.read_csv(paths["narino"])
 putumayo_df = pd.read_csv(paths["putumayo"])
@@ -73,17 +76,24 @@ putumayo_df_clean = putumayo_df.drop(common_drops, axis=1)
 putumayo_df_clean = putumayo_df_clean.drop(putumayo_drops, axis=1)
 putumayo_df_clean = putumayo_df_clean.drop(narino_putumayo_drops, axis=1)
 
-print("****************************** drops y concat ******************************")
+print("Csv info:")
 print(caqueta_df_clean.info())
 print(narino_df_clean.info())
 print(putumayo_df_clean.info())
 
+"""
+****************************** concatenar dropped csv ******************************
+"""
 df = pd.concat([putumayo_df_clean, narino_df_clean, caqueta_df_clean], axis=0)
 print(df.info())
+
 msno.matrix(df);
 plt.title("Missingness - unified data frame")
 plt.show()
-print("****************************** blank to no aplica ******************************")
+
+"""
+****************************** blank to no aplica ******************************
+"""
 df = df.replace(r'^\s*$', np.nan, regex=True)
 df["FechaNovedadFallecido"] = df["FechaNovedadFallecido"].fillna('no aplica')
 df["Coomorbilidad"] = df["Coomorbilidad"].fillna('no aplica')
@@ -96,14 +106,19 @@ df["OTROS FARMACOS ANTIHIPERTENSIVOS"] = df["OTROS FARMACOS ANTIHIPERTENSIVOS"].
 df = df.replace("#DIV/0!", np.nan)
 df = df.replace("#NUM!", np.nan)
 
-# Plot correlation heatmap of missingness
+"""
+****************************** plt of unified and filled data ******************************
+"""
+# Plot missingness of unified data
 print(df.info())
 msno.matrix(df);
-plt.title("Data after main drops")
+plt.title("Data after main drops and blanks to no aplica")
 plt.show()
+
+# Plot correlation heatmap of missingness
 msno.heatmap(df, cmap='rainbow');
 plt.title("Missingness - Data after main drops")
-plt.rc('font', size=1)
+#plt.rc('font', size=1)
 plt.show()
 
 print("************************* Imputing with MICE ********************")
