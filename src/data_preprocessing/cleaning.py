@@ -7,10 +7,10 @@ from sklearn import linear_model
 import missingno as msno
 
 paths = {
-    "caqueta": '../../data/raw/Caqueta_data.csv',
-    "narino": '../../data/raw/Narino_data.csv',
-    "putumayo": '../../data/raw/Putumayo_data.csv',
-    "clean_data": '../../data/processed/cleaned_data/Cleaned_data.csv'
+    "caqueta": '../../data/raw_2/caqueta_raw_2.csv',
+    "narino": '../../data/raw_2/Narino_raw_2.csv',
+    "putumayo": '../../data/raw_2/Putumayo_raw_2.csv',
+    "clean_data": '../../data/processed/cleaned_data/Cleaned_data.csv',
 }
 
 common_drops = [
@@ -63,8 +63,10 @@ putumayo_drops = [
 ****************************** read csv and make drops ******************************
 """
 caqueta_df = pd.read_csv(paths["caqueta"])
+
 narino_df = pd.read_csv(paths["narino"])
 putumayo_df = pd.read_csv(paths["putumayo"])
+
 
 caqueta_df_clean = caqueta_df.drop(common_drops, axis=1)
 
@@ -80,6 +82,10 @@ print("Csv info:")
 print(caqueta_df_clean.info())
 print(narino_df_clean.info())
 print(putumayo_df_clean.info())
+
+msno.matrix(caqueta_df_clean);
+plt.title("Missingness - caqueta_df_clean")
+plt.show()
 
 """
 ****************************** concatenar dropped csv ******************************
