@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import mutual_info_classif
+from sklearn.feature_selection import SelectKBest
 
 df_clean_path = '../../data/processed/cleaned_data/Cleaned_data.csv'
 df_clean = pd.read_csv(df_clean_path)
@@ -47,8 +48,20 @@ print("Training set shape:", X_train.shape)
 print("Validation set shape:", X_val.shape)
 print("Testing set shape:", X_test.shape)
 
-df_clean.to_csv('../../data/processed/transformed_data/transformed_data.csv')
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
+ckd_df.to_csv('../../data/processed/transformed_data/transformed_data.csv')
 
-mi_scores = mutual_info_classif(X, y)
+mi_scores = mutual_info_classif(X_train, y_train)
+print(mi_scores)
+
+selector = SelectKBest(mutual_info_classif, k=10)
+X_train_new = selector.fit_transform(X_train, y_train)
+X_test_new = selector.transform(X_test)
+
+selected_columns = selector.get_support(indices=True)
+reduced_data_train = pd.DataFrame(X_train_new, columns=ckd_df.columns[selected_columns])
+reduced_data_test = pd.DataFrame(X_test_new, columns=ckd_df.columns[selected_columns])
+
+
+print(X_train_new)
+reduced_data.to_csv('../../data/processed/transformed_data/reduced_train_transformed_data.csv')
+reduced_data_test.to_csv('../../data/processed/transformed_data/reduced_test_transformed_data.csv')
