@@ -8,12 +8,20 @@ import missingno as msno
 df_clean_path = '../../data/processed/cleaned_data/Cleaned_data.csv'
 df_clean = pd.read_csv(df_clean_path)
 df_clean = df_clean.drop(["Unnamed: 0"],axis=1)
+
+"********************************************heatmap of missingness********************************************"
 msno.matrix(df_clean);
 plt.title("heatmap of missingness")
 plt.show()
+
 """
-Categorical Data normalization
+**********************Categorical Data normalization**********************
 """
+df_clean = df_clean.replace('no aplica', 0)
+df_clean['FechaNovedadFallecido'][df_clean['FechaNovedadFallecido']!=0] = 1
+df_clean['ADHERENCIA AL TRATAMIENTO'] = df_clean['ADHERENCIA AL TRATAMIENTO'].replace('NO', 0)
+df_clean['ADHERENCIA AL TRATAMIENTO'] = df_clean['ADHERENCIA AL TRATAMIENTO'].replace('SI', 1)
+
 "dummies"
 df_clean = pd.get_dummies(df_clean, columns=['Evento'])
 df_clean = pd.get_dummies(df_clean, columns=['CodDepto'])
@@ -26,12 +34,6 @@ df_clean = pd.get_dummies(df_clean, columns=['OTROS FARMACOS ANTIHIPERTENSIVOS']
 df_clean = pd.get_dummies(df_clean, columns=['OTROS ANTIDIABETICOS'])
 df_clean = pd.get_dummies(df_clean, columns=['OTROS TRATAMIENTOS'])
 df_clean = pd.get_dummies(df_clean, columns=['OBESIDAD'])
-
-
-df_clean['FechaNovedadFallecido'] = df_clean['FechaNovedadFallecido'].replace('no aplica', 0)
-df_clean['FechaNovedadFallecido'][df_clean['FechaNovedadFallecido']!=0] = 1
-df_clean['ADHERENCIA AL TRATAMIENTO'] = df_clean['ADHERENCIA AL TRATAMIENTO'].replace('NO', 0)
-df_clean['ADHERENCIA AL TRATAMIENTO'] = df_clean['ADHERENCIA AL TRATAMIENTO'].replace('SI', 1)
 
 print("****************************** Changing data type ******************************")
 #df_clean = df_clean.astype('float64')

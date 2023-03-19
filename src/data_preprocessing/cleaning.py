@@ -237,6 +237,7 @@ plt.ylabel('Número de personas')
 ax.set_xticklabels(['No fuma', 'Fuma'])
 plt.show()
 
+"""
 #pie chart life cycle
 
 cycle_counts = df_clean['CiclosV'].value_counts()
@@ -249,5 +250,5 @@ labels = [f'{i}: {j:.1f}%' for i, j in zip(cycle_percentages.index, cycle_percen
 plt.legend(bbox_to_anchor=(0.85, 1), loc='upper left',labels=labels)
 plt.show()
 
-
+"""
 

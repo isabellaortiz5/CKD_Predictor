@@ -42,11 +42,22 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # split the training set into training and validation sets
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=42)
 
+# Scale the input features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_val_scaled = scaler.transform(X_val)
+X_test_scaled = scaler.transform(X_test)
+
+# Standardize the data
+scaler = StandardScaler()
+X_train_std = scaler.fit_transform(X_train)
+X_val_std = scaler.transform(X_val)
+X_test_std = scaler.transform(X_test)
 
 # check the shapes of the resulting datasets
-print("Training set shape:", X_train.shape)
-print("Validation set shape:", X_val.shape)
-print("Testing set shape:", X_test.shape)
+print("Training set shape:", X_train_std.shape)
+print("Validation set shape:", X_val_std.shape)
+print("Testing set shape:", X_test_std.shape)
 
 ckd_df.to_csv('../../data/processed/transformed_data/transformed_data.csv')
 
