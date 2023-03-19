@@ -83,10 +83,6 @@ print(caqueta_df_clean.info())
 print(narino_df_clean.info())
 print(putumayo_df_clean.info())
 
-msno.matrix(caqueta_df_clean);
-plt.title("Missingness - caqueta_df_clean")
-plt.show()
-
 """
 ****************************** concatenar dropped csv ******************************
 """
@@ -111,11 +107,13 @@ df["OTROS FARMACOS ANTIHIPERTENSIVOS"] = df["OTROS FARMACOS ANTIHIPERTENSIVOS"].
 
 df = df.replace("#DIV/0!", np.nan)
 df = df.replace("#NUM!", np.nan)
+df = df.replace("#VALUE!", np.nan)
 
 """
 ****************************** plt of unified and filled data ******************************
 """
 # Plot missingness of unified data
+print("********* UNIFIED DF ********")
 print(df.info())
 msno.matrix(df);
 plt.title("Data after main drops and blanks to no aplica")
@@ -129,7 +127,7 @@ plt.show()
 
 print("************************* Imputing with MICE ********************")
 
-df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)','COLESTEROL TOTAL > 200 MG/DL_DIC'], axis=1).copy()
+df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)','GLICEMIA 100 MG/DL_DIC','COLESTEROL TOTAL > 200 MG/DL_DIC', 'PERIMETRO ABDOMINAL'], axis=1).copy()
 
 # Define MICE Imputer and fill missing values
 mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None, imputation_order='ascending')
@@ -139,7 +137,10 @@ df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_m
 print("************************* imputed ********************")
 print(df_mice_imputed.info())
 df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed['CALCULO DE RIESGO DE Framingham (% a 10 años)']
+df['GLICEMIA 100 MG/DL_DIC'] = df_mice_imputed['GLICEMIA 100 MG/DL_DIC']
 df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
+df['PERIMETRO ABDOMINAL'] = df_mice_imputed['PERIMETRO ABDOMINAL']
+
 msno.matrix(df);
 plt.title("Missingness Data after imputation")
 plt.show()
@@ -208,6 +209,7 @@ plt.boxplot(df_clean['CALCULO DE RIESGO DE Framingham (% a 10 años)'])
 plt.title('Distribucion de riesgo de Framingham')
 plt.show()
 
+"""
 #Histograma de edad
 
 df_clean['Edad'].hist(bins=5)
@@ -216,6 +218,7 @@ plt.xlabel('Edad')
 plt.ylabel('Cuenta')
 plt.show()
 
+"""
 #bar chart género
 gender_counts = df['Cod_Género'].value_counts()
 ax = gender_counts.plot(kind='bar')
