@@ -63,5 +63,5 @@ reduced_data_test = pd.DataFrame(X_test_new, columns=ckd_df.columns[selected_col
 
 
 print(X_train_new)
-reduced_data.to_csv('../../data/processed/transformed_data/reduced_train_transformed_data.csv')
+reduced_data_train.to_csv('../../data/processed/transformed_data/reduced_train_transformed_data.csv')
 reduced_data_test.to_csv('../../data/processed/transformed_data/reduced_test_transformed_data.csv')
