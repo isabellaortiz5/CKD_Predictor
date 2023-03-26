@@ -7,9 +7,9 @@ from sklearn import linear_model
 import missingno as msno
 
 paths = {
-    "caqueta": '../../data/raw_2/caqueta_raw_2.csv',
-    "narino": '../../data/raw_2/Narino_raw_2.csv',
-    "putumayo": '../../data/raw_2/Putumayo_raw_2.csv',
+    "caqueta": '../../data/raw_2/caqueta_data_2.csv',
+    "narino": '../../data/raw_2/Narino_data_2.csv',
+    "putumayo": '../../data/raw_2/Putumayo_data_2.csv',
     "clean_data": '../../data/processed/cleaned_data/Cleaned_data.csv',
 }
 
@@ -63,10 +63,15 @@ putumayo_drops = [
 ****************************** read csv and make drops ******************************
 """
 caqueta_df = pd.read_csv(paths["caqueta"])
-
 narino_df = pd.read_csv(paths["narino"])
 putumayo_df = pd.read_csv(paths["putumayo"])
 
+print("*****************Caqueta*****************")
+print(caqueta_df.info(verbose=True, null_counts=True))
+print("*****************narino*****************")
+print(narino_df.info(verbose=True, null_counts=True))
+print("*****************putumayo*****************")
+print(putumayo_df.info(verbose=True, null_counts=True))
 
 caqueta_df_clean = caqueta_df.drop(common_drops, axis=1)
 
@@ -79,14 +84,18 @@ putumayo_df_clean = putumayo_df_clean.drop(putumayo_drops, axis=1)
 putumayo_df_clean = putumayo_df_clean.drop(narino_putumayo_drops, axis=1)
 
 print("Csv info:")
+print("*****************Caqueta*****************")
 print(caqueta_df_clean.info())
+print("*****************narino*****************")
 print(narino_df_clean.info())
+print("*****************putumayo*****************")
 print(putumayo_df_clean.info())
 
 """
 ****************************** concatenar dropped csv ******************************
 """
 df = pd.concat([putumayo_df_clean, narino_df_clean, caqueta_df_clean], axis=0)
+print("***************** unified df")
 print(df.info())
 
 msno.matrix(df);
