@@ -6,16 +6,14 @@ from sklearn import linear_model
 import missingno as msno
 
 
-class Cleaning:
-
-    paths = {
+paths = {
         "caqueta": '../../data/raw_2/caqueta_data_2.csv',
         "narino": '../../data/raw_2/Narino_data_2.csv',
         "putumayo": '../../data/raw_2/Putumayo_data_2.csv',
         "clean_data": '../../data/processed/cleaned_data/Cleaned_data.csv',
     }
 
-    common_drops = [
+common_drops = [
         "Año", "Mes", "Programa", "Evento", "Afiliados", "OrigenBD", "DesDepto", "CodMpio", "DescMpio",
         "Latitud_Y_Mpio", "Longitud_X_Mpio", "tipo_usuario", "Estado", "tipo_identifiCAcion", "Documento", "ConCAtenar", "nombre1",
         "nombre2", "apellido1", "apellido2", "FechaNac", "CiclosV", "DescrCiclosV", "QuinQ", "DescQuinQ", "EnfoqueDif",
@@ -40,16 +38,16 @@ class Cleaning:
         "FECHA DEL UROANALISIS",
         "FECHA DE ULTIMO SEGUIMIENTO ", "ETIOLOGIA DE LA ERC", "MODALIDAD COMO SE HACE EL SEGUIMIENTO DEL PACIENTE",
         "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML"
-    ]
-    narino_putumayo_drops = [
+        ]
+narino_putumayo_drops = [
         "FECHA NUTRUCIÓN", "FECHA TRABAJO SOCIAL", "FECHA MEDICINA INTERNA", "FECHA PISCOLOGIA", "FECHA NEFROLOGIA",
         "FECHA OFTALMOMOGIA", "FECHA ENDOCRINOLOGIA", "FECHA CARDIOLOGIA", "FECHA ELECTROCARDIOGRAMA",
         "FECHA NEFROPROTECCIÓN"
-    ]
-    narino_drops = [
+        ]
+narino_drops = [
         "REPETIDO"
-    ]
-    putumayo_drops = [
+        ]
+putumayo_drops = [
         "FECHA DE TOMA DE CREATININA SÉRICA", "FECHA DE TOMA DE GLICEMIA 100 MG/DL_DIC",
         "FECHA DE TOMA DE COLESTEROL TOTAL > 200 MG/DL_DIC",
         "FECHA DE TOMA DE LDL > 130 MG/DL_DIC", "FECHA DE TOMA DE HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC",
@@ -57,7 +55,10 @@ class Cleaning:
         "FECHA DE TOMA DE HEMOGRAMA",
         "FECHA DE TOMA DE POTASIO", "FECHA DE TOMA DE MICROALBINURIA", "FECHA DE TOMA DE CREATINURIA", "OBSERVACIONES",
         "FECHA DE TOMA DE TGD > 150 MG/DL_DIC"
-    ]
+        ]
+
+class Cleaning:
+
 
     def __init__(self, saving_path):
         self.saving_path = saving_path
@@ -76,13 +77,13 @@ class Cleaning:
         self.putumayo_df = pd.read_csv(self.paths["putumayo"])
 
     def drop_columns(self):
-        caqueta_df_clean = caqueta_df.drop(common_drops, axis=1)
+        caqueta_df_clean = self.caqueta_df.drop(common_drops, axis=1)
 
-        narino_df_clean = narino_df.drop(common_drops, axis=1)
+        narino_df_clean = self.narino_df.drop(common_drops, axis=1)
         narino_df_clean = narino_df_clean.drop(narino_drops, axis=1)
         narino_df_clean = narino_df_clean.drop(narino_putumayo_drops, axis=1)
 
-        putumayo_df_clean = putumayo_df.drop(common_drops, axis=1)
+        putumayo_df_clean = self.putumayo_df.drop(common_drops, axis=1)
         putumayo_df_clean = putumayo_df_clean.drop(putumayo_drops, axis=1)
         putumayo_df_clean = putumayo_df_clean.drop(narino_putumayo_drops, axis=1)
 
@@ -140,8 +141,8 @@ class Cleaning:
         return df, columns_droped
 
     def drop_nan(self):
-        nan_percentages = get_nan_per_col(df)
-        self.df_clean, columns_droped = remove_by_nan(5, nan_percentages, df)
+        nan_percentages = self.get_nan_per_col(self.df)
+        self.df_clean, columns_droped = self.remove_by_nan(5, nan_percentages, self.df)
         self.df_clean = self.df_clean.dropna()
 
     def save_df(self):
@@ -155,7 +156,6 @@ class Cleaning:
         self.replace_blanks()
         self.mice_imputation()
         self.drop_nan()
-        self.get_nan_per_col()
         self.save_df()
 
     #gets
