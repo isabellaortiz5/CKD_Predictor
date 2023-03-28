@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 import missingno as msno
 
 """
@@ -46,6 +48,11 @@ class Transform:
         self.df_after_categ_normalization = None
         self.df_after_dummy = None
         self.df_after_data_type = None
+        self.X_train = None
+        self.X_val = None
+        self.X_test = None
+        self.y_val = None
+        self.y_test = None
         self.df_after_scaling = None
         self.df_transform = None
         self.df_transformed = None
@@ -84,15 +91,46 @@ class Transform:
         """
         self.df_transform = scaler.fit_transform(self.df_transform)
         self.df_after_scaling = self.df_transform
+        
+         scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(X_train)
+        X_val_scaled = scaler.transform(X_val)
+        X_test_scaled = scaler.transform(X_test)
         """
         
-        
+    def splitting(self):
+        ckd_df = self.df_transform
+        X = ckd_df.drop('CALCULO DE RIESGO DE Framingham (% a 10 años)', axis=1)
+        y = ckd_df['CALCULO DE RIESGO DE Framingham (% a 10 años)']
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+        X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=42)
+
+        self.X_train = X_train
+        self.X_val = X_val
+        self.X_test = X_test
+        self.y_val = y_val
+        self.y_test = y_test
+
 
     def save(self):
         self.df_transformed = self.df_transform
         self.df_transform = self.df_transform.reset_index(drop=True)
-        self.df_transform.to_csv(self.transformed_data_path)
-        print("Transformed data succesfully saved in: {}".format(self.transformed_data_path))
+
+        self.df_transform.to_csv(str("{}/transformed_data.csv".format(self.transformed_data_path)))
+        self.X_train.to_csv(str("{}/X_train.csv".format(self.transformed_data_path)))
+        self.X_val.to_csv(str("{}/X_val.csv".format(self.transformed_data_path)))
+        self.X_test.to_csv(str("{}/X_test.csv".format(self.transformed_data_path)))
+        self.y_val.to_csv(str("{}/y_val.csv".format(self.transformed_data_path)))
+        self.y_test.to_csv(str("{}/y_test.csv".format(self.transformed_data_path)))
+
+        print("Transformed data(Before split) succesfully saved in: {}".format(self.transformed_data_path))
+        print("X_train succesfully saved in: {}".format(self.transformed_data_path))
+        print("X_val succesfully saved in: {}".format(self.transformed_data_path))
+        print("X_test succesfully saved in: {}".format(self.transformed_data_path))
+        print("y_val succesfully saved in: {}".format(self.transformed_data_path))
+        print("y_test succesfully saved in: {}".format(self.transformed_data_path))
 
     def run(self):
         print("------------------------------------------------")
@@ -102,9 +140,25 @@ class Transform:
         self.dummifying()
         self.changing_data_type()
         self.scaling()
+        self.splitting()
         print("All transformations successfully applied!")
         self.save()
         print("------------------------------------------------")
 
     def get_df_transformed(self):
         return self.df_transformed
+    
+    def get_X_train_transformed(self):
+        return self.X_train
+    
+    def get_X_val_transformed(self):
+        return self.X_val
+    
+    def get_X_test_transformed(self):
+        return self.X_test
+    
+    def get_y_val_transformed(self):
+        return self.y_val
+    
+    def get_y_test_transformed(self):
+        return self.y_test
