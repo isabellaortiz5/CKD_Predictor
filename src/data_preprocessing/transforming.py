@@ -48,23 +48,22 @@ class Transform:
         self.df_after_data_type = None
         self.df_after_scaling = None
         self.df_transform = None
+        self.df_transformed = None
 
-    def load_data(self):
+    def load_clean_data(self):
         df_clean = pd.read_csv(self.df_clean_path)
         self.df_transform = df_clean.drop(["Unnamed: 0"], axis=1)
 
     def categorical_data_normalization(self):
         self.df_transform = self.df_transform.replace('no aplica', 0)
-        self.df_transform['FechaNovedadFallecido'][self.df_transform['FechaNovedadFallecido'] != 0] = 1
+        self.df_transform.loc[self.df_transform['FechaNovedadFallecido'] != 0, 'FechaNovedadFallecido'] = 1
         self.df_transform['ADHERENCIA AL TRATAMIENTO'] = self.df_transform['ADHERENCIA AL TRATAMIENTO'].replace('NO', 0)
         self.df_transform['ADHERENCIA AL TRATAMIENTO'] = self.df_transform['ADHERENCIA AL TRATAMIENTO'].replace('SI', 1)
 
         self.df_after_categ_normalization = self.df_transform
 
     def dummifying(self):
-        self.df_transform = pd.get_dummies(self.df_transform, columns=['Evento'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['CodDepto'])
-        self.df_transform = pd.get_dummies(self.df_transform, columns=['Programa'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Tipo de Discapacidad'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Condición de Discapacidad'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Pertenencia Étnica'])
@@ -82,20 +81,30 @@ class Transform:
 
     def scaling(self):
         scaler = MinMaxScaler(feature_range=(0, 1))
+        """
         self.df_transform = scaler.fit_transform(self.df_transform)
         self.df_after_scaling = self.df_transform
+        """
+        
+        
 
     def save(self):
+        self.df_transformed = self.df_transform
         self.df_transform = self.df_transform.reset_index(drop=True)
         self.df_transform.to_csv(self.transformed_data_path)
+        print("Transformed data succesfully saved in: {}".format(self.transformed_data_path))
 
     def run(self):
-        self.load_Data()
-        self.categorical_data_normalization
+        print("------------------------------------------------")
+        print("Transforming...")
+        self.load_clean_data()
+        self.categorical_data_normalization()
         self.dummifying()
         self.changing_data_type()
         self.scaling()
+        print("All transformations successfully applied!")
         self.save()
-        return "All transformations successfully applied"
+        print("------------------------------------------------")
 
-
+    def get_df_transformed(self):
+        return self.df_transformed

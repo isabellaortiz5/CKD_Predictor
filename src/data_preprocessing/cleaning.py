@@ -10,7 +10,6 @@ paths = {
         "caqueta": '../../data/raw_2/caqueta_data_2.csv',
         "narino": '../../data/raw_2/Narino_data_2.csv',
         "putumayo": '../../data/raw_2/Putumayo_data_2.csv',
-        "clean_data": '../../data/processed/cleaned_data/Cleaned_data.csv',
     }
 
 common_drops = [
@@ -25,7 +24,7 @@ common_drops = [
         "EL USUARIO CUENTA CON ATENCIÓN POR PARTE DEL EQUIPO MULTIDISCIPLINARIO DE LA SALUD ",
         "CONTROLADO/NO CONTROLADO",
         "PACIENTES CON 5 Ó MÁS MDCTOS FORMULADOS AL MES", "FECHA DE ENTREGA DE MEDICAMENTOS",
-        "MODALIDAD DE ENTREGA DE MEDICAMENTOS", "ENTREGA DE MEDICAMENTO OPORTUNA",
+        "MODALIDAD DE ENTREGA DE MEDICAMENTOS",
         "PACIENTE I10X Y E119 QUE NO RECIBEN TRAMIENTO", "FECHA INGRESO AL PROGRAMA", "FECHA DEL SEGUNDO CONTROL",
         "FECHA DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL", "DX CONFIRMADO DE DIABETES MELLITUS",
         "FECHA DX CONFIRMADO DE DIABETES MELLITUS", "FECHA DIAGNÓSTICO DISLIPIDEMIAS", "TENSION SISTOLICA",
@@ -61,6 +60,12 @@ class Cleaning:
 
 
     def __init__(self, saving_path):
+        global paths
+        global common_drops
+        global narino_putumayo_drops
+        global narino_drops
+        global putumayo_drops
+
         self.saving_path = saving_path
         self.caqueta_df = None
         self.narino_df = None
@@ -69,12 +74,13 @@ class Cleaning:
         self.first_putumayo_clean = None
         self.first_narino_clean = None
         self.df = None
+        self.unified_df = None
         self.df_clean = None
 
     def read_csv(self):
-        self.caqueta_df = pd.read_csv(self.paths["caqueta"])
-        self.narino_df = pd.read_csv(self.paths["narino"])
-        self.putumayo_df = pd.read_csv(self.paths["putumayo"])
+        self.caqueta_df = pd.read_csv(paths["caqueta"],low_memory=False)
+        self.narino_df = pd.read_csv(paths["narino"],low_memory=False)
+        self.putumayo_df = pd.read_csv(paths["putumayo"],low_memory=False)
 
     def drop_columns(self):
         caqueta_df_clean = self.caqueta_df.drop(common_drops, axis=1)
@@ -87,12 +93,17 @@ class Cleaning:
         putumayo_df_clean = putumayo_df_clean.drop(putumayo_drops, axis=1)
         putumayo_df_clean = putumayo_df_clean.drop(narino_putumayo_drops, axis=1)
 
+        self.putumayo_df = putumayo_df_clean
+        self.narino_df = narino_df_clean
+        self.caqueta_df = caqueta_df_clean
+
         self.first_caqueta_clean = caqueta_df_clean
         self.first_putumayo_clean = putumayo_df_clean
         self.first_narino_clean = narino_df_clean
 
     def concat_dfs(self):
         self.df = pd.concat([self.putumayo_df, self.narino_df, self.caqueta_df], axis=0)
+        self.unified_df = self.df
 
     def replace_blanks(self):
         self.df = self.df.replace(r'^\s*$', np.nan, regex=True)
@@ -133,7 +144,7 @@ class Cleaning:
     @staticmethod
     def remove_by_nan(accepted_nan_percentage, nan_percentaje_series, df):
         columns_droped = []
-        for items in nan_percentaje_series.iteritems():
+        for items in nan_percentaje_series.items():
             if items[1] > accepted_nan_percentage:
                 df = df.drop([items[0]], axis=1)
                 columns_droped.append(items)
@@ -147,16 +158,21 @@ class Cleaning:
 
     def save_df(self):
         self.df_clean = self.df_clean.reset_index(drop=True)
-        self.df_clean.to_csv(paths["clean_data"])
+        self.df_clean.to_csv(self.saving_path)
+        print("Clean data successfully saved in: {}".format(self.saving_path))
 
     def run(self):
+        print("------------------------------------------------")
+        print("Cleaning...")
         self.read_csv()
         self.drop_columns()
         self.concat_dfs()
         self.replace_blanks()
         self.mice_imputation()
         self.drop_nan()
+        print("Data successfully cleaned!")
         self.save_df()
+        print("------------------------------------------------")
 
     #gets
 
@@ -180,7 +196,10 @@ class Cleaning:
 
     def get_df(self):
         return self.df
-
+    
+    def get_unified_df(self):
+        return self.df
+    
     def get_df_clean(self):
         return self.df_clean
 
