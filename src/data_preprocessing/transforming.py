@@ -60,14 +60,24 @@ class Transform:
     def load_clean_data(self):
         df_clean = pd.read_csv(self.df_clean_path)
         self.df_transform = df_clean.drop(["Unnamed: 0"], axis=1)
-
-    def categorical_data_normalization(self):
+    
+    def general_categorical_data(self):
         self.df_transform = self.df_transform.replace('no aplica', 0)
         self.df_transform.loc[self.df_transform['FechaNovedadFallecido'] != 0, 'FechaNovedadFallecido'] = 1
         self.df_transform['ADHERENCIA AL TRATAMIENTO'] = self.df_transform['ADHERENCIA AL TRATAMIENTO'].replace('NO', 0)
         self.df_transform['ADHERENCIA AL TRATAMIENTO'] = self.df_transform['ADHERENCIA AL TRATAMIENTO'].replace('SI', 1)
 
         self.df_after_categ_normalization = self.df_transform
+    
+    def category_encoding(self):
+        unique_values = self.df_transform['Pertenencia Étnica'].unique()
+        int_dict = {}
+        for i, val in enumerate(unique_values):
+            int_dict[val] = i
+        self.df_transform['Pertenencia Étnica'] = self.df_transform['Pertenencia Étnica'].map(int_dict)
+        print(int_dict)
+
+        
 
     def dummifying(self):
         self.df_transform = pd.get_dummies(self.df_transform, columns=['CodDepto'])
@@ -81,6 +91,11 @@ class Transform:
         self.df_transform = pd.get_dummies(self.df_transform, columns=['OBESIDAD'])
 
         self.df_after_dummy = self.df_transform
+
+    def one_hot_encoding(self):
+        self.general_categorical_data()
+        self.category_encoding()
+        self.dummifying()
 
     def changing_data_type(self):
 
@@ -135,8 +150,7 @@ class Transform:
         print("------------------------------------------------")
         print("Transforming...")
         self.load_clean_data()
-        self.categorical_data_normalization()
-        self.dummifying()
+        self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
         self.splitting()

@@ -15,7 +15,7 @@ paths = {
 common_drops = [
         "Año", "Mes", "Programa", "Evento", "Afiliados", "OrigenBD", "DesDepto", "CodMpio", "DescMpio",
         "Latitud_Y_Mpio", "Longitud_X_Mpio", "tipo_usuario", "Estado", "tipo_identifiCAcion", "Documento", "ConCAtenar", "nombre1",
-        "nombre2", "apellido1", "apellido2", "FechaNac", "CiclosV", "DescrCiclosV", "QuinQ", "DescQuinQ", "EnfoqueDif",
+        "nombre2", "apellido1", "apellido2", "FechaNac", "CiclosV", "DescrCiclosV", "QuinQ", "DescQuinQ","Género", "EnfoqueDif",
         "Hecho Victimizante", "RUV", "Nivel_Educativo", "Ocupación", "Tipo de afiliado", "Estado_Civil", "Discapacidad",
         "Grado de Discapacidad", "MUNICIPIO DONDE VIVE", "DIRECCIÓN DE DONDE VIVE", "TELEFONOS DE CONTACTO", "Zona",
         "Cód_poblado", "Nombre_poblado", "Latitud_Afiliado", "Longitud_Afiliado", "Validación_Dirección_Afiliado",
@@ -75,6 +75,7 @@ class Cleaning:
         self.first_narino_clean = None
         self.df = None
         self.unified_df = None
+        self.df_after_fix = None
         self.df_clean = None
 
     def read_csv(self):
@@ -136,6 +137,9 @@ class Cleaning:
         self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
         self.df['PERIMETRO ABDOMINAL'] = df_mice_imputed['PERIMETRO ABDOMINAL']
 
+    def fixed_data(self):
+        self.df['Pertenencia Étnica'] = self.df['Pertenencia Étnica'].str.upper()
+
     @staticmethod
     def get_nan_per_col(df):
         nan_percentage = ((df.isna().sum() * 100) / df.shape[0]).sort_values(ascending=True)
@@ -169,6 +173,7 @@ class Cleaning:
         self.concat_dfs()
         self.replace_blanks()
         self.mice_imputation()
+        self.fixed_data()
         self.drop_nan()
         print("Data successfully cleaned!")
         self.save_df()
