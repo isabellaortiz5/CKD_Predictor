@@ -113,7 +113,6 @@ class Transform:
         self.y_val = y_val
         self.y_test = y_test
 
-
     def save(self):
         self.df_transformed = self.df_transform
         self.df_transform = self.df_transform.reset_index(drop=True)
@@ -148,13 +147,13 @@ class Transform:
     def get_df_transformed(self):
         return self.df_transformed
     
-    def get_X_train_transformed(self):
+    def get_x_train_transformed(self):
         return self.X_train
     
-    def get_X_val_transformed(self):
+    def get_x_val_transformed(self):
         return self.X_val
     
-    def get_X_test_transformed(self):
+    def get_x_test_transformed(self):
         return self.X_test
     
     def get_y_val_transformed(self):

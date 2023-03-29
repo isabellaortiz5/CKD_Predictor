@@ -56,8 +56,8 @@ putumayo_drops = [
         "FECHA DE TOMA DE TGD > 150 MG/DL_DIC"
         ]
 
-class Cleaning:
 
+class Cleaning:
 
     def __init__(self, saving_path):
         global paths
@@ -142,18 +142,18 @@ class Cleaning:
         return nan_percentage
 
     @staticmethod
-    def remove_by_nan(accepted_nan_percentage, nan_percentaje_series, df):
-        columns_droped = []
-        for items in nan_percentaje_series.items():
+    def remove_by_nan(accepted_nan_percentage, nan_percentage_series, df):
+        columns_dropped = []
+        for items in nan_percentage_series.items():
             if items[1] > accepted_nan_percentage:
                 df = df.drop([items[0]], axis=1)
-                columns_droped.append(items)
+                columns_dropped.append(items)
 
-        return df, columns_droped
+        return df, columns_dropped
 
     def drop_nan(self):
         nan_percentages = self.get_nan_per_col(self.df)
-        self.df_clean, columns_droped = self.remove_by_nan(5, nan_percentages, self.df)
+        self.df_clean, columns_dropped = self.remove_by_nan(5, nan_percentages, self.df)
         self.df_clean = self.df_clean.dropna()
 
     def save_df(self):
@@ -309,38 +309,38 @@ def get_nan_per_col(df):
     return NAN_percentage
 
 
-def removeByNan(accepted_nan_percentage, nan_percentaje_series, df):
+def removeByNan(accepted_nan_percentage, nan_percentage_series, df):
     
-      Takes a series that contains all the columns name with the respective nan percentaje,
+      Takes a series that contains all the columns name with the respective nan percentage,
       then drops the columns that had nan content above the diven max nan limit.
 
       :param accepted_nan_percentage: {positive number that represent the limit of nan % acceptance}.
-      :param nan_percentaje_series: {series that contains all the columns name with the respective nan percentaje}.
+      :param nan_percentage_series: {series that contains all the columns name with the respective nan percentage}.
       :param df: {pandas data frame}.
       :type accepted_nan_percentage: float.
-      :type nan_percentaje_series: series.
+      :type nan_percentage_series: series.
       :type df: DataFrame.
       :return df: A dataframe without the columns that didint comply with the limit.
       :rtype df: DataFrame.
-      :return columns_droped: list of the name of the droped columns and its nan percentage.
-      :rtype columns_droped: list[str,float].
+      :return columns_dropped: list of the name of the dropped columns and its nan percentage.
+      :rtype columns_dropped: list[str,float].
 
 
-    columns_droped = []
-    for items in nan_percentaje_series.iteritems():
+    columns_dropped = []
+    for items in nan_percentage_series.iteritems():
         if items[1] > accepted_nan_percentage:
             df = df.drop([items[0]], axis=1)
-            columns_droped.append(items)
+            columns_dropped.append(items)
 
-    return df, columns_droped
+    return df, columns_dropped
 
 
 NAN_percentages = get_nan_per_col(df)
-df_clean, columns_droped = removeByNan(5, NAN_percentages, df)
+df_clean, columns_dropped = removeByNan(5, NAN_percentages, df)
 
 print("****************************** nans drops ******************************")
 print(NAN_percentages)
-print(columns_droped)
+print(columns_dropped)
 
 
 df_clean = df_clean.dropna()
