@@ -53,6 +53,7 @@ class Transform:
         self.X_test = None
         self.y_val = None
         self.y_test = None
+        self.y_train = None
         self.df_after_scaling = None
         self.df_transform = None
         self.df_transformed = None
@@ -70,12 +71,14 @@ class Transform:
         self.df_after_categ_normalization = self.df_transform
     
     def category_encoding(self):
-        unique_values = self.df_transform['Pertenencia Étnica'].unique()
-        int_dict = {}
-        for i, val in enumerate(unique_values):
-            int_dict[val] = i
-        self.df_transform['Pertenencia Étnica'] = self.df_transform['Pertenencia Étnica'].map(int_dict)
-        print(int_dict)
+        obj_cols = list(self.df_transform.select_dtypes(include=['object']).columns)
+        for col in obj_cols:
+            unique_values = self.df_transform[col].unique()
+            int_dict = {}
+            for i, val in enumerate(unique_values):
+                int_dict[val] = i
+            self.df_transform[col] = self.df_transform[col].map(int_dict)
+            print(f"Integer encoding for column '{col}': {int_dict}")
 
         
 
@@ -94,8 +97,8 @@ class Transform:
 
     def one_hot_encoding(self):
         self.general_categorical_data()
-        self.category_encoding()
         self.dummifying()
+        self.category_encoding()
 
     def changing_data_type(self):
 
@@ -112,12 +115,12 @@ class Transform:
         X_val_scaled = scaler.transform(X_val)
         X_test_scaled = scaler.transform(X_test)
         """
-        
+
     def splitting(self):
         ckd_df = self.df_transform
-        X = ckd_df.drop('CALCULO DE RIESGO DE Framingham (% a 10 años)', axis=1)
-        y = ckd_df['CALCULO DE RIESGO DE Framingham (% a 10 años)']
-
+        X = ckd_df.drop('Clasificación de RCV Global', axis=1)
+        y = ckd_df['Clasificación de RCV Global']
+        
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
         X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=42)
@@ -127,6 +130,7 @@ class Transform:
         self.X_test = X_test
         self.y_val = y_val
         self.y_test = y_test
+        self.y_train = y_train
 
     def save(self):
         self.df_transformed = self.df_transform
@@ -138,6 +142,7 @@ class Transform:
         self.X_test.to_csv(str("{}/X_test.csv".format(self.transformed_data_path)))
         self.y_val.to_csv(str("{}/y_val.csv".format(self.transformed_data_path)))
         self.y_test.to_csv(str("{}/y_test.csv".format(self.transformed_data_path)))
+        self.y_train.to_csv(str("{}/y_train.csv".format(self.transformed_data_path)))
 
         print("Transformed data(Before split) succesfully saved in: {}".format(self.transformed_data_path))
         print("X_train succesfully saved in: {}".format(self.transformed_data_path))
@@ -145,6 +150,7 @@ class Transform:
         print("X_test succesfully saved in: {}".format(self.transformed_data_path))
         print("y_val succesfully saved in: {}".format(self.transformed_data_path))
         print("y_test succesfully saved in: {}".format(self.transformed_data_path))
+        print("y_train succesfully saved in: {}".format(self.transformed_data_path))
 
     def run(self):
         print("------------------------------------------------")
@@ -175,3 +181,6 @@ class Transform:
     
     def get_y_test_transformed(self):
         return self.y_test
+    
+    def get_y_train_transformed(self):
+        return self.y_train
