@@ -208,11 +208,6 @@ class Cleaning:
     def get_df_clean(self):
         return self.df_clean
 
-
-
-
-
-
 """
 caqueta_df = pd.read_csv(paths["caqueta"])
 narino_df = pd.read_csv(paths["narino"])

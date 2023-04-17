@@ -80,8 +80,6 @@ class Transform:
             self.df_transform[col] = self.df_transform[col].map(int_dict)
             print(f"Integer encoding for column '{col}': {int_dict}")
 
-        
-
     def dummifying(self):
         self.df_transform = pd.get_dummies(self.df_transform, columns=['CodDepto'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Tipo de Discapacidad'])
@@ -101,7 +99,6 @@ class Transform:
         self.category_encoding()
 
     def changing_data_type(self):
-
         self.df_after_data_type = self.df_transform
 
     def scaling(self):

@@ -116,7 +116,7 @@ class XGBModel:
         self.X_test = X_test
         self.y_test = y_test
         self.param_grid = param_grid
-        self.xgb_model = XGBClassifier()
+        self.xgb_model = XGBClassifier(n_jobs=16)
 
     def train(self):
         self.xgb_model.fit(self.X_train, self.y_train)
