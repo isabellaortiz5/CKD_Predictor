@@ -36,7 +36,7 @@ common_drops = [
         "TERAPIA SUSTITUCIÓN DIALÍTICA", "TALLER EDUCATIVO ENTREGA CARTILLAS", "FECHA_CLASIF_ERC",
         "FECHA DEL UROANALISIS",
         "FECHA DE ULTIMO SEGUIMIENTO ", "ETIOLOGIA DE LA ERC", "MODALIDAD COMO SE HACE EL SEGUIMIENTO DEL PACIENTE",
-        "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML"
+        "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML", "LDL > 130 MG/DL_DIC"
         ]
 narino_putumayo_drops = [
         "FECHA NUTRUCIÓN", "FECHA TRABAJO SOCIAL", "FECHA MEDICINA INTERNA", "FECHA PISCOLOGIA", "FECHA NEFROLOGIA",
@@ -163,7 +163,7 @@ class Cleaning:
         self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].astype('float64').dtypes
         self.df['GLICEMIA 100 MG/DL_DIC'].astype('float64').dtypes
         self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'].astype('float64').dtypes
-        self.df['LDL > 130 MG/DL_DIC'].astype('float64').dtypes
+        #self.df['LDL > 130 MG/DL_DIC'].astype('float64').dtypes
         self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].astype('float64').dtypes
         self.df['TGD > 150 MG/DL_DIC'].astype('float64').dtypes
         self.df['ALBUMINURIA/CREATINURIA'].astype('float64').dtypes
@@ -204,6 +204,20 @@ class Cleaning:
         return df.applymap(trim_strings)
 
     def fixed_data(self):
+
+        #self.df = self.df.apply(lambda x: x.replace('1845\+01\+01', 'new_string', regex=True))
+        #ldl 1845+01+01
+        
+        #matches = self.df['LDL > 130 MG/DL_DIC'].contains('1845+01+01')
+        #print('000000000000000000000000000000000000000000000000000000000000000000000000muchas cosas')
+        #print(matches.value_counts())
+        self.df = self.df.replace('1845\+01\+01', np.nan, regex=True)
+
+
+
+        #df upper case
+        self.df = self.df.apply(lambda x: x.astype(str).str.upper())
+
         #df
         self.df = self.trim_all_columns(self.df)
         self.df = self.df.replace('-', '+', regex=True)
@@ -222,7 +236,10 @@ class Cleaning:
         self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('PREDIADETES', 'PREDIABETES', regex=True)
 
         #Creatinina Sérica
-        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace('1,,02', '1,02', regex=True)
+        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace('1,,02', '1.02', regex=True)
+        
+        #'HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'
+        self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'] = self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].str.replace('46\+', '46', regex=True)
         
 
     @staticmethod
