@@ -107,6 +107,7 @@ class Cleaning:
         self.unified_df = self.df
 
     def replace_blanks(self):
+        self.df = self.df.rename(columns=lambda x: x.strip())
         self.df = self.df.replace(r'^\s*$', np.nan, regex=True)
         self.df["FechaNovedadFallecido"] = self.df["FechaNovedadFallecido"].fillna('no aplica')
         self.df["Coomorbilidad"] = self.df["Coomorbilidad"].fillna('no aplica')
@@ -118,6 +119,66 @@ class Cleaning:
         self.df = self.df.replace("#DIV/0!", np.nan)
         self.df = self.df.replace("#NUM!", np.nan)
         self.df = self.df.replace("#VALUE!", np.nan)
+
+    def data_types(self):
+        self.df['Grupo de Riesgo'].astype('object').dtypes
+        self.df['CodDepto'].astype('float64').dtypes
+        self.df['FechaNovedadFallecido'].astype('object').dtypes
+        self.df['Edad'].astype('float64').dtypes
+        self.df['Cod_Género'].astype('float64').dtypes
+        self.df['Tipo de Discapacidad'].astype('object').dtypes
+        self.df['Condición de Discapacidad'].astype('object').dtypes
+        self.df['Pertenencia Étnica'].astype('object').dtypes
+        self.df['Coomorbilidad'].astype('object').dtypes
+        self.df['ADHERENCIA AL TRATAMIENTO'].astype('object').dtypes
+        self.df['Fumador Activo'].astype('float64').dtypes
+        self.df['CONSUMO DE ALCOHOL'].astype('object').dtypes
+        self.df['ENTREGA DE MEDICAMENTO OPORTUNA'].astype('object').dtypes
+        self.df['FARMACOS ANTIHIPERTENSIVOS'].astype('object').dtypes
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].astype('object').dtypes
+        self.df['RECIBE IECA'].astype('object').dtypes
+        self.df['RECIBE ARA II'].astype('object').dtypes
+        self.df['ESTATINA'].astype('object').dtypes
+        self.df['ANTIDIABETICOS'].astype('object').dtypes
+        self.df['OTROS ANTIDIABETICOS'].astype('object').dtypes
+        self.df['OTROS TRATAMIENTOS'].astype('object').dtypes
+        self.df['OTROS DIAGNÓSTICOS'].astype('object').dtypes
+        self.df['PESO'].astype('float64').dtypes
+        self.df['TALLA'].astype('float64').dtypes
+        self.df['IMC'].astype('float64').dtypes
+        self.df['OBESIDAD'].astype('object').dtypes
+        self.df['CALCULO DE RIESGO DE Framingham (% a 10 años)'].astype('float64').dtypes
+        self.df['Clasificación de RCV Global'].astype('object').dtypes
+        self.df['DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL'].astype('float64').dtypes
+        self.df['CÓD_DIABETES'].astype('float64').dtypes
+        self.df['CLASIFICACION DIABETES'].astype('object').dtypes
+        self.df['DIAGNÓSTICO DISLIPIDEMIAS'].astype('object').dtypes
+        self.df['CÓD_ANTEDECENTE'].astype('float64').dtypes
+        self.df['PRESION ARTERIAL'].astype('object').dtypes
+        self.df['COLESTEROL ALTO'].astype('object').dtypes
+        self.df['HDL ALTO'].astype('object').dtypes
+        self.df['CLASIFICACIÓN DE RIESGO CARDIOVASCULAR'].astype('object').dtypes
+        self.df['CALCULO TFG'].astype('float64').dtypes
+        self.df['CLASIFICACIÓN ESTADIO'].astype('object').dtypes
+        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].astype('float64').dtypes
+        self.df['GLICEMIA 100 MG/DL_DIC'].astype('float64').dtypes
+        self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'].astype('float64').dtypes
+        self.df['LDL > 130 MG/DL_DIC'].astype('float64').dtypes
+        self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].astype('float64').dtypes
+        self.df['TGD > 150 MG/DL_DIC'].astype('float64').dtypes
+        self.df['ALBUMINURIA/CREATINURIA'].astype('float64').dtypes
+        self.df['HEMOGLOBINA GLICOSILADA > DE 7%'].astype('float64').dtypes
+        self.df['HEMOGRAMA'].astype('float64').dtypes
+        self.df['POTASIO'].astype('float64').dtypes
+        self.df['MICROALBINURIA'].astype('float64').dtypes
+        self.df['CREATINURIA'].astype('float64').dtypes
+        self.df['UROANALIS'].astype('object').dtypes
+        self.df['PERIMETRO ABDOMINAL'].astype('float64').dtypes
+        self.df['Complicación Cardiaca'].astype('object').dtypes
+        self.df['Complicación Cerebral'].astype('object').dtypes
+        self.df['Complicación Retinianas'].astype('object').dtypes
+        self.df['Complicación Vascular'].astype('object').dtypes
+        self.df['Complicación Renales'].astype('object').dtypes
 
     def mice_imputation(self):
         df_mice = self.df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
@@ -147,11 +208,21 @@ class Cleaning:
         self.df = self.trim_all_columns(self.df)
         self.df = self.df.replace('-', '+', regex=True)
         self.df = self.df.replace(r'\s*\+\s*', '+', regex=True)
+        
 
         #Pertenencia Étnica
         self.df['Pertenencia Étnica'] = self.df['Pertenencia Étnica'].str.upper()
 
         #comorbilidad
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('IHPOTIROIDISMO', 'HIPOTIROIDISMO', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('HIPOTIROIDIDMO', 'HIPOTIROIDISMO', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('IRC', 'ERC', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ERCE5', 'ERC', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ANSIEDAD DEPRESION', 'ANSIEDAD+DEPRESION', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('PREDIADETES', 'PREDIABETES', regex=True)
+
+        #Creatinina Sérica
+        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace('1,,02', '1,02', regex=True)
         
 
     @staticmethod
@@ -187,8 +258,9 @@ class Cleaning:
         self.drop_columns()
         self.concat_dfs()
         self.replace_blanks()
-        self.mice_imputation()
         self.fixed_data()
+        self.data_types()
+        self.mice_imputation()
         # self.drop_nan()
         print("Data successfully cleaned!")
         self.save_df()
