@@ -108,18 +108,24 @@ class XGBModel:
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
+import numpy as np
+import joblib
 
 class XGBModel:
-    def __init__(self, X_train, y_train, X_test, y_test, param_grid):
+    def __init__(self, X_train, y_train, X_test, X_val, y_test, y_val, param_grid):
         self.X_train = X_train
         self.y_train = y_train
         self.X_test = X_test
         self.y_test = y_test
+        self.y_val = y_val
+        self.X_val = X_val
         self.param_grid = param_grid
-        self.xgb_model = XGBClassifier(n_jobs=16)
+        self.xgb_model = XGBClassifier(n_jobs=-1, early_stopping_rounds=10)
 
+    """
     def train(self):
         self.xgb_model.fit(self.X_train, self.y_train)
+    """
 
     def test(self):
         y_pred = self.xgb_model.predict(self.X_test)
@@ -131,6 +137,32 @@ class XGBModel:
         grid_search.fit(self.X_train, self.y_train)
         self.xgb_model = grid_search.best_estimator_
         print("Best hyperparameters: {}".format(grid_search.best_params_))
+
+    def train(self):
+        self.xgb_model.fit(self.X_train, self.y_train, eval_set=[(self.X_test, self.y_test)], verbose=False)
+
+        # Split the training data into batches
+        batch_size = 1000
+        n_batches = int(np.ceil(self.X_train.shape[0] / batch_size))
+        batches_X = np.array_split(self.X_train, n_batches)
+        batches_y = np.array_split(self.y_train, n_batches)
+
+        # Parallelize the training of each batch using joblib
+        self.xgb_model.n_jobs = -1  # Use all available CPU cores
+        results = joblib.Parallel(n_jobs=-1)(
+            joblib.delayed(self.xgb_model.fit)(X, y, eval_set=[(self.X_test, self.y_test)])
+            for X, y in zip(batches_X, batches_y)
+        )
+
+        # Save the trained models to files
+        model_files = []
+        for i, model in enumerate(results):
+            model_file = f'model_{i}.bin'
+            model.save_model(model_file)
+            model_files.append(model_file)
+
+        # Merge the results from each batch
+        self.xgb_model = xgb.Booster(model_file=results[0]) if len(results) == 1 else xgb.Booster(model_file=results)     
 
     def run(self):
         self.train()

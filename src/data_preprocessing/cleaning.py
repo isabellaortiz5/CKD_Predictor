@@ -161,6 +161,7 @@ class Cleaning:
         self.df_clean = self.df_clean.dropna()
 
     def save_df(self):
+        self.df_clean = self.df
         self.df_clean = self.df_clean.reset_index(drop=True)
         self.df_clean.to_csv(self.saving_path)
         print("Clean data successfully saved in: {}".format(self.saving_path))
@@ -174,7 +175,7 @@ class Cleaning:
         self.replace_blanks()
         self.mice_imputation()
         self.fixed_data()
-        self.drop_nan()
+        # self.drop_nan()
         print("Data successfully cleaned!")
         self.save_df()
         print("------------------------------------------------")
@@ -209,58 +210,6 @@ class Cleaning:
         return self.df_clean
 
 """
-caqueta_df = pd.read_csv(paths["caqueta"])
-narino_df = pd.read_csv(paths["narino"])
-putumayo_df = pd.read_csv(paths["putumayo"])
-
-print("*****************Caqueta*****************")
-print(caqueta_df.info(verbose=True, null_counts=True))
-print("*****************narino*****************")
-print(narino_df.info(verbose=True, null_counts=True))
-print("*****************putumayo*****************")
-print(putumayo_df.info(verbose=True, null_counts=True))
-
-caqueta_df_clean = caqueta_df.drop(common_drops, axis=1)
-
-narino_df_clean = narino_df.drop(common_drops, axis=1)
-narino_df_clean = narino_df_clean.drop(narino_drops, axis=1)
-narino_df_clean = narino_df_clean.drop(narino_putumayo_drops, axis=1)
-
-putumayo_df_clean = putumayo_df.drop(common_drops, axis=1)
-putumayo_df_clean = putumayo_df_clean.drop(putumayo_drops, axis=1)
-putumayo_df_clean = putumayo_df_clean.drop(narino_putumayo_drops, axis=1)
-
-print("Csv info:")
-print("*****************Caqueta*****************")
-print(caqueta_df_clean.info())
-print("*****************narino*****************")
-print(narino_df_clean.info())
-print("*****************putumayo*****************")
-print(putumayo_df_clean.info())
-
-
-df = pd.concat([putumayo_df_clean, narino_df_clean, caqueta_df_clean], axis=0)
-print("***************** unified df")
-print(df.info())
-
-msno.matrix(df);
-plt.title("Missingness - unified data frame")
-plt.show()
-
-
-df = df.replace(r'^\s*$', np.nan, regex=True)
-df["FechaNovedadFallecido"] = df["FechaNovedadFallecido"].fillna('no aplica')
-df["Coomorbilidad"] = df["Coomorbilidad"].fillna('no aplica')
-df["Condición de Discapacidad"] = df["Condición de Discapacidad"].fillna('no aplica')
-df["Tipo de Discapacidad"] = df["Tipo de Discapacidad"].fillna('no aplica')
-df["OTROS ANTIDIABETICOS"] = df["OTROS ANTIDIABETICOS"].fillna('no aplica')
-df["OTROS TRATAMIENTOS"] = df["OTROS TRATAMIENTOS"].fillna('no aplica')
-df["OTROS FARMACOS ANTIHIPERTENSIVOS"] = df["OTROS FARMACOS ANTIHIPERTENSIVOS"].fillna('no aplica')
-
-df = df.replace("#DIV/0!", np.nan)
-df = df.replace("#NUM!", np.nan)
-df = df.replace("#VALUE!", np.nan)
-
 
 # Plot missingness of unified data
 print("********* UNIFIED DF ********")

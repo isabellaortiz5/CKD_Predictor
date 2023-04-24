@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import missingno as msno
-
+import feature_engineering
 """
  "********************************************heatmap of missingness********************************************"
     msno.matrix(df_clean);
@@ -57,10 +57,13 @@ class Transform:
         self.df_after_scaling = None
         self.df_transform = None
         self.df_transformed = None
+        self.fe = None
 
     def load_clean_data(self):
         df_clean = pd.read_csv(self.df_clean_path)
         self.df_transform = df_clean.drop(["Unnamed: 0"], axis=1)
+        self.fe = feature_engineering.feature_eng()
+
     
     def general_categorical_data(self):
         self.df_transform = self.df_transform.replace('no aplica', 0)
@@ -153,6 +156,7 @@ class Transform:
         print("------------------------------------------------")
         print("Transforming...")
         self.load_clean_data()
+        self.df_transform = self.fe.run()
         self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
