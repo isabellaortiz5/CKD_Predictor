@@ -137,8 +137,22 @@ class Cleaning:
         self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
         self.df['PERIMETRO ABDOMINAL'] = df_mice_imputed['PERIMETRO ABDOMINAL']
 
+    @staticmethod
+    def trim_all_columns(df):
+        trim_strings = lambda x: x.strip() if isinstance(x, str) else x
+        return df.applymap(trim_strings)
+
     def fixed_data(self):
+        #df
+        self.df = self.trim_all_columns(self.df)
+        self.df = self.df.replace('-', '+', regex=True)
+        self.df = self.df.replace(r'\s*\+\s*', '+', regex=True)
+
+        #Pertenencia Étnica
         self.df['Pertenencia Étnica'] = self.df['Pertenencia Étnica'].str.upper()
+
+        #comorbilidad
+        
 
     @staticmethod
     def get_nan_per_col(df):
