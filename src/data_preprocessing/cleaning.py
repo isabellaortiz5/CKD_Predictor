@@ -220,18 +220,6 @@ class Cleaning:
         self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('14\*9', '14', regex=True)
         self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('109\+', '109', regex=True)
 
-
-        #Pertenencia Étnica
-        self.df['Pertenencia Étnica'] = self.df['Pertenencia Étnica'].str.upper()
-
-        #comorbilidad
-        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('IHPOTIROIDISMO', 'HIPOTIROIDISMO', regex=True)
-        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('HIPOTIROIDIDMO', 'HIPOTIROIDISMO', regex=True)
-        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('IRC', 'ERC', regex=True)
-        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ERCE5', 'ERC', regex=True)
-        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ANSIEDAD DEPRESION', 'ANSIEDAD+DEPRESION', regex=True)
-        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('PREDIADETES', 'PREDIABETES', regex=True)
-        
         # comas por puntos en float
         self.df['CodDepto'] = self.df['CodDepto'].str.replace(',', '.', regex=True)
         self.df['Edad'] = self.df['Edad'].str.replace(',', '.', regex=True)
@@ -258,6 +246,17 @@ class Cleaning:
         self.df['CREATINURIA'] = self.df['CREATINURIA'].str.replace(',', '.', regex=True)
         self.df['PERIMETRO ABDOMINAL'] = self.df['PERIMETRO ABDOMINAL'].str.replace(',', '.', regex=True)
         
+        #Pertenencia Étnica
+        self.df['Pertenencia Étnica'] = self.df['Pertenencia Étnica'].str.upper()
+
+        #comorbilidad
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('IHPOTIROIDISMO', 'HIPOTIROIDISMO', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('HIPOTIROIDIDMO', 'HIPOTIROIDISMO', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('IRC', 'ERC', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ERCE5', 'ERC', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ANSIEDAD DEPRESION', 'ANSIEDAD+DEPRESION', regex=True)
+        self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('PREDIADETES', 'PREDIABETES', regex=True)
+        
         #Creatinina Sérica
         self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace('1..02', '1.02', regex=True)
         
@@ -276,9 +275,6 @@ class Cleaning:
         #creatinuria
         self.df['CREATINURIA'] = self.df['CREATINURIA'].str.replace('1845\+01\+01', '0', regex=True)
         
-        
-        
-
     @staticmethod
     def get_nan_per_col(df):
         nan_percentage = ((df.isna().sum() * 100) / df.shape[0]).sort_values(ascending=True)
