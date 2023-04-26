@@ -32,6 +32,7 @@ class Transform:
         self.fe = feature_engineering.feature_eng(self.df_transform)
 
     def data_types(self):
+        self.df_transform = self.df_transform.replace({'nan': np.nan})
         self.df_transform['Grupo de Riesgo'].astype('object').dtypes
         self.df_transform['CodDepto'].astype('float64').dtypes
         self.df_transform['FechaNovedadFallecido'].astype('object').dtypes
@@ -91,8 +92,10 @@ class Transform:
         self.df_transform['Complicación Vascular'].astype('object').dtypes
         self.df_transform['Complicación Renales'].astype('object').dtypes
 
-    def feature_eng(self):
-        self.df_transform = self.fe.run()
+    def feature_eng(self,df):
+        df = self.fe.run()
+
+        return df
 
 
     def general_categorical_data(self):
@@ -107,11 +110,11 @@ class Transform:
         obj_cols = list(self.df_transform.select_dtypes(include=['object']).columns)
         for col in obj_cols:
             unique_values = self.df_transform[col].unique()
-            int_dict = {}
+            float_dict = {}
             for i, val in enumerate(unique_values):
-                int_dict[val] = i
-            self.df_transform[col] = self.df_transform[col].map(int_dict)
-            print(f"Integer encoding for column '{col}': {int_dict}")
+                float_dict[val] = float(i)
+            self.df_transform[col] = self.df_transform[col].map(float_dict)
+            print(f"Integer encoding for column '{col}': {float_dict}")
 
     def dummifying(self):
         self.df_transform = pd.get_dummies(self.df_transform, columns=['CodDepto'])
@@ -188,12 +191,12 @@ class Transform:
         print("Transforming...")
         self.load_clean_data()
         self.data_types()
-        self.feature_eng()
+        self.df_transform.info(verbose=True)
+        self.df_transform = self.feature_eng(self.df_transform)
         self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
         self.splitting()
-        print("All transformations successfully applied!")
         self.save()
         print("------------------------------------------------")
 
