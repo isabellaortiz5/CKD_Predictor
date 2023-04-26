@@ -1,5 +1,4 @@
 
-import pandas as pd
 
 class feature_eng:
     def __init__(self, clean_df):
@@ -7,11 +6,12 @@ class feature_eng:
         self.eng_df = None
 
     def deseases_column_join(self, df):
-        
+        df['ENFERMEDADES'] = df['OTROS DIAGNÓSTICOS'] + ' + ' + df['Coomorbilidad']
+        df = df.drop(['Coomorbilidad', 'OTROS DIAGNÓSTICOS'], axis=1)
         return df 
 
     def run (self):
-        self.eng_df = self.comorbilidad()
+        self.eng_df = self.deseases_column_join(self.clean_df)
 
         return self.eng_df
 
