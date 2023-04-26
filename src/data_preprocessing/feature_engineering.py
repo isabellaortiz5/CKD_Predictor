@@ -133,7 +133,7 @@ class feature_eng:
         return df_temp
 
     def run (self):
-        self.eng_df = self.comorbilidad(self)
+        self.eng_df = self.comorbilidad()
 
         return self.eng_df
 

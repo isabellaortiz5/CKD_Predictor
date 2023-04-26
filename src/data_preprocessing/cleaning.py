@@ -36,7 +36,7 @@ common_drops = [
         "TERAPIA SUSTITUCIÓN DIALÍTICA", "TALLER EDUCATIVO ENTREGA CARTILLAS", "FECHA_CLASIF_ERC",
         "FECHA DEL UROANALISIS",
         "FECHA DE ULTIMO SEGUIMIENTO ", "ETIOLOGIA DE LA ERC", "MODALIDAD COMO SE HACE EL SEGUIMIENTO DEL PACIENTE",
-        "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML", "LDL > 130 MG/DL_DIC"
+        "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML"
         ]
 narino_putumayo_drops = [
         "FECHA NUTRUCIÓN", "FECHA TRABAJO SOCIAL", "FECHA MEDICINA INTERNA", "FECHA PISCOLOGIA", "FECHA NEFROLOGIA",
@@ -163,12 +163,12 @@ class Cleaning:
         self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].astype('float64').dtypes
         self.df['GLICEMIA 100 MG/DL_DIC'].astype('float64').dtypes
         self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'].astype('float64').dtypes
-        #self.df['LDL > 130 MG/DL_DIC'].astype('float64').dtypes
+        self.df['LDL > 130 MG/DL_DIC'].astype('float64').dtypes
         self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].astype('float64').dtypes
         self.df['TGD > 150 MG/DL_DIC'].astype('float64').dtypes
         self.df['ALBUMINURIA/CREATINURIA'].astype('float64').dtypes
         self.df['HEMOGLOBINA GLICOSILADA > DE 7%'].astype('float64').dtypes
-        self.df['HEMOGRAMA'].astype('float64').dtypes
+        self.df['HEMOGRAMA'].astype('object').dtypes
         self.df['POTASIO'].astype('float64').dtypes
         self.df['MICROALBINURIA'].astype('float64').dtypes
         self.df['CREATINURIA'].astype('float64').dtypes
@@ -205,24 +205,21 @@ class Cleaning:
 
     def fixed_data(self):
 
-        #self.df = self.df.apply(lambda x: x.replace('1845\+01\+01', 'new_string', regex=True))
-        #ldl 1845+01+01
-        
-        #matches = self.df['LDL > 130 MG/DL_DIC'].contains('1845+01+01')
-        #print('000000000000000000000000000000000000000000000000000000000000000000000000muchas cosas')
-        #print(matches.value_counts())
-        self.df = self.df.replace('1845\+01\+01', np.nan, regex=True)
-
-
-
         #df upper case
         self.df = self.df.apply(lambda x: x.astype(str).str.upper())
 
-        #df
+        #fixed +
         self.df = self.trim_all_columns(self.df)
         self.df = self.df.replace('-', '+', regex=True)
         self.df = self.df.replace(r'\s*\+\s*', '+', regex=True)
         
+        #ldl > 130
+        self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('1845\+01\+01', '0', regex=True)
+        self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('4*9', '9', regex=True)
+        self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('14*28', '28', regex=True)
+        self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('14\*9', '14', regex=True)
+        self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('109\+', '109', regex=True)
+
 
         #Pertenencia Étnica
         self.df['Pertenencia Étnica'] = self.df['Pertenencia Étnica'].str.upper()
@@ -234,12 +231,52 @@ class Cleaning:
         self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ERCE5', 'ERC', regex=True)
         self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('ANSIEDAD DEPRESION', 'ANSIEDAD+DEPRESION', regex=True)
         self.df['Coomorbilidad'] = self.df['Coomorbilidad'].str.replace('PREDIADETES', 'PREDIABETES', regex=True)
-
+        
+        # comas por puntos en float
+        self.df['CodDepto'] = self.df['CodDepto'].str.replace(',', '.', regex=True)
+        self.df['Edad'] = self.df['Edad'].str.replace(',', '.', regex=True)
+        self.df['Cod_Género'] = self.df['Cod_Género'].str.replace(',', '.', regex=True)
+        self.df['Fumador Activo'] = self.df['Fumador Activo'].str.replace(',', '.', regex=True)
+        self.df['PESO'] = self.df['PESO'].str.replace(',', '.', regex=True)
+        self.df['TALLA'] = self.df['TALLA'].str.replace(',', '.', regex=True)
+        self.df['IMC'] = self.df['IMC'].str.replace(',', '.', regex=True)
+        self.df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = self.df['CALCULO DE RIESGO DE Framingham (% a 10 años)'].str.replace(',', '.', regex=True)
+        self.df['DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL'] = self.df['DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL'].str.replace(',', '.', regex=True)
+        self.df['CÓD_DIABETES'] = self.df['CÓD_DIABETES'].str.replace(',', '.', regex=True)
+        self.df['CÓD_ANTEDECENTE'] = self.df['CÓD_ANTEDECENTE'].str.replace(',', '.', regex=True)
+        self.df['CALCULO TFG'] = self.df['CALCULO TFG'].str.replace(',', '.', regex=True)
+        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace(',', '.', regex=True)
+        self.df['GLICEMIA 100 MG/DL_DIC'] = self.df['GLICEMIA 100 MG/DL_DIC'].str.replace(',', '.', regex=True)
+        self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'].str.replace(',', '.', regex=True)
+        self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace(',', '.', regex=True)
+        self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'] = self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].str.replace(',', '.', regex=True)
+        self.df['TGD > 150 MG/DL_DIC'] = self.df['TGD > 150 MG/DL_DIC'].str.replace(',', '.', regex=True)
+        self.df['ALBUMINURIA/CREATINURIA'] = self.df['ALBUMINURIA/CREATINURIA'].str.replace(',', '.', regex=True)
+        self.df['HEMOGLOBINA GLICOSILADA > DE 7%'] = self.df['HEMOGLOBINA GLICOSILADA > DE 7%'].str.replace(',', '.', regex=True)
+        self.df['POTASIO'] = self.df['POTASIO'].str.replace(',', '.', regex=True)
+        self.df['MICROALBINURIA'] = self.df['MICROALBINURIA'].str.replace(',', '.', regex=True)
+        self.df['CREATINURIA'] = self.df['CREATINURIA'].str.replace(',', '.', regex=True)
+        self.df['PERIMETRO ABDOMINAL'] = self.df['PERIMETRO ABDOMINAL'].str.replace(',', '.', regex=True)
+        
         #Creatinina Sérica
-        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace('1,,02', '1.02', regex=True)
+        self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = self.df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].str.replace('1..02', '1.02', regex=True)
         
         #'HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'
         self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'] = self.df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].str.replace('46\+', '46', regex=True)
+
+        #'TGD > 150 MG/DL_DIC'
+        self.df['TGD > 150 MG/DL_DIC'] = self.df['TGD > 150 MG/DL_DIC'].str.replace('260\+80', '260', regex=True)
+
+        #'HEMOGLOBINA GLICOSILADA > DE 7%'
+        self.df['HEMOGLOBINA GLICOSILADA > DE 7%'] = self.df['HEMOGLOBINA GLICOSILADA > DE 7%'].str.replace('28\+07\+2022', '0', regex=True)
+
+        #microalbinuria
+        self.df['MICROALBINURIA'] = self.df['MICROALBINURIA'].str.replace('>300', '300', regex=True)
+
+        #creatinuria
+        self.df['CREATINURIA'] = self.df['CREATINURIA'].str.replace('1845\+01\+01', '0', regex=True)
+        
+        
         
 
     @staticmethod

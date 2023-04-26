@@ -62,7 +62,7 @@ class Transform:
     def load_clean_data(self):
         df_clean = pd.read_csv(self.df_clean_path)
         self.df_transform = df_clean.drop(["Unnamed: 0"], axis=1)
-        self.fe = feature_engineering.feature_eng()
+        self.fe = feature_engineering.feature_eng(self.df_transform)
 
     
     def general_categorical_data(self):
