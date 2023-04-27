@@ -266,6 +266,14 @@ class Cleaning:
         self.df['OTROS DIAGNÓSTICOS'] = self.df['OTROS DIAGNÓSTICOS'].str.replace(' DEBIDA A EXCESO DE CALORIAS', '', regex=True)
         self.df['OTROS DIAGNÓSTICOS'] = self.df['OTROS DIAGNÓSTICOS'].str.replace(', SIN OTRA ESPECIFICACION', '', regex=True)
 
+        #FARMACOS ANTIHIPERTENSIVOS
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace(' O ', '+', regex=True)
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace(' Ó ', '+', regex=True)
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace(' UNICAMENTE', '', regex=True)
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA (HCTZ)', 'HCTZ', regex=True)
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA', 'HCTZ', regex=True)
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace(' (HCTZ)', '', regex=True)
+
     @staticmethod
     def get_nan_per_col(df):
         nan_percentage = ((df.isna().sum() * 100) / df.shape[0]).sort_values(ascending=True)
