@@ -272,7 +272,7 @@ class Cleaning:
         self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace(' UNICAMENTE', '', regex=True)
         self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA (HCTZ)', 'HCTZ', regex=True)
         self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA', 'HCTZ', regex=True)
-        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace(' (HCTZ)', '', regex=True)
+        self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HCTZ (HCTZ)', 'HTCZ', regex=True)
 
     @staticmethod
     def get_nan_per_col(df):
