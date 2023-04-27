@@ -12,7 +12,8 @@ class feature_eng:
     
     def drugs_column_join(self, df):
         df['FARMACOS'] = df['FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['OTROS FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['ANTIDIABETICOS'] + ' + ' + df['OTROS ANTIDIABETICOS'] + ' + ' + df['OTROS TRATAMIENTOS']
-        df = df.drop(['Coomorbilidad', 'OTROS DIAGNÓSTICOS'], axis=1)
+        df = df.drop(['FARMACOS ANTIHIPERTENSIVOS', 'OTROS FARMACOS ANTIHIPERTENSIVOS', 'ANTIDIABETICOS', 'OTROS ANTIDIABETICOS', 'OTROS TRATAMIENTOS'], axis=1)
+  
         return df 
 
     def run (self):
