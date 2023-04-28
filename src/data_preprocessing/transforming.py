@@ -125,7 +125,13 @@ class Transform:
         df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
                                   'GLICEMIA 100 MG/DL_DIC',
                                   'COLESTEROL TOTAL > 200 MG/DL_DIC',
-                                  'PERIMETRO ABDOMINAL'], axis=1).copy()
+                                  'CALCULO TFG',
+                                  'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'
+                                  'LDL > 130 MG/DL_DIC','HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC',
+                                  'TGD > 150 MG/DL_DIC','ALBUMINURIA/CREATINURIA',
+                                  'HEMOGLOBINA GLICOSILADA > DE 7%','POTASIO',
+                                  'MICROALBINURIA','CREATINURIA'
+                                  ], axis=1).copy()
 
         # Define MICE Imputer and fill missing values
         mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None,
@@ -133,11 +139,19 @@ class Transform:
 
         df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
 
-        df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed[
-            'CALCULO DE RIESGO DE Framingham (% a 10 años)']
+        df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed['CALCULO DE RIESGO DE Framingham (% a 10 años)']
         df['GLICEMIA 100 MG/DL_DIC'] = df_mice_imputed['GLICEMIA 100 MG/DL_DIC']
         df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
-        df['PERIMETRO ABDOMINAL'] = df_mice_imputed['PERIMETRO ABDOMINAL']
+        df['CALCULO TFG'] = df_mice_imputed['CALCULO TFG']
+        df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'] = df_mice_imputed['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC']
+        df['LDL > 130 MG/DL_DIC'] = df_mice_imputed['LDL > 130 MG/DL_DIC']
+        df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'] = df_mice_imputed['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC']
+        df['TGD > 150 MG/DL_DIC'] = df_mice_imputed['TGD > 150 MG/DL_DIC']
+        df['ALBUMINURIA/CREATINURIA'] = df_mice_imputed['ALBUMINURIA/CREATINURIA']
+        df['HEMOGLOBINA GLICOSILADA > DE 7%'] = df_mice_imputed['HEMOGLOBINA GLICOSILADA > DE 7%']
+        df['POTASIO'] = df_mice_imputed['POTASIO']
+        df['MICROALBINURIA'] = df_mice_imputed['MICROALBINURIA']
+        df['CREATINURIA'] = df_mice_imputed['CREATINURIA']
         
         return df
 
