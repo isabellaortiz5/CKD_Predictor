@@ -202,16 +202,19 @@ class Cleaning:
     def trim_all_columns(df):
         trim_strings = lambda x: x.strip() if isinstance(x, str) else x
         return df.applymap(trim_strings)
+    
+    def fix_plus_sign(self,df):
+        df = df.replace('-', '+', regex=True)
+        df = df.replace(r'\s*\+\s*', '+', regex=True)
+        
+        return df
 
     def fixed_data(self):
 
+        self.df = self.fix_plus_sign(self.df)
+
         #df upper case
         self.df = self.df.apply(lambda x: x.astype(str).str.upper())
-
-        #fixed +
-        self.df = self.trim_all_columns(self.df)
-        self.df = self.df.replace('-', '+', regex=True)
-        self.df = self.df.replace(r'\s*\+\s*', '+', regex=True)
         
         #ldl > 130
         self.df['LDL > 130 MG/DL_DIC'] = self.df['LDL > 130 MG/DL_DIC'].str.replace('1845\+01\+01', '0', regex=True)
@@ -273,6 +276,38 @@ class Cleaning:
         self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA (HCTZ)', 'HCTZ', regex=True)
         self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA', 'HCTZ', regex=True)
         self.df['FARMACOS ANTIHIPERTENSIVOS'] = self.df['FARMACOS ANTIHIPERTENSIVOS'].str.replace('HCTZ (HCTZ)', 'HTCZ', regex=True)
+
+        #OTROS FARMACOS ANTIHIPERTENSIVOS
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('/', '+', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace(',', '+', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace(r'\bNO\b', 'NO APLICA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace(r'\s*(?:1|2|MG|MGR|0|3|5|7|8|10|20|25|40|50|80|100|200)\s*', ' ', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace(r'\sX\s', '', regex=True)        
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace(r'\sX$', '', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace(r'\+$', '', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('NO APLICA APLICA', 'NO APLICA' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('METROPROLOL', 'METOPROLOL' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('ROSUBASTATINA', 'ROSUvASTATINA' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('SACUBITRILO+VVALSARTAN', 'SACUBITRILO+VALSARTAN' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('GNFIBROXILO', 'GEMFIBROZILO' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('GENFIBROZILO+ATROVASTATINA+EZOMEPRAZOL', 'GEMFIBROZILO+ATROVASTATINA+EZOMEPRAZOL' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('METFORMINA+ROSUVASTATIBNA', 'METFORMINA+ROSUVASTATINA' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('VIDAGLIPTINA', 'VILDAGLIPTINA' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('METOPROLOL   COMPRIMIDO', 'METOPROLOL', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('CLOGIDRATO', 'CLORIDRATO' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('ATORVASTAINA', 'ATORVASTATINA' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN METOPROLOL', 'LOSARTAN+METOPROLOL' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('VILDAGLIPTINA', 'VIDALGLIPTINA' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN . ACETIL SALICILICO', 'LOSARTAN+ACETIL SALICILICO' , regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN HCT', 'LOSARTAN+HCT')
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTANX', 'LOSARTAN', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('ENALAPRIL MALEATOX', 'ENALAPRIL+MALEATO', regex=True)
+        #self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('\s+', ' ')
+        #fix plus signs
+        self.df = self.fix_plus_sign(self.df)
+        self.df = self.trim_all_columns(self.df)
+
+
 
     @staticmethod
     def get_nan_per_col(df):
