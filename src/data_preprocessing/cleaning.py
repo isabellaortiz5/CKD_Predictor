@@ -1,8 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn.experimental import enable_iterative_imputer
-from sklearn.impute import IterativeImputer
-from sklearn import linear_model
 import missingno as msno
 
 
@@ -180,24 +177,6 @@ class Cleaning:
         self.df['Complicación Vascular'].astype('object').dtypes
         self.df['Complicación Renales'].astype('object').dtypes
 
-    def mice_imputation(self):
-        df_mice = self.df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
-                                  'GLICEMIA 100 MG/DL_DIC',
-                                  'COLESTEROL TOTAL > 200 MG/DL_DIC',
-                                  'PERIMETRO ABDOMINAL'], axis=1).copy()
-
-        # Define MICE Imputer and fill missing values
-        mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None,
-                                        imputation_order='ascending')
-
-        df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
-
-        self.df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed[
-            'CALCULO DE RIESGO DE Framingham (% a 10 años)']
-        self.df['GLICEMIA 100 MG/DL_DIC'] = df_mice_imputed['GLICEMIA 100 MG/DL_DIC']
-        self.df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
-        self.df['PERIMETRO ABDOMINAL'] = df_mice_imputed['PERIMETRO ABDOMINAL']
-
     @staticmethod
     def trim_all_columns(df):
         trim_strings = lambda x: x.strip() if isinstance(x, str) else x
@@ -374,7 +353,6 @@ class Cleaning:
         self.replace_blanks()
         self.fixed_data()
         self.data_types()
-        self.mice_imputation()
         # self.drop_nan()
         print("Data successfully cleaned!")
         self.save_df()

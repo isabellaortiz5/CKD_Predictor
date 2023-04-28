@@ -5,6 +5,9 @@ from scipy import stats
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+from sklearn import linear_model
 import missingno as msno
 import feature_engineering
 
@@ -118,6 +121,26 @@ class Transform:
             self.df_transform[col] = self.df_transform[col].map(float_dict)
             print(f"Integer encoding for column '{col}': {float_dict}")
 
+    def mice_imputation(self, df):
+        df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
+                                  'GLICEMIA 100 MG/DL_DIC',
+                                  'COLESTEROL TOTAL > 200 MG/DL_DIC',
+                                  'PERIMETRO ABDOMINAL'], axis=1).copy()
+
+        # Define MICE Imputer and fill missing values
+        mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None,
+                                        imputation_order='ascending')
+
+        df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
+
+        df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed[
+            'CALCULO DE RIESGO DE Framingham (% a 10 años)']
+        df['GLICEMIA 100 MG/DL_DIC'] = df_mice_imputed['GLICEMIA 100 MG/DL_DIC']
+        df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
+        df['PERIMETRO ABDOMINAL'] = df_mice_imputed['PERIMETRO ABDOMINAL']
+        
+        return df
+
     def dummifying(self):
         self.df_transform = pd.get_dummies(self.df_transform, columns=['CodDepto'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Tipo de Discapacidad'])
@@ -218,6 +241,7 @@ class Transform:
         print("Transforming...")
         self.load_clean_data()
         self.df_transform = self.data_types(self.df_transform)
+        self.df_transform = self.mice_imputation(self.df_transform)
         self.df_transform = self.feature_eng(self.df_transform)
         self.one_hot_encoding()
         self.changing_data_type()
