@@ -108,17 +108,26 @@ class XGBModel:
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import joblib
 
 class XGBModel:
     def __init__(self, X_train, y_train, X_test, X_val, y_test, y_val, param_grid):
+        le = LabelEncoder()
+        
         self.X_train = X_train
-        self.y_train = y_train
+
+        self.y_train = le.fit_transform(y_train)
+
         self.X_test = X_test
-        self.y_test = y_test
-        self.y_val = y_val
+
+        self.y_test = le.fit_transform(y_test)
+
         self.X_val = X_val
+
+        self.y_val = le.fit_transform(y_val)
+
         self.param_grid = param_grid
         self.xgb_model = XGBClassifier(n_jobs=-1, early_stopping_rounds=10)
 

@@ -31,67 +31,69 @@ class Transform:
         self.df_transform = df_clean.drop(["Unnamed: 0"], axis=1)
         self.fe = feature_engineering.feature_eng(self.df_transform)
 
-    def data_types(self):
-        self.df_transform = self.df_transform.replace({'nan': np.nan})
-        self.df_transform['Grupo de Riesgo'].astype('object').dtypes
-        self.df_transform['CodDepto'].astype('float64').dtypes
-        self.df_transform['FechaNovedadFallecido'].astype('object').dtypes
-        self.df_transform['Edad'].astype('float64').dtypes
-        self.df_transform['Cod_Género'].astype('float64').dtypes
-        self.df_transform['Tipo de Discapacidad'].astype('object').dtypes
-        self.df_transform['Condición de Discapacidad'].astype('object').dtypes
-        self.df_transform['Pertenencia Étnica'].astype('object').dtypes
-        self.df_transform['Coomorbilidad'].astype('object').dtypes
-        self.df_transform['ADHERENCIA AL TRATAMIENTO'].astype('object').dtypes
-        self.df_transform['Fumador Activo'].astype('float64').dtypes
-        self.df_transform['CONSUMO DE ALCOHOL'].astype('object').dtypes
-        self.df_transform['ENTREGA DE MEDICAMENTO OPORTUNA'].astype('object').dtypes
-        self.df_transform['FARMACOS ANTIHIPERTENSIVOS'].astype('object').dtypes
-        self.df_transform['OTROS FARMACOS ANTIHIPERTENSIVOS'].astype('object').dtypes
-        self.df_transform['RECIBE IECA'].astype('object').dtypes
-        self.df_transform['RECIBE ARA II'].astype('object').dtypes
-        self.df_transform['ESTATINA'].astype('object').dtypes
-        self.df_transform['ANTIDIABETICOS'].astype('object').dtypes
-        self.df_transform['OTROS ANTIDIABETICOS'].astype('object').dtypes
-        self.df_transform['OTROS TRATAMIENTOS'].astype('object').dtypes
-        self.df_transform['OTROS DIAGNÓSTICOS'].astype('object').dtypes
-        self.df_transform['PESO'].astype('float64').dtypes
-        self.df_transform['TALLA'].astype('float64').dtypes
-        self.df_transform['IMC'].astype('float64').dtypes
-        self.df_transform['OBESIDAD'].astype('object').dtypes
-        self.df_transform['CALCULO DE RIESGO DE Framingham (% a 10 años)'].astype('float64').dtypes
-        self.df_transform['Clasificación de RCV Global'].astype('object').dtypes
-        self.df_transform['DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL'].astype('float64').dtypes
-        self.df_transform['CÓD_DIABETES'].astype('float64').dtypes
-        self.df_transform['CLASIFICACION DIABETES'].astype('object').dtypes
-        self.df_transform['DIAGNÓSTICO DISLIPIDEMIAS'].astype('object').dtypes
-        self.df_transform['CÓD_ANTEDECENTE'].astype('float64').dtypes
-        self.df_transform['PRESION ARTERIAL'].astype('object').dtypes
-        self.df_transform['COLESTEROL ALTO'].astype('object').dtypes
-        self.df_transform['HDL ALTO'].astype('object').dtypes
-        self.df_transform['CLASIFICACIÓN DE RIESGO CARDIOVASCULAR'].astype('object').dtypes
-        self.df_transform['CALCULO TFG'].astype('float64').dtypes
-        self.df_transform['CLASIFICACIÓN ESTADIO'].astype('object').dtypes
-        self.df_transform['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].astype('float64').dtypes
-        self.df_transform['GLICEMIA 100 MG/DL_DIC'].astype('float64').dtypes
-        self.df_transform['COLESTEROL TOTAL > 200 MG/DL_DIC'].astype('float64').dtypes
-        self.df_transform['LDL > 130 MG/DL_DIC'].astype('float64').dtypes
-        self.df_transform['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].astype('float64').dtypes
-        self.df_transform['TGD > 150 MG/DL_DIC'].astype('float64').dtypes
-        self.df_transform['ALBUMINURIA/CREATINURIA'].astype('float64').dtypes
-        self.df_transform['HEMOGLOBINA GLICOSILADA > DE 7%'].astype('float64').dtypes
-        self.df_transform['HEMOGRAMA'].astype('object').dtypes
-        self.df_transform['POTASIO'].astype('float64').dtypes
-        self.df_transform['MICROALBINURIA'].astype('float64').dtypes
-        self.df_transform['CREATINURIA'].astype('float64').dtypes
-        self.df_transform['UROANALIS'].astype('object').dtypes
-        self.df_transform['PERIMETRO ABDOMINAL'].astype('float64').dtypes
-        self.df_transform['Complicación Cardiaca'].astype('object').dtypes
-        self.df_transform['Complicación Cerebral'].astype('object').dtypes
-        self.df_transform['Complicación Retinianas'].astype('object').dtypes
-        self.df_transform['Complicación Vascular'].astype('object').dtypes
-        self.df_transform['Complicación Renales'].astype('object').dtypes
+    def data_types(self, df):
+        df = df.replace({'nan': np.nan})
+        df = df.astype({'Grupo de Riesgo': 'object',
+            'CodDepto': 'float64',
+            'FechaNovedadFallecido': 'object',
+            'Edad': 'float64',
+            'Cod_Género': 'float64',
+            'Tipo de Discapacidad': 'object',
+            'Condición de Discapacidad': 'object',
+            'Pertenencia Étnica': 'object',
+            'Coomorbilidad': 'object',
+            'ADHERENCIA AL TRATAMIENTO': 'object',
+            'Fumador Activo': 'float64',
+            'CONSUMO DE ALCOHOL': 'object',
+            'ENTREGA DE MEDICAMENTO OPORTUNA': 'object',
+            'FARMACOS ANTIHIPERTENSIVOS': 'object',
+            'OTROS FARMACOS ANTIHIPERTENSIVOS': 'object',
+            'RECIBE IECA': 'object',
+            'RECIBE ARA II': 'object',
+            'ESTATINA': 'object',
+            'ANTIDIABETICOS': 'object',
+            'OTROS ANTIDIABETICOS': 'object',
+            'OTROS TRATAMIENTOS': 'object',
+            'OTROS DIAGNÓSTICOS': 'object',
+            'PESO': 'float64',
+            'TALLA': 'float64',
+            'IMC': 'float64',
+            'OBESIDAD': 'object',
+            'CALCULO DE RIESGO DE Framingham (% a 10 años)': 'float64',
+            'Clasificación de RCV Global': 'object',
+            'DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL': 'float64',
+            'CÓD_DIABETES': 'float64',
+            'CLASIFICACION DIABETES': 'object',
+            'DIAGNÓSTICO DISLIPIDEMIAS': 'object',
+            'CÓD_ANTEDECENTE': 'float64',
+            'PRESION ARTERIAL': 'object',
+            'COLESTEROL ALTO': 'object',
+            'HDL ALTO': 'object',
+            'CLASIFICACIÓN DE RIESGO CARDIOVASCULAR': 'object',
+            'CALCULO TFG': 'float64',
+            'CLASIFICACIÓN ESTADIO': 'object',
+            'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC': 'float64',
+            'GLICEMIA 100 MG/DL_DIC': 'float64',
+            'COLESTEROL TOTAL > 200 MG/DL_DIC': 'float64',
+            'LDL > 130 MG/DL_DIC': 'float64',
+            'HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC': 'float64',
+            'TGD > 150 MG/DL_DIC': 'float64',
+            'ALBUMINURIA/CREATINURIA': 'float64',
+            'HEMOGLOBINA GLICOSILADA > DE 7%': 'float64',
+            'HEMOGRAMA': 'object',
+            'POTASIO': 'float64',
+            'MICROALBINURIA': 'float64',
+            'CREATINURIA': 'float64',
+            'UROANALIS': 'object',
+            'PERIMETRO ABDOMINAL': 'float64',
+            'Complicación Cardiaca': 'object',
+            'Complicación Cerebral': 'object',
+            'Complicación Retinianas': 'object',
+            'Complicación Vascular': 'object',
+            'Complicación Renales': 'object'})
 
+        return df
+    
     def feature_eng(self,df):
         df = self.fe.run()
 
@@ -122,11 +124,12 @@ class Transform:
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Condición de Discapacidad'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Pertenencia Étnica'])
         #self.df_transform = pd.get_dummies(self.df_transform, columns=['Coomorbilidad'])
-        self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS FARMACOS ANTIHIPERTENSIVOS'])
-        self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS ANTIDIABETICOS'])
+        #self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS FARMACOS ANTIHIPERTENSIVOS'])
+        #self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS ANTIDIABETICOS'])
         #self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS TRATAMIENTOS'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['OBESIDAD'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['ENFERMEDADES'])
+        self.df_transform = pd.get_dummies(self.df_transform, columns=['FARMACOS'])
 
         self.df_after_dummy = self.df_transform
 
@@ -152,8 +155,8 @@ class Transform:
 
     def splitting(self):
         ckd_df = self.df_transform
-        X = ckd_df.drop('Clasificación de RCV Global', axis=1)
-        y = ckd_df['Clasificación de RCV Global']
+        X = ckd_df.drop('CLASIFICACIÓN ESTADIO', axis=1)
+        y = ckd_df['CLASIFICACIÓN ESTADIO']
         
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -186,17 +189,42 @@ class Transform:
         print("y_test succesfully saved in: {}".format(self.transformed_data_path))
         print("y_train succesfully saved in: {}".format(self.transformed_data_path))
 
+    @staticmethod
+    def get_nan_per_col(df):
+        nan_percentage = ((df.isna().sum() * 100) / df.shape[0]).sort_values(ascending=True)
+        return nan_percentage
+    
+    @staticmethod
+    def remove_by_nan(accepted_nan_percentage, nan_percentage_series, df):
+        columns_dropped = []
+        for items in nan_percentage_series.items():
+            if items[1] > accepted_nan_percentage:
+                df = df.drop([items[0]], axis=1)
+                columns_dropped.append(items)
+
+        return df, columns_dropped
+
+    def drop_nan(self, df):
+        nan_percentages = self.get_nan_per_col(df)
+        df, columns_dropped = self.remove_by_nan(55, nan_percentages, df)
+        df = df.dropna()
+        print('COLUMS DROPPED: ', columns_dropped)
+        return df
+        
+
+
     def run(self):
         print("------------------------------------------------")
         print("Transforming...")
         self.load_clean_data()
-        self.data_types()
-        self.df_transform.info(verbose=True)
+        self.df_transform = self.data_types(self.df_transform)
         self.df_transform = self.feature_eng(self.df_transform)
         self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
         self.splitting()
+
+        self.df_transform = self.drop_nan(self.df_transform)
         self.save()
         print("------------------------------------------------")
 
