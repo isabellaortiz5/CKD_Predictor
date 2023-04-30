@@ -1,10 +1,9 @@
 import numpy as np
 
 class feature_eng:
-    def __init__(self, df):
-        self.df = df
-        self.eng_df = df
-    
+    def __init__(self):
+        self.eng_df = None
+
     def data_types(self, df):
         df = df.replace({'nan': np.nan})
         df = df.astype({'Grupo de Riesgo': 'object',
@@ -67,7 +66,12 @@ class feature_eng:
             'Complicación Renales': 'object'})
 
         return df
+    
+    def load_data(self, df):
+        self.eng_df = df
+        self.eng_df = self.data_types(self.eng_df)
 
+   
     def deseases_column_join(self, df):
         df['ENFERMEDADES'] = df['OTROS DIAGNÓSTICOS'] + ' + ' + df['Coomorbilidad']
         df = df.drop(['Coomorbilidad', 'OTROS DIAGNÓSTICOS'], axis=1)
@@ -92,8 +96,9 @@ class feature_eng:
         
         return df 
 
-    def run (self):
-        self.eng_df = self.data_types(self.eng_df)
+    def run (self, df):
+        self.load_data(df)
+        print(self.eng_df.isna().any())
         self.eng_df = self.deseases_column_join(self.eng_df)
         self.eng_df = self.drugs_column_join(self.eng_df)
 

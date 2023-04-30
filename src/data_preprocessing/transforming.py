@@ -32,7 +32,7 @@ class Transform:
     def load_clean_data(self):
         df_clean = pd.read_csv(self.df_clean_path)
         self.df_transform = df_clean.drop(["Unnamed: 0"], axis=1)
-        self.fe = feature_engineering.feature_eng(self.df_transform)
+        self.fe = feature_engineering.feature_eng()
 
     def data_types(self, df):
         df = df.replace({'nan': np.nan})
@@ -96,12 +96,6 @@ class Transform:
             'Complicación Renales': 'object'})
 
         return df
-    
-    def feature_eng(self,df):
-        df = self.fe.run()
-
-        return df
-
 
     def general_categorical_data(self):
         self.df_transform = self.df_transform.replace('no aplica', 0)
@@ -126,7 +120,7 @@ class Transform:
                                   'GLICEMIA 100 MG/DL_DIC',
                                   'COLESTEROL TOTAL > 200 MG/DL_DIC',
                                   'CALCULO TFG',
-                                  'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'
+                                  'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC',
                                   'LDL > 130 MG/DL_DIC','HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC',
                                   'TGD > 150 MG/DL_DIC','ALBUMINURIA/CREATINURIA',
                                   'HEMOGLOBINA GLICOSILADA > DE 7%','POTASIO',
@@ -152,7 +146,7 @@ class Transform:
         df['POTASIO'] = df_mice_imputed['POTASIO']
         df['MICROALBINURIA'] = df_mice_imputed['MICROALBINURIA']
         df['CREATINURIA'] = df_mice_imputed['CREATINURIA']
-        
+
         return df
 
     def dummifying(self):
@@ -228,6 +222,7 @@ class Transform:
 
     @staticmethod
     def get_nan_per_col(df):
+        msno.matrix(df, sparkline=False)
         nan_percentage = ((df.isna().sum() * 100) / df.shape[0]).sort_values(ascending=True)
         return nan_percentage
     
@@ -243,7 +238,7 @@ class Transform:
 
     def drop_nan(self, df):
         nan_percentages = self.get_nan_per_col(df)
-        df, columns_dropped = self.remove_by_nan(55, nan_percentages, df)
+        df, columns_dropped = self.remove_by_nan(62, nan_percentages, df)
         df = df.dropna()
         print('COLUMS DROPPED: ', columns_dropped)
         return df
@@ -254,15 +249,17 @@ class Transform:
         print("------------------------------------------------")
         print("Transforming...")
         self.load_clean_data()
+
         self.df_transform = self.data_types(self.df_transform)
         self.df_transform = self.mice_imputation(self.df_transform)
-        self.df_transform = self.feature_eng(self.df_transform)
+        self.df_transform = self.fe.run(self.df_transform)
+
+        self.df_transform = self.drop_nan(self.df_transform)
         self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
         self.splitting()
-
-        self.df_transform = self.drop_nan(self.df_transform)
+        
         self.save()
         print("------------------------------------------------")
 
