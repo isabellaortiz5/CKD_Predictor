@@ -36,6 +36,7 @@ class Transform:
 
     def data_types(self, df):
         df = df.replace({'nan': np.nan})
+        df = df.replace({'NAN': np.nan})
         df = df.astype({'Grupo de Riesgo': 'object',
             'CodDepto': 'float64',
             'FechaNovedadFallecido': 'object',
@@ -222,7 +223,6 @@ class Transform:
 
     @staticmethod
     def get_nan_per_col(df):
-        msno.matrix(df, sparkline=False)
         nan_percentage = ((df.isna().sum() * 100) / df.shape[0]).sort_values(ascending=True)
         return nan_percentage
     
@@ -238,7 +238,7 @@ class Transform:
 
     def drop_nan(self, df):
         nan_percentages = self.get_nan_per_col(df)
-        df, columns_dropped = self.remove_by_nan(62, nan_percentages, df)
+        df, columns_dropped = self.remove_by_nan(46, nan_percentages, df)
         df = df.dropna()
         print('COLUMS DROPPED: ', columns_dropped)
         return df
@@ -249,17 +249,18 @@ class Transform:
         print("------------------------------------------------")
         print("Transforming...")
         self.load_clean_data()
-
         self.df_transform = self.data_types(self.df_transform)
+        msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.mice_imputation(self.df_transform)
         self.df_transform = self.fe.run(self.df_transform)
-
+        msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.drop_nan(self.df_transform)
+        msno.matrix(self.df_transform, sparkline=False)
         self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
         self.splitting()
-        
+        msno.matrix(self.df_transform, sparkline=False)
         self.save()
         print("------------------------------------------------")
 

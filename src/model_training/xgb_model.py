@@ -137,7 +137,10 @@ class XGBModel:
     """
 
     def test(self):
-        y_pred = self.xgb_model.predict(self.X_test)
+        # Convert the numpy array to a DMatrix object
+        dtest = xgb.DMatrix(self.X_test)
+        
+        y_pred = self.xgb_model.predict(dtest)
         accuracy = accuracy_score(self.y_test, y_pred)
         print("Accuracy score: {:.2f}".format(accuracy))
 
@@ -159,7 +162,7 @@ class XGBModel:
         # Parallelize the training of each batch using joblib
         self.xgb_model.n_jobs = -1  # Use all available CPU cores
         results = joblib.Parallel(n_jobs=-1)(
-            joblib.delayed(self.xgb_model.fit)(X, y, eval_set=[(self.X_test, self.y_test)])
+            joblib.delayed(self.xgb_model.fit)(X, y, eval_set=[(self.X_test, self.y_test)], verbose=False)
             for X, y in zip(batches_X, batches_y)
         )
 
@@ -167,11 +170,16 @@ class XGBModel:
         model_files = []
         for i, model in enumerate(results):
             model_file = f'model_{i}.bin'
-            model.save_model(model_file)
+            model.get_booster().save_model(model_file)
             model_files.append(model_file)
 
-        # Merge the results from each batch
-        self.xgb_model = xgb.Booster(model_file=results[0]) if len(results) == 1 else xgb.Booster(model_file=results)     
+        # Load the first model to initialize the xgb.Booster object
+        self.xgb_model = xgb.Booster(model_file=model_files[0])
+
+        # Merge the results from each batch by loading and combining their boosters
+        for model_file in model_files[1:]:
+            other_booster = xgb.Booster(model_file=model_file)
+            self.xgb_model = self.xgb_model + other_booster    
 
     def run(self):
         self.train()

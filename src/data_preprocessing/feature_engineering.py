@@ -6,6 +6,7 @@ class feature_eng:
 
     def data_types(self, df):
         df = df.replace({'nan': np.nan})
+        df = df.replace({'NAN': np.nan})
         df = df.astype({'Grupo de Riesgo': 'object',
             'CodDepto': 'float64',
             'FechaNovedadFallecido': 'object',
@@ -80,17 +81,18 @@ class feature_eng:
     def drugs_column_join(self, df):
         df['FARMACOS'] = df['FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['OTROS FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['ANTIDIABETICOS'] + ' + ' + df['OTROS ANTIDIABETICOS'] + ' + ' + df['OTROS TRATAMIENTOS']
         df = df.drop(['FARMACOS ANTIHIPERTENSIVOS', 'OTROS FARMACOS ANTIHIPERTENSIVOS', 'ANTIDIABETICOS', 'OTROS ANTIDIABETICOS', 'OTROS TRATAMIENTOS'], axis=1)
+        df['FARMACOS'] = df['FARMACOS'].fillna("NO APLICA")
 
         #RECIBE IECA 
         for i, row in df.iterrows():
-            if(((not 'IECA' in row['FARMACOS']) and (row['RECIBE IECA'] == 'SI'))):
-                df.at[i,'FARMACOS'] = df['FARMACOS'][i] + '+IECA'
+            if(((not 'IECA' in str(row['FARMACOS'])) and (str(row['RECIBE IECA']) == 'SI'))):
+                df.at[i,'FARMACOS'] = str(df['FARMACOS'][i]) + '+IECA'
 
         df = df.drop(['RECIBE IECA'], axis=1)
         #RECIBE ARA II
         for i, row in df.iterrows():
-            if(((not 'ARA' in row['FARMACOS']) and (row['RECIBE ARA II'] == 'SI'))):
-                df.at[i,'FARMACOS'] = df['FARMACOS'][i] + '+ARA'
+            if(((not 'ARA' in str(row['FARMACOS'])) and (str(row['RECIBE ARA II']) == 'SI'))):
+                df.at[i,'FARMACOS'] = str(df['FARMACOS'][i]) + '+ARA'
 
         df = df.drop(['RECIBE ARA II'], axis=1)
         
