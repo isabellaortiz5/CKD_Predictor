@@ -1,12 +1,18 @@
 import numpy as np
 import pandas as pd
 import missingno as msno
-
+import re
 
 paths = {
         "caqueta": '../../data/raw_2/caqueta_data_2.csv',
         "narino": '../../data/raw_2/Narino_data_2.csv',
         "putumayo": '../../data/raw_2/Putumayo_data_2.csv',
+        "caqueta": '../../data/raw/caqueta_data.csv',
+        "narino": '../../data/raw/Narino_data.csv',
+        "putumayo": '../../data/raw/Putumayo_data.csv',
+        "caqueta_2": '../../data/raw_2/caqueta_data_2.csv',
+        "narino_2": '../../data/raw_2/Narino_data_2.csv',
+        "putumayo_2": '../../data/raw_2/Putumayo_data_2.csv',
     }
 
 common_drops = [
@@ -79,15 +85,22 @@ class Cleaning:
         self.caqueta_df = pd.read_csv(paths["caqueta"],low_memory=False)
         self.narino_df = pd.read_csv(paths["narino"],low_memory=False)
         self.putumayo_df = pd.read_csv(paths["putumayo"],low_memory=False)
+        self.caqueta_df_2 = pd.read_csv(paths["caqueta_2"],low_memory=False)
+        self.narino_df_2 = pd.read_csv(paths["narino_2"],low_memory=False)
+        self.putumayo_df_2 = pd.read_csv(paths["putumayo_2"],low_memory=False)
 
     def drop_columns(self):
         caqueta_df_clean = self.caqueta_df.drop(common_drops, axis=1)
+        caqueta_df_clean = self.caqueta_df_2.drop(common_drops, axis=1)
 
         narino_df_clean = self.narino_df.drop(common_drops, axis=1)
+        narino_df_clean = self.narino_df_2.drop(common_drops, axis=1)
+        narino_df_clean['Edad'] = self.narino_df['Edad']
         narino_df_clean = narino_df_clean.drop(narino_drops, axis=1)
         narino_df_clean = narino_df_clean.drop(narino_putumayo_drops, axis=1)
 
         putumayo_df_clean = self.putumayo_df.drop(common_drops, axis=1)
+        putumayo_df_clean = self.putumayo_df_2.drop(common_drops, axis=1)
         putumayo_df_clean = putumayo_df_clean.drop(putumayo_drops, axis=1)
         putumayo_df_clean = putumayo_df_clean.drop(narino_putumayo_drops, axis=1)
 
@@ -309,13 +322,165 @@ class Cleaning:
         self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN   METFORMINA', 'LOSARTAN+METFORMINA', regex=True)
         self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('METFORMINAX    VLDAGLIPTINA', 'METFORMINA+VIDALGLIPTINA', regex=True)
         self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN  Y METFORMINA', 'LOSARTAN+METFORMINA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('INS DEGLUDEC', 'INSULINA DEGLUDEC', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN+HCT+MEFT', 'LOSARTAN+HCT+METFORMINA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('ENALAPRIL  INSULINA DEGLUDEC+DEPAGLIFOZINA', 'ENALAPRIL+INSULINA DEGLUDEC+DEPAGLIFOZINA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('VALSARTANX 6', 'VALSARTAN', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('METROPOLOL', 'METOPROLOL', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('IBERSERTAN+AMLOD', 'IBERSERTAN+AMLODIPINO', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('HIDROCLOROTIAZIDA   TABLETA', 'HIDROCLOROTIAZIDA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('METOPROLOL UNICAMENTE', 'METOPROLOL', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('AMLODIPINO+GHIDROCLORORIZIDA Y METFORMINA', 'AMLODIPINO+HIDROCLOROTIAZIDA+METFORMINA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('VILDAGLITINA METFORMINA', 'VILDAGLIPTINA+METFORMINA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('PROPONOOL', 'PROPRANOLOL', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN+CARVEDILLOL+ASA+HTZA+CLOPIDROGEL', 'LOSARTAN+CARVEDILOL+ASA+HTZA+CLOPIDOGREL', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('LOSARTAN+ESPIRINOLACTONA', 'LOSARTAN+ESPIRONOLACTONA', regex=True)
+        self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('HOLMENTAN H', 'HOLMENTAN', regex=True)
 
 
         #self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].str.replace('\s+', ' ')
         #fix plus signs
         self.df = self.fix_plus_sign(self.df)
-        
 
+    def fixed_data2(self):
+        print("Unique values in column:")
+        print("**{}**".format(self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].unique()))
+        
+        self.df = self.trim_all_columns(self.df)
+
+        patterns_and_replacements = [
+            (r'\bLOSARTAN\s*\+\s*HCT\s*ASA\b', 'LOSARTAN+HCT+ASA'),
+            (r'\bLOSARTAN\s*\+\s*HCTA\s*ASA\b', 'LOSARTAN+HCT+ASA'),
+            (r'\bLOSARTAN\s*AMLODIPINO\b', 'LOSARTAN+AMLODIPINO'),
+            (r'\bENALAPRIL\s*AMLODIPINO\s*HCT\b', 'ENALAPRIL+AMLODIPINO+HCT'),
+            (r'\bVALSARTAN\s*Y\s*AMLODIPINO\b', 'VALSARTAN+AMLODIPINO'),
+            (r'\bVALSARTAN\s+6\b', 'VALSARTAN'),
+            (r'\bHIDROCLOROTIAZIDA\b', 'HCTZ'),
+            (r'\bHCTZ\s*+\s*ENALAPRIL\s*+\s*NIFEDIPINO\b', 'HCTZ+ENALAPRIL+NIFEDIPINO'),
+            (r'\bLOSARTAN\s*\.\s*FUROSEMIODA\s*\+\s*AMLODIPINO\b', 'LOSARTAN+FUROSEMIDA+AMLODIPINO'),
+            (r'\bINSULINA DEGLUDEC\s*\+\s*DEPAGLIFOZINA\b', 'INSULINA DEGLUDEC+DAPAGLIFLOZINA'),
+            (r'\s{2,}', ' '),  # Replace multiple spaces with single space
+            (r'\s*-\s*', '-'),  # Remove spaces around hyphens
+            (r'\s*\/\s*', '/'),  # Remove spaces around slashes
+            (r'\s*\+\s*', '+'),  # Remove spaces around plus signs
+            (r'(\b[a-zA-Z])\.([a-zA-Z])\.', r'\1\2'),  # Remove periods from abbreviations
+            (r'\s*\.+\s*', '.'),  # Remove multiple periods and spaces around periods
+            (r'\s*\,\s*', ','),  # Remove spaces around commas
+             (r'(\b\w+)\.(\w+\b)', r'\1\2'),  # Remove periods between words
+            (r'\bTELMISARTAN\b', 'TELMISARTAN'),
+            (r'\bHOLMENTAN\b', 'OLMESARTAN'),
+            (r'\bLOSRTAN\b', 'LOSARTAN'),
+            (r'\bLOSAR\b', 'LOSARTAN'),
+            (r'\bLOSARTSN\b', 'LOSARTAN'),
+            (r'\bLIBERSARTAN\b', 'IRBESARTAN'),
+            (r'\bIBERSERTAN\b', 'IRBESARTAN'),
+            (r'\bIBERSARTAN\b', 'IRBESARTAN'),
+            (r'\bANALAPRIL\b', 'ENALAPRIL'),
+            (r'\bCARVEDILLOL\b', 'CARVEDILOL'),
+            (r'\bENLAPRIL\b', 'ENALAPRIL'),
+            (r'\bENELAPRIL\b', 'ENALAPRIL'),
+            (r'\bENALAPRIL\s+INSULINA\b', 'ENALAPRIL+INSULINA'),
+            (r'\bSACUBITRILO\+VVALSARTAN\b', 'SACUBITRILO+VALSARTAN'),
+            (r'\bESPIRINOLACTINA\b', 'ESPIRONOLACTONA'),
+            (r'\bESPIRINOLATONA\b', 'ESPIRONOLACTONA'),
+            (r'\bMETFORMINA\s*+\s*ROSUVASTATIBNA\b', 'METFORMINA+ROSUVASTATINA'),
+            (r'\bATORVASRTATINA\b', 'ATORVASTATINA'),
+            (r'\bGENGIBROZILO\b', 'GEMFIBROZILO'),
+            (r'\bGENFIBROZILO\b', 'GEMFIBROZILO'),
+            (r'\bGENFIBROXILO\b', 'GEMFIBROZILO'),
+            (r'\bLIRAGLUTINA\b', 'LIRAGLUTIDE'),
+            (r'\bCARVERIDOL\b', 'CARVEDILOL'),
+            (r'\bCARDERIDOL\b', 'CARVEDILOL'),
+            (r'\bNIMODIFPINO\b', 'NIMODIPINO'),
+            (r'\bIECA\b', 'IECA'),
+            (r'\bARA\b', 'ARA'),
+            (r'\bHCTZ\b', 'HCTZ'),
+            (r'\bHCT\b', 'HCTZ'),
+            (r'\bMEFT\b', 'METFORMINA'),
+            (r'\bMALEATO\b', 'MALEATO'),
+            (r'\bDEGLUDEC\b', 'DEGLUDEC'),
+            (r'\bEUTIROX\b', 'LEVO'),
+            (r'\bLEVOT\b', 'LEVO'),
+            (r'\bLEVO\b', 'LEVOTIROXINA'),
+            (r'\bINSULINA DEGLUDEC+DAPAGLIFLOZIN\b', 'INSULINA DEGLUDEC+DAPAGLIFLOZIN'),
+            (r'\bAMLODIPINO\s+GHIDROCLORORIZIDA\b', 'AMLODIPINO+HIDROCLOROTIAZIDA'),
+            (r'\bGEMFIBROZILO\b', 'GEMFIBROZIL'),
+            (r'\bGENFIBROZILO\b', 'GEMFIBROZIL'),
+            (r'\bGLIMEPERIDINA\b', 'GLIMEPERIDINA'),
+            (r'\bGLIMEPRIDINA\b', 'GLIMEPERIDINA'),
+            (r'\bNO APLICA\b', 'NO APLICA'),
+            (r'\bTRATAMIENTO NO APLICA FARMACOLOGICO\b', 'NO APLICA'),
+            (r'\bRETIRADO\b', 'NO APLICA'),
+            (r'\bFUROSEMIDA\b', 'FUROSEMIDA'),
+            (r'\bFLOXETINA\b', 'FLOXETINA'),
+            (r'\bWARFARINA\b', 'WARFARINA'),
+            (r'\bBLOQUEADOR BETA\b', 'BETA BLOQUEADOR'),
+            (r'\bPROPRANOLOL\b', 'PROPRANOLOL'),
+            (r'\bNEBIVOLOL\b', 'NEBIVOLOL'),
+            (r'\bNIDAGLIPTINA\b', 'NIDAGLIPTINA'),
+            (r'\bINSULINA GLARGINA\b', 'INSULINA GLARGINA'),
+            (r'\bSITAGLIPTINA\b', 'SITAGLIPTINA'),
+            (r'\bVIDALGLIPTINA\b', 'VIDALGLIPTINA'),
+            (r'\bVILDAGLIPTINA\b', 'VILDAGLIPTINA'),
+            (r'\bDAPAGLIFLOZINA\b', 'DAPAGLIFLOZINA'),
+            (r'\bEMPAGLIFLOZINA\b', 'EMPAGLIFLOZINA'),
+            (r'\bLANSOPRAZOL\b', 'LANSOPRAZOL'),
+            (r'\bEZOMEPRAZOL\b', 'ESOMEPRAZOL'),
+            (r'\bCLOPIDOGREL\b', 'CLOPIDOGREL'),
+            (r'\bGLIMEPERIDINA\b', 'GLIMEPIRIDA'),
+            (r'\bGLIMEPIRIDE\b', 'GLIMEPIRIDA'),
+            (r'\bACIDO ACETILSALICILICO\b', 'ASA'),
+            (r'\bAMLOD\b', 'AMLODIPINO'),            
+            (r'\bMETOCARBAMOL\b', 'METHOCARBAMOL'),
+            (r'\bMETFORMINA\s*+\s*ROSUVASTATIBNA\b', 'METFORMINA+ROSUVASTATINA'),
+            (r'\bOTORVASTATINA\b', 'ATORVASTATINA'),
+            (r'\bVALSARTAN\s*X\b', 'VALSARTAN'),
+            (r'\bVALSARTAN\s*\*\s*6\b', 'VALSARTAN'),
+            (r'\bARA\s*II\b', 'ARA'),
+            (r'\bARA\s*\+\s*AMLODIPINO\b', 'ARA+AMLODIPINO'),
+            (r'\bARA\s*\+\s*NIFEDIPINO\b', 'ARA+NIFEDIPINO'),
+            (r'\bLOSARTAN HCTZ\b', 'LOSARTAN+HCTZ'),
+            (r'\bARA\s*\+\s*HIDROCLOROTIAZIDA\b', 'ARA+HCTZ'),
+            (r'\bARA\s*\+\s*METOPROLOL\b', 'ARA+METOPROLOL'),
+            (r'\bVALSARTAN\+HCTZTABLETA\b', 'VALSARTAN+HCTZ'),
+            (r'\bAMLODIPINO TABLETA\b', 'AMLODIPINO'),
+            (r'\bVALSARTAN\+HCTZTABLETA\b', 'VALSARTAN+HCTZ'),
+            (r'\bLOSARTAN ASA ROSUV\b', 'LOSARTAN+ASA+ROSUVASTATINA'),
+            (r'\bAMLODIPINO\+LOSARAN\.\+HCTZ\+CLONIDINA\b', 'AMLODIPINO+LOSARANTAN+HCTZ+CLONIDINA'),
+            (r'\bAMLODIPINO\+GHIDROCLORORIZIDA Y METFORMINA\b', 'AMLODIPINO+HCTZ+METFORMINA'),
+            (r'\bIRBESARTAN\+HCTZ\.\b', 'IRBESARTAN+HCTZ'),
+            (r'\bMIOCARDIX\+TELMISARTAN\b', 'MICARDIS+TELMISARTAN'),
+            (r'\bLOSARTAN AMLODIPINI ASA\b', 'LOSARTAN+AMLODIPINO+ASA'),
+            (r'\bENALAPRIL ASA\b', 'ENALAPRIL+ASA'),
+            (r'\bACETIL SALICILICO\b', 'ASA'),
+            (r'\bMELOXICAN\b', 'MELOXICAM'),
+            (r'\bROSUVASTATIBNA\b', 'ROSUVASTATINA'),
+            (r'\bDAPAGLIFOXINA\b', 'DAPAGLIFLOXINA'),
+            (r'\bRIVAROXON\b', ' RIVAROXABAN'),
+            (r'\bFLOXETINA\b', 'FLUOXETINA'),
+            (r'\bACETILSALICILICO\b', 'ASA'),
+            (r'\bMTOPROLOL\b', 'METOPROLOL'),
+            (r'\bESPIRONOLCTONA\b', 'ESPIRONOLACTONA'),
+            (r'\bVILDAGLIPTIMA\b', 'VIDALGLIPTINA'),
+            (r'\bMETFORMINA\+VILDAGLIPTIMA\+METFOTMINA\b', 'METFORMINA+VIDALGLIPTINA'),
+            (r'\bGLIMEPIRIDA\+ATORVASTATINA\+VIDALGLIPTINA R\+METFORMINA R\b', 'GLIMEPIRIDA+ATORVASTATINA+VIDALGLIPTINA+METFORMINA'),
+            (r'\bCARBAMEZAPINA\b', 'CARBAMAZEPINA'),
+            (r'\bEMPAGLIFOZINA\b', 'EMPAGLIFLOZIN'),
+            (r'\bHCTZ\.\b', 'HCTZ'),
+            (r'\s*TABLETA\b', '')
+
+        ]
+
+        for pattern, replacement in patterns_and_replacements:
+            compiled_pattern = re.compile(pattern, flags=re.IGNORECASE)
+            self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'] = self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].apply(
+                lambda x: re.sub(compiled_pattern, replacement, x) if isinstance(x, str) else x
+            )
+
+        print("Fixed unique values in column:")
+        print("**{}**".format(self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].unique()))
+
+        return self.df
 
 
     @staticmethod
@@ -352,6 +517,7 @@ class Cleaning:
         self.concat_dfs()
         self.replace_blanks()
         self.fixed_data()
+        self.fixed_data2()
         self.data_types()
         # self.drop_nan()
         print("Data successfully cleaned!")
