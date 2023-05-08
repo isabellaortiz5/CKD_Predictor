@@ -116,6 +116,9 @@ class Transform:
             self.df_transform[col] = self.df_transform[col].map(float_dict)
             print(f"Integer encoding for column '{col}': {float_dict}")
 
+    def mean_calculator(self, df):
+        return df
+
     def mice_imputation(self, df):
         df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
                                   'GLICEMIA 100 MG/DL_DIC',
@@ -123,10 +126,27 @@ class Transform:
                                   'CALCULO TFG',
                                   'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC',
                                   'LDL > 130 MG/DL_DIC','HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC',
-                                  'TGD > 150 MG/DL_DIC','ALBUMINURIA/CREATINURIA',
-                                  'HEMOGLOBINA GLICOSILADA > DE 7%','POTASIO',
+                                  'TGD > 150 MG/DL_DIC',
+                                  'HEMOGLOBINA GLICOSILADA > DE 7%',
                                   'MICROALBINURIA','CREATINURIA'
                                   ], axis=1).copy()
+        
+        n_imputations = 5
+        imputed_datasets = []
+
+        for i in range(n_imputations):
+            # Initialize the Iterative Imputer with a different random state for each imputation
+            iterative_imputer = IterativeImputer(max_iter=10, random_state=i)
+            
+            # Impute missing values
+            data_imputed = iterative_imputer.fit_transform(data)
+            
+            # Convert the imputed data back to a pandas DataFrame with the original column names
+            data_imputed_df = pd.DataFrame(data_imputed, columns=data.columns)
+            
+            # Append the imputed DataFrame to the list of imputed datasets
+            imputed_datasets.append(data_imputed_df)
+
 
         # Define MICE Imputer and fill missing values
         mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None,
@@ -142,11 +162,79 @@ class Transform:
         df['LDL > 130 MG/DL_DIC'] = df_mice_imputed['LDL > 130 MG/DL_DIC']
         df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'] = df_mice_imputed['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC']
         df['TGD > 150 MG/DL_DIC'] = df_mice_imputed['TGD > 150 MG/DL_DIC']
-        df['ALBUMINURIA/CREATINURIA'] = df_mice_imputed['ALBUMINURIA/CREATINURIA']
         df['HEMOGLOBINA GLICOSILADA > DE 7%'] = df_mice_imputed['HEMOGLOBINA GLICOSILADA > DE 7%']
-        df['POTASIO'] = df_mice_imputed['POTASIO']
         df['MICROALBINURIA'] = df_mice_imputed['MICROALBINURIA']
         df['CREATINURIA'] = df_mice_imputed['CREATINURIA']
+
+
+        df['ALBUMINURIA/CREATINURIA'] = df_mice_imputed['ALBUMINURIA/CREATINURIA']
+        return df
+    
+    def calculate_erc_stage(self, df):
+        df["Calculo_ERC"] = np.nan
+
+        for i,row in df.iterrows():
+            if(not (row['CALCULO TFG'] is np.nan )):
+                if( row['CALCULO TFG'] > 90):
+                    df['Calculo_ERC'][i] = 1
+
+                else:
+                    if( row['CALCULO TFG'] > 59):
+                        df['Calculo_ERC'][i] = 2
+
+                    else:
+                        if( row['CALCULO TFG'] > 44 ):
+                            df['Calculo_ERC'][i] = 3.1
+
+                        else:
+                            if( row['CALCULO TFG'] > 29):
+                                df['Calculo_ERC'][i] = 3.2
+
+                            else:
+                                if( row['CALCULO TFG'] > 15):
+                                    df['Calculo_ERC'][i] = 4
+
+                                else:
+                                    df['Calculo_ERC'][i] = 5
+
+            else:
+                df['Calculo_ERC'][i] = np.nan 
+        
+        df.drop('CLASIFICACIÓN ESTADIO', axis=1)
+
+        return df
+    
+    def calculate_erc_stage_albuminuria(self, df):
+        df["Calculo_ERC_ALBUMINURIA"] = np.nan
+
+        for i,row in df.iterrows():
+            if(not (row['ALBUMINURIA/CREATINURIA'] is np.nan )):
+                if( row['ALBUMINURIA/CREATINURIA'] > 90):
+                    df['Calculo_ERC'][i] = 1
+
+                else:
+                    if( row['CALCULO TFG'] > 59):
+                        df['Calculo_ERC'][i] = 2
+
+                    else:
+                        if( row['CALCULO TFG'] > 44 ):
+                            df['Calculo_ERC'][i] = 3.1
+
+                        else:
+                            if( row['CALCULO TFG'] > 29):
+                                df['Calculo_ERC'][i] = 3.2
+
+                            else:
+                                if( row['CALCULO TFG'] > 15):
+                                    df['Calculo_ERC'][i] = 4
+
+                                else:
+                                    df['Calculo_ERC'][i] = 5
+
+            else:
+                df['Calculo_ERC'][i] = np.nan 
+        
+        df.drop('CLASIFICACIÓN ESTADIO', axis=1)
 
         return df
 
@@ -187,8 +275,8 @@ class Transform:
 
     def splitting(self):
         ckd_df = self.df_transform
-        X = ckd_df.drop('CLASIFICACIÓN ESTADIO', axis=1)
-        y = ckd_df['CLASIFICACIÓN ESTADIO']
+        X = ckd_df.drop('Calculo_ERC', axis=1)
+        y = ckd_df['Calculo_ERC']
         
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -256,10 +344,14 @@ class Transform:
         msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.drop_nan(self.df_transform)
         msno.matrix(self.df_transform, sparkline=False)
+        
+        self.df_transform = self.calculate_erc_stage(self.df_transform)
+        
         self.one_hot_encoding()
         self.changing_data_type()
         self.scaling()
         self.splitting()
+        #TODO: cast all df to float
         msno.matrix(self.df_transform, sparkline=False)
         self.save()
         print("------------------------------------------------")
