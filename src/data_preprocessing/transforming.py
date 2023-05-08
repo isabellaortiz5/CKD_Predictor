@@ -290,7 +290,7 @@ class Transform:
         #self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS ANTIDIABETICOS'])
         #self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS TRATAMIENTOS'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['OBESIDAD'])
-        self.df_transform = pd.get_dummies(self.df_transform, columns=['ENFERMEDADES'])
+        #self.df_transform = pd.get_dummies(self.df_transform, columns=['ENFERMEDADES'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['FARMACOS'])
 
         self.df_after_dummy = self.df_transform
@@ -372,8 +372,9 @@ class Transform:
         df = df.dropna()
         print('COLUMS DROPPED: ', columns_dropped)
         return df
-        
-    def create_comorbidity_columns(self, df, comorbidity_column):
+    
+    @staticmethod
+    def create_comorbidity_columns(df):
         comorbidity_dict = {
             "Certain infectious or parasitic diseases": ["Malaria", "Tuberculosis", "Chagas"],
             "Neoplasms": ["Cáncer de pulmón", "Cáncer de mama", "Leucemia", "CA DE COLON", "LINFOMA HODKING", "CA MAMA"],
@@ -406,8 +407,11 @@ class Transform:
             
             # For each subtype of the comorbidity, set the value of the corresponding column in the dataframe to 1 if the subtype is present in the comorbidity column
             for subtype in comorbidity_dict[comorbidity]:
-                df.loc[df[comorbidity_column].str.contains(subtype), comorbidity] = 1
-                
+                df.loc[df['ENFERMEDADES'].str.contains(subtype,  na=False), comorbidity] = 1
+        
+
+        df = df.drop(["ENFERMEDADES"], axis=1)
+
         # Return the modified dataframe
         return df
 
@@ -421,7 +425,7 @@ class Transform:
         self.df_transform = self.fe.run(self.df_transform)
         self.df_transform = self.calculate_erc_stage(self.df_transform)
         self.df_transform = self.calculate_erc_stage_albuminuria(self.df_transform)
-        #self.df_transform = self.create_comorbidity_columns(self.df_transform, self.df_transform['ENFERMEDADES'])
+        self.df_transform = self.create_comorbidity_columns(self.df_transform)
 
         msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.drop_nan(self.df_transform)
