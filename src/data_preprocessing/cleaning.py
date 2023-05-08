@@ -39,7 +39,7 @@ common_drops = [
         "TERAPIA SUSTITUCIÓN DIALÍTICA", "TALLER EDUCATIVO ENTREGA CARTILLAS", "FECHA_CLASIF_ERC",
         "FECHA DEL UROANALISIS",
         "FECHA DE ULTIMO SEGUIMIENTO ", "ETIOLOGIA DE LA ERC", "MODALIDAD COMO SE HACE EL SEGUIMIENTO DEL PACIENTE",
-        "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML", "POTASIO", "HEMOGRAMA"
+        "FECHA DE PRÓXIMO CONTROL ", "CAUSAS DE INASISTENCIA", "DISMINUYO/ AUMENTO ML"
         ]
 narino_putumayo_drops = [
         "FECHA NUTRUCIÓN", "FECHA TRABAJO SOCIAL", "FECHA MEDICINA INTERNA", "FECHA PISCOLOGIA", "FECHA NEFROLOGIA",
@@ -56,7 +56,7 @@ putumayo_drops = [
         "FECHA DE TOMA DE ALBUMINURIA/CREATINURIA", "FECHA DE TOMA DE HEMOGLOBINA GLICOSILADA > DE 7%",
         "FECHA DE TOMA DE HEMOGRAMA",
         "FECHA DE TOMA DE POTASIO", "FECHA DE TOMA DE MICROALBINURIA", "FECHA DE TOMA DE CREATINURIA", "OBSERVACIONES",
-        "FECHA DE TOMA DE TGD > 150 MG/DL_DIC"
+        "FECHA DE TOMA DE TGD > 150 MG/DL_DIC","POTASIO", "HEMOGRAMA"
         ]
 
 
@@ -178,8 +178,6 @@ class Cleaning:
         self.df['TGD > 150 MG/DL_DIC'].astype('float64').dtypes
         self.df['ALBUMINURIA/CREATINURIA'].astype('float64').dtypes
         self.df['HEMOGLOBINA GLICOSILADA > DE 7%'].astype('float64').dtypes
-        self.df['HEMOGRAMA'].astype('object').dtypes
-        self.df['POTASIO'].astype('float64').dtypes
         self.df['MICROALBINURIA'].astype('float64').dtypes
         self.df['CREATINURIA'].astype('float64').dtypes
         self.df['UROANALIS'].astype('object').dtypes
@@ -221,7 +219,7 @@ class Cleaning:
                         'CALCULO DE RIESGO DE Framingham (% a 10 años)', 'DX CONFIRMADO DE HIPERTENSIÓN ARTERIAL', 
                         'CÓD_DIABETES', 'CÓD_ANTEDECENTE', 'CALCULO TFG', 'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC', 'GLICEMIA 100 MG/DL_DIC', 
                         'COLESTEROL TOTAL > 200 MG/DL_DIC', 'LDL > 130 MG/DL_DIC', 'HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC', 'TGD > 150 MG/DL_DIC', 'ALBUMINURIA/CREATINURIA', 
-                        'HEMOGLOBINA GLICOSILADA > DE 7%', 'POTASIO', 'MICROALBINURIA', 'CREATINURIA', 'PERIMETRO ABDOMINAL' ]
+                        'HEMOGLOBINA GLICOSILADA > DE 7%','MICROALBINURIA', 'CREATINURIA', 'PERIMETRO ABDOMINAL' ]
 
         for col_name in comma_col_list:
             self.df[col_name] = self.df[col_name].str.replace(',', '.', regex=True)

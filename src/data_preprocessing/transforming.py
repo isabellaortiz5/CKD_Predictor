@@ -84,8 +84,6 @@ class Transform:
             'TGD > 150 MG/DL_DIC': 'float64',
             'ALBUMINURIA/CREATINURIA': 'float64',
             'HEMOGLOBINA GLICOSILADA > DE 7%': 'float64',
-            'HEMOGRAMA': 'object',
-            'POTASIO': 'float64',
             'MICROALBINURIA': 'float64',
             'CREATINURIA': 'float64',
             'UROANALIS': 'object',
@@ -117,18 +115,72 @@ class Transform:
             print(f"Integer encoding for column '{col}': {float_dict}")
 
     def mean_calculator(self, df):
-        return df
+        df = df.dropna()
+        mean_list = []
 
-    def mice_imputation(self, df):
-        df_mice = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
+        mean_list.append(df['CALCULO DE RIESGO DE Framingham (% a 10 años)'].mean())
+        mean_list.append(df['GLICEMIA 100 MG/DL_DIC'].mean())
+        mean_list.append(df['COLESTEROL TOTAL > 200 MG/DL_DIC'].mean())
+        mean_list.append(df['CALCULO TFG'].mean())
+        mean_list.append(df['CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC'].mean())
+        mean_list.append(df['LDL > 130 MG/DL_DIC'].mean())
+        mean_list.append(df['HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC'].mean())
+        mean_list.append(df['TGD > 150 MG/DL_DIC'].mean())
+        mean_list.append(df['HEMOGLOBINA GLICOSILADA > DE 7%'].mean())
+        mean_list.append(df['CREATINURIA'].mean())
+        mean_list.append(df['MICROALBINURIA'].mean())
+
+        return mean_list
+
+    def get_best_dataset(self, base_df, imputed_datasets):
+        target_cols = ['CALCULO DE RIESGO DE Framingham (% a 10 años)',
                                   'GLICEMIA 100 MG/DL_DIC',
                                   'COLESTEROL TOTAL > 200 MG/DL_DIC',
                                   'CALCULO TFG',
                                   'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC',
-                                  'LDL > 130 MG/DL_DIC','HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC',
+                                  'LDL > 130 MG/DL_DIC',
+                                  'HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC',
                                   'TGD > 150 MG/DL_DIC',
                                   'HEMOGLOBINA GLICOSILADA > DE 7%',
-                                  'MICROALBINURIA','CREATINURIA'
+                                  'MICROALBINURIA','CREATINURIA','ALBUMINURIA/CREATINURIA'
+                                  ]
+        
+        #asign the fisrst imputed df as the best 
+        Best_columns_df = imputed_datasets[0].filter(target_cols, axis=1).copy()
+        
+        for df_inputed in imputed_datasets:
+            for target in target_cols:
+                # calculate mean values for each dataframe for the target col
+                df_mean = df_inputed[target].mean()
+                base_df_mean = base_df[target].mean()
+                best_columns_df_mean = Best_columns_df[target].mean()
+
+                # find which mean value is closest to base_df_mean
+                diff1 = abs(df_mean - base_df_mean)
+                diff2 = abs(best_columns_df_mean - base_df_mean)
+                min_diff = np.min([diff1, diff2])
+
+                if min_diff == diff1:
+                    #df_inputed is closer to base_df so its asignet to the Best_columns_df
+                    Best_columns_df[target] = df_inputed[target]
+
+
+
+        return Best_columns_df
+
+    def mice_imputation(self, df):
+        before_inputation_means = self.mean_calculator(df)
+
+        data = df.filter(['CALCULO DE RIESGO DE Framingham (% a 10 años)',
+                                  'GLICEMIA 100 MG/DL_DIC',
+                                  'COLESTEROL TOTAL > 200 MG/DL_DIC',
+                                  'CALCULO TFG',
+                                  'CREATININA SÉRICA (HOMBRES > 1.7 MG/DL - MUJERES > 1.4 MG/DL) _DIC',
+                                  'LDL > 130 MG/DL_DIC',
+                                  'HDL HOMBRE - 40 MG/DL Y HDL MUJER - 50 MG/DL_DIC',
+                                  'TGD > 150 MG/DL_DIC',
+                                  'HEMOGLOBINA GLICOSILADA > DE 7%',
+                                  'MICROALBINURIA','CREATINURIA','ALBUMINURIA/CREATINURIA'
                                   ], axis=1).copy()
         
         n_imputations = 5
@@ -143,17 +195,22 @@ class Transform:
             
             # Convert the imputed data back to a pandas DataFrame with the original column names
             data_imputed_df = pd.DataFrame(data_imputed, columns=data.columns)
-            
+            print("********************************* IMPUTED DFS *********************************")
+            print(data_imputed_df.describe())
             # Append the imputed DataFrame to the list of imputed datasets
             imputed_datasets.append(data_imputed_df)
 
+        df_mice_imputed = self.get_best_dataset(data, imputed_datasets)
 
+
+        """
         # Define MICE Imputer and fill missing values
         mice_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), n_nearest_features=None,
                                         imputation_order='ascending')
 
         df_mice_imputed = pd.DataFrame(mice_imputer.fit_transform(df_mice), columns=df_mice.columns)
-
+        """
+        
         df['CALCULO DE RIESGO DE Framingham (% a 10 años)'] = df_mice_imputed['CALCULO DE RIESGO DE Framingham (% a 10 años)']
         df['GLICEMIA 100 MG/DL_DIC'] = df_mice_imputed['GLICEMIA 100 MG/DL_DIC']
         df['COLESTEROL TOTAL > 200 MG/DL_DIC'] = df_mice_imputed['COLESTEROL TOTAL > 200 MG/DL_DIC']
@@ -209,32 +266,18 @@ class Transform:
 
         for i,row in df.iterrows():
             if(not (row['ALBUMINURIA/CREATINURIA'] is np.nan )):
-                if( row['ALBUMINURIA/CREATINURIA'] > 90):
-                    df['Calculo_ERC'][i] = 1
+                if( row['ALBUMINURIA/CREATINURIA'] < 30):
+                    df['Calculo_ERC_ALBUMINURIA'][i] = 1
 
                 else:
-                    if( row['CALCULO TFG'] > 59):
-                        df['Calculo_ERC'][i] = 2
+                    if( row['ALBUMINURIA/CREATINURIA'] <= 300):
+                        df['Calculo_ERC_ALBUMINURIA'][i] = 2
 
                     else:
-                        if( row['CALCULO TFG'] > 44 ):
-                            df['Calculo_ERC'][i] = 3.1
-
-                        else:
-                            if( row['CALCULO TFG'] > 29):
-                                df['Calculo_ERC'][i] = 3.2
-
-                            else:
-                                if( row['CALCULO TFG'] > 15):
-                                    df['Calculo_ERC'][i] = 4
-
-                                else:
-                                    df['Calculo_ERC'][i] = 5
+                        df['Calculo_ERC_ALBUMINURIA'][i] = 3
 
             else:
-                df['Calculo_ERC'][i] = np.nan 
-        
-        df.drop('CLASIFICACIÓN ESTADIO', axis=1)
+                df['Calculo_ERC_ALBUMINURIA'][i] = np.nan 
 
         return df
 
@@ -331,7 +374,17 @@ class Transform:
         print('COLUMS DROPPED: ', columns_dropped)
         return df
         
-
+    def create_comorbidity_columns(df, comorbidity_dict, comorbidity_column):
+        # For each comorbidity in the dictionary, create a new column in the dataframe and set its initial value to 0
+        for comorbidity in comorbidity_dict.keys():
+            df[comorbidity] = 0
+            
+            # For each subtype of the comorbidity, set the value of the corresponding column in the dataframe to 1 if the subtype is present in the comorbidity column
+            for subtype in comorbidity_dict[comorbidity]:
+                df.loc[df[comorbidity_column].str.contains(subtype), comorbidity] = 1
+                
+        # Return the modified dataframe
+        return df
 
     def run(self):
         print("------------------------------------------------")
@@ -341,11 +394,13 @@ class Transform:
         msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.mice_imputation(self.df_transform)
         self.df_transform = self.fe.run(self.df_transform)
+        self.df_transform = self.calculate_erc_stage(self.df_transform)
+        self.df_transform = self.calculate_erc_stage_albuminuria(self.df_transform)
+        #self.df_transform = self.create_comorbidity_columns(comorbidity_dict, comorbidity_column)
+
         msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.drop_nan(self.df_transform)
         msno.matrix(self.df_transform, sparkline=False)
-        
-        self.df_transform = self.calculate_erc_stage(self.df_transform)
         
         self.one_hot_encoding()
         self.changing_data_type()

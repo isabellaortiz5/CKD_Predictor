@@ -54,8 +54,6 @@ class feature_eng:
             'TGD > 150 MG/DL_DIC': 'float64',
             'ALBUMINURIA/CREATINURIA': 'float64',
             'HEMOGLOBINA GLICOSILADA > DE 7%': 'float64',
-            'HEMOGRAMA': 'object',
-            'POTASIO': 'float64',
             'MICROALBINURIA': 'float64',
             'CREATINURIA': 'float64',
             'UROANALIS': 'object',
