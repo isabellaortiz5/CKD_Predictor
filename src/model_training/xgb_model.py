@@ -172,7 +172,7 @@ class XGBModel:
         # Save the trained models to files
         model_files = []
         for i, model in enumerate(results):
-            model_file = f'model_{i}.bin'
+            model_file = f'../models/model_{i}.bin'
             model.get_booster().save_model(model_file)
             model_files.append(model_file)
 
@@ -190,5 +190,6 @@ class XGBModel:
         self.tune_hyperparameters()
         self.train()
         self.test()
-        y_pred = self.xgb_model.predict(self.X_test)
+
+        y_pred = self.xgb_model.predict(xgb.DMatrix(self.X_test))
         return y_pred, self.xgb_model
