@@ -74,6 +74,9 @@ class feature_eng:
     def deseases_column_join(self, df):
         df['ENFERMEDADES'] = df['OTROS DIAGNÓSTICOS'] + ' + ' + df['Coomorbilidad']
         df = df.drop(['Coomorbilidad', 'OTROS DIAGNÓSTICOS'], axis=1)
+
+        print(df['ENFERMEDADES'].unique())
+
         return df 
     
     def drugs_column_join(self, df):
@@ -94,6 +97,8 @@ class feature_eng:
 
         df = df.drop(['RECIBE ARA II'], axis=1)
         
+        print(df['FARMACOS'].unique())
+
         return df 
 
     def run (self, df):

@@ -195,8 +195,7 @@ class Transform:
             
             # Convert the imputed data back to a pandas DataFrame with the original column names
             data_imputed_df = pd.DataFrame(data_imputed, columns=data.columns)
-            print("********************************* IMPUTED DFS *********************************")
-            print(data_imputed_df.describe())
+ 
             # Append the imputed DataFrame to the list of imputed datasets
             imputed_datasets.append(data_imputed_df)
 
@@ -374,7 +373,33 @@ class Transform:
         print('COLUMS DROPPED: ', columns_dropped)
         return df
         
-    def create_comorbidity_columns(df, comorbidity_dict, comorbidity_column):
+    def create_comorbidity_columns(self, df, comorbidity_column):
+        comorbidity_dict = {
+            "Certain infectious or parasitic diseases": ["Malaria", "Tuberculosis", "Chagas"],
+            "Neoplasms": ["Cáncer de pulmón", "Cáncer de mama", "Leucemia", "CA DE COLON", "LINFOMA HODKING", "CA MAMA"],
+            "Diseases of the blood or blood-forming organs": ["Anemia", "Hemofilia", "Leucopenia"],
+            "Diseases of the immune system": ["Lupus", "Artritis reumatoide", "Esclerosis múltiple"],
+            "Endocrine, nutritional or metabolic diseases": ["Diabetes", "Hipotiroidismo", "Obesidad", "DM INSULINODEPENDIENTE", "PREDIABETES", "HIPERGLICEMIA", "HIPERCOLESTEROLEMIA", "E039", "E669", "E039+N189", "E784", "E780"],
+            "Mental, behavioural or neurodevelopmental disorders": ["Esquizofrenia", "Trastorno bipolar", "Autismo", "ANSIEDAD", "DEPRESION"],
+            "Sleep-wake disorders": ["Insomnio", "Narcolepsia", "Apnea del sueño", "G473"],
+            "Diseases of the nervous system": ["Enfermedad de Parkinson", "Alzheimer", "Epilepsia", "G589", "G819+O694", "G819", "G309", "G510", "G510+G459", "G20X"],
+            "Diseases of the visual system": ["Cataratas", "Glaucoma", "Miopía", "H409", "H408", "H360"],
+            "Diseases of the ear or mastoid process": ["Otitis", "Tinnitus", "Mastoiditis"],
+            "Diseases of the circulatory system": ["Hipertensión arterial", "Insuficiencia cardíaca", "Infarto de miocardio", "HTA", "HTA+DM", "HTA+ERC", "I255", "I694, EO39", "I694+G819", "I694"],
+            "Diseases of the respiratory system": ["Asma", "EPOC", "Neumonía", "J449", "J449, K219"],
+            "Diseases of the digestive system": ["Gastritis", "Enfermedad de Crohn", "Cirrosis", "K219"],
+            "Diseases of the skin": ["Acné", "Psoriasis", "Eczema"],
+            "Diseases of the musculoskeletal system or connective tissue": ["Artritis", "Osteoporosis", "Fibromialgia", "M719", "M819", "M541", "M069", "M139"],
+            "Diseases of the genitourinary system": ["Infección urinaria", "Insuficiencia renal crónica", "Cistitis", "N40X", "N189"],
+            "Conditions related to sexual health": ["VIH", "Sífilis", "Gonorrea"],
+            "Pregnancy, childbirth or the puerperium": ["Preeclampsia", "Diabetes gestacional", "Depresión posparto", "O694"],
+            "Certain conditions originating in the perinatal period": ["Nacimiento prematuro", "Bajo peso al nacer", "Asfixia perinatal"],
+            "Developmental anomalies": ["Labio leporino", "Espina bífida", "Síndrome de Down", "Q613+N19X", "Q613"],
+            "Symptoms, signs or clinical findings, not elsewhere classified": ["Fatiga", "Dolor de cabeza", "Pérdida de peso", "R51X", "R804"],
+            "Injury, poisoning or certain other consequences of external causes": ["Fracturas", "Quemaduras", "Intoxicación por alimentos", "F102, F132"],
+            "External causes of morbidity or mortality": ["Accidentes de tráfico", "Caídas", "Ahogamiento"],
+            "Factors influencing health status or contact with health services": ["Vacunación", "Chequeo médico", "Rehabilitación", "TRANSPLANTE RENAL"]
+        }
         # For each comorbidity in the dictionary, create a new column in the dataframe and set its initial value to 0
         for comorbidity in comorbidity_dict.keys():
             df[comorbidity] = 0
@@ -396,7 +421,7 @@ class Transform:
         self.df_transform = self.fe.run(self.df_transform)
         self.df_transform = self.calculate_erc_stage(self.df_transform)
         self.df_transform = self.calculate_erc_stage_albuminuria(self.df_transform)
-        #self.df_transform = self.create_comorbidity_columns(comorbidity_dict, comorbidity_column)
+        #self.df_transform = self.create_comorbidity_columns(self.df_transform, self.df_transform['ENFERMEDADES'])
 
         msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.drop_nan(self.df_transform)
