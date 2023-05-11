@@ -84,6 +84,14 @@ class feature_eng:
         df = df.drop(['FARMACOS ANTIHIPERTENSIVOS', 'OTROS FARMACOS ANTIHIPERTENSIVOS', 'ANTIDIABETICOS', 'OTROS ANTIDIABETICOS', 'OTROS TRATAMIENTOS'], axis=1)
         df['FARMACOS'] = df['FARMACOS'].fillna("NO APLICA")
 
+        """
+        accepted_strings = {'NO APLICA', 'OTRO', 'NO', 'SIN DATO'}
+
+        for i,row in df.iterrows():
+            if not row['FARMACOS'] in accepted_strings:
+        """
+                
+
         #RECIBE IECA 
         for i, row in df.iterrows():
             if(((not 'IECA' in str(row['FARMACOS'])) and (str(row['RECIBE IECA']) == 'SI'))):

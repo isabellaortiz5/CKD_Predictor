@@ -111,9 +111,10 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import joblib
+import os
 
 class XGBModel:
-    def __init__(self, X_train, y_train, X_test, X_val, y_test, y_val, param_grid):
+    def __init__(self, X_train, y_train, X_test, X_val, y_test, y_val):
         self.le = LabelEncoder()
         
         self.X_train = X_train
@@ -128,6 +129,21 @@ class XGBModel:
 
         self.y_val = self.le.fit_transform(y_val)
 
+        """
+        param_grid = {
+            'learning_rate': [0.1, 0.01, 0.001],
+            'max_depth': [3, 6, 9],
+            'n_estimators': [100, 200, 300],
+            'min_child_weight': [1, 3, 5],
+            'gamma': [0, 0.1, 0.2],
+            'subsample': [0.8, 1],
+            'colsample_bytree': [0.8, 1],
+            'reg_alpha': [0, 0.1, 0.5],
+            'reg_lambda': [1, 1.5, 2]
+        }
+
+        """
+        param_grid = {'learning_rate': [0.1, 0.01], 'max_depth': [3, 5]}
         self.param_grid = param_grid
         self.xgb_model = XGBClassifier(n_jobs=-1, early_stopping_rounds=10)
 
@@ -170,9 +186,12 @@ class XGBModel:
         )
 
         # Save the trained models to files
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        file_path = os.path.join(project_root, 'models')
         model_files = []
         for i, model in enumerate(results):
-            model_file = f'../models/model_{i}.bin'
+            
+            model_file = f'{file_path}\model_{i}.bin'
             model.get_booster().save_model(model_file)
             model_files.append(model_file)
 
