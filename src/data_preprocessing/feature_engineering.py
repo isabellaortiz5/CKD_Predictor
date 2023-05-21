@@ -80,34 +80,51 @@ class feature_eng:
         return df 
     
     def drugs_column_join(self, df):
+        """
+        Joins the following columns:
+            - FARMACOS ANTIHIPERTENSIVOS
+            - OTROS FARMACOS ANTIHIPERTENSIVOS
+            - ANTIDIABETICOS
+            - OTROS ANTIDIABETICOS
+            - OTROS TRATAMIENTOS
+
+        and removes all the 'NO APLICA', 'OTRO', 'NO', 'SIN DATO' values from the column farmacos, but only if they are not the only value in the column.
+
+        Args:
+            df: The pandas DataFrame.
+
+        Returns:
+            The pandas DataFrame with the joined and cleaned column farmacos.
+        """
+
+        # Join the columns.
         df['FARMACOS'] = df['FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['OTROS FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['ANTIDIABETICOS'] + ' + ' + df['OTROS ANTIDIABETICOS'] + ' + ' + df['OTROS TRATAMIENTOS']
+
+        # Drop the original columns.
         df = df.drop(['FARMACOS ANTIHIPERTENSIVOS', 'OTROS FARMACOS ANTIHIPERTENSIVOS', 'ANTIDIABETICOS', 'OTROS ANTIDIABETICOS', 'OTROS TRATAMIENTOS'], axis=1)
+
+        accepted_strings = {'NO APLICA':"",
+                            'OTRO':"", 
+                            'NO':"", 
+                            'SIN DATO':""}
+
+        df['FARMACOS'] = df['FARMACOS'].replace(accepted_strings)
+
+        # Fill in any missing values with "NO APLICA".
         df['FARMACOS'] = df['FARMACOS'].fillna("NO APLICA")
 
-        accepted_strings = {'NO APLICA', 'OTRO', 'NO', 'SIN DATO'}
-
-        for i,row in df.iterrows():
-            if not row['FARMACOS'] in accepted_strings:
-                strToReplace = str(filter(lambda x: x == row['FARMACOS'], accepted_strings))
-                row['FARMACOS'] = row['FARMACOS'].replace(strToReplace,"")
-                
-
-        #RECIBE IECA 
+        # Add IECA or ARA to the farmacos column if the patient receives that medication.
         for i, row in df.iterrows():
-            if(((not 'IECA' in str(row['FARMACOS'])) and (str(row['RECIBE IECA']) == 'SI'))):
-                df.at[i,'FARMACOS'] = str(df['FARMACOS'][i]) + '+IECA'
+            if row['RECIBE IECA'] == 'SI' and 'IECA' not in row['FARMACOS']:
+                df.at[i, 'FARMACOS'] += '+IECA'
 
-        df = df.drop(['RECIBE IECA'], axis=1)
-        #RECIBE ARA II
-        for i, row in df.iterrows():
-            if(((not 'ARA' in str(row['FARMACOS'])) and (str(row['RECIBE ARA II']) == 'SI'))):
-                df.at[i,'FARMACOS'] = str(df['FARMACOS'][i]) + '+ARA'
+                if row['RECIBE ARA II'] == 'SI' and 'ARA' not in row['FARMACOS']:
+                    df.at[i, 'FARMACOS'] += '+ARA'
 
-        df = df.drop(['RECIBE ARA II'], axis=1)
-        
-        print(df['FARMACOS'].unique())
+        # Drop the "RECIBE IECA" and "RECIBE ARA II" columns.
+        df = df.drop(['RECIBE IECA', 'RECIBE ARA II'], axis=1)
 
-        return df 
+        return df
 
     def run (self, df):
         self.load_data(df)
