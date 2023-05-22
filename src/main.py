@@ -27,6 +27,10 @@ test_size = 0.2
 val_size = 0.25
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size, random_state=seed)
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=val_size, random_state=seed)
+le = LabelEncoder()
+y_train = le.fit_transform(y_train)
+y_test = le.transform(y_test)
+y_val = le.transform(y_val)
 # fit model on training data
 xgb_model = XGBModel(X_train, y_train, X_test, X_val, y_test, y_val)
 pred, model = xgb_model.run()
@@ -38,9 +42,7 @@ print("Saved model to: pima.joblib.dat")
 loaded_model = load("pima.joblib.dat")
 print("Loaded model from: pima.joblib.dat")
 # make predictions for validation data
-predictions = loaded_model.predict(xgb.DMatrix(X_val))
+predictions = loaded_model.predict(X_val)
 # evaluate predictions
-le = LabelEncoder()
-predictions = np.argmax(predictions, axis=1)
-accuracy = accuracy_score(le.fit_transform(y_val), predictions)
+accuracy = accuracy_score(y_val, predictions)
 print("Accuracy: %.2f%%" % (accuracy * 100.0))
