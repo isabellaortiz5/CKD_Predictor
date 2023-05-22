@@ -291,7 +291,7 @@ class Transform:
         #self.df_transform = pd.get_dummies(self.df_transform, columns=['OTROS TRATAMIENTOS'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['OBESIDAD'])
         #self.df_transform = pd.get_dummies(self.df_transform, columns=['ENFERMEDADES'])
-        self.df_transform = pd.get_dummies(self.df_transform, columns=['FARMACOS'])
+        #self.df_transform = pd.get_dummies(self.df_transform, columns=['FARMACOS'])
 
         self.df_after_dummy = self.df_transform
 
@@ -414,6 +414,38 @@ class Transform:
 
         # Return the modified dataframe
         return df
+    
+    @staticmethod
+    def create_farmacos_columns(df):
+        farmacos_dict = {
+            "Alimentary tract and metabolism": ["METFORMINA", "VIDALGLIPTINA", "GLIBENCLAMIDA", "SITAGLIPTINA", "LINAGLIPTINA", "GEMFIBROZIL", "ALOPURINOL", "CARVELIDOL", "ASA", "FUROSEMIDA", "LEVOTIROXINA"],
+            "Blood and blood forming organs": ["HCTZ", "HIDROCODONA", "NIMODIPINO", "CANDESARTAN"],
+            "Cardiovascular system": ["AMLODIPINO", "LOSARTAN", "CARVEDILOL", "VERAPAMILO", "NIFEDIPINO", "DILTIAZEM", "BISOPROLOL"],
+            "Dermatologicals": ["FENOFIBRATO", "DIOSMINA", "ESPIRONOLACTONA", "FUROSEMIDA"],
+            "Genito urinary system and sex hormones": ["PROPANOLOL", "GALVUSMET", "QUINAPRIL"],
+            "Systemic hormonal preparations, excluding sex hormones and insulins": ["LEVOTIROXINA", "INSULINA", "GLARGINA", "METOPROLOL", "ROSUVASTATINA", "ACIDO FENOFIBRICO"],
+            "Antiinfective for systemic use": ["AMOXICILINA", "CIPROFLOXACINA", "CLARITROMICINA", "DAPAGLIFLOXINA", "CLONIDINA"],
+            "Antineoplastic and immunomodulating agents": ["CISPLATINO", "METOTREXATO", "TRASTUZUMAB"],
+            "Musculo-skeletal system": ["IBUPROFENO", "PARACETAMOL", "NAPROXENO"],
+            "Nervous system": ["PAROXETINA", "RIVASTIGMINA", "QUETIAPINA"],
+            "Antiparasitic products, insecticides and repellents": ["MEBENDAZOL", "PERMETRINA", "DEET"],
+            "Respiratory system": ["SALBUTAMOL", "BUDESONIDA", "MONTELUKAST"],
+            "Sensory organs": ["TIMOLOL", "BRIMONIDINA", "TOBRAMICINA"],
+            "Various": ["DIMETILSULFOXIDO", "MANNITOL", "PROPILGALLATO"]
+        }
+        # For each comorbidity in the dictionary, create a new column in the dataframe and set its initial value to 0
+        for farmaco in farmacos_dict.keys():
+            df[farmaco] = 0
+            
+            # For each subtype of the comorbidity, set the value of the corresponding column in the dataframe to 1 if the subtype is present in the comorbidity column
+            for subtype in farmacos_dict[farmaco]:
+                df.loc[df['FARMACOS'].str.contains(subtype,  na=False), farmaco] = 1
+        
+
+        df = df.drop(["FARMACOS"], axis=1)
+
+        # Return the modified dataframe
+        return df
 
     def run(self):
         print("------------------------------------------------")
@@ -426,6 +458,7 @@ class Transform:
         self.df_transform = self.calculate_erc_stage(self.df_transform)
         self.df_transform = self.calculate_erc_stage_albuminuria(self.df_transform)
         self.df_transform = self.create_comorbidity_columns(self.df_transform)
+        self.df_transform = self.create_farmacos_columns(self.df_transform)
 
         msno.matrix(self.df_transform, sparkline=False)
         self.df_transform = self.drop_nan(self.df_transform)

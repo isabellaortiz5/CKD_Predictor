@@ -1,4 +1,5 @@
 import numpy as np
+import re
 
 class feature_eng:
     def __init__(self):
@@ -75,62 +76,37 @@ class feature_eng:
         df['ENFERMEDADES'] = df['OTROS DIAGNÓSTICOS'] + ' + ' + df['Coomorbilidad']
         df = df.drop(['Coomorbilidad', 'OTROS DIAGNÓSTICOS'], axis=1)
 
-        print(df['ENFERMEDADES'].unique())
-
         return df 
     
-    def drugs_column_join(self, df):
-        """
-        Joins the following columns:
-            - FARMACOS ANTIHIPERTENSIVOS
-            - OTROS FARMACOS ANTIHIPERTENSIVOS
-            - ANTIDIABETICOS
-            - OTROS ANTIDIABETICOS
-            - OTROS TRATAMIENTOS
+    def join_and_clean_drugs_columns(self, df):
+        df = df.fillna('')
 
-        and removes all the 'NO APLICA', 'OTRO', 'NO', 'SIN DATO' values from the column farmacos, but only if they are not the only value in the column.
-
-        Args:
-            df: The pandas DataFrame.
-
-        Returns:
-            The pandas DataFrame with the joined and cleaned column farmacos.
-        """
-
-        # Join the columns.
         df['FARMACOS'] = df['FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['OTROS FARMACOS ANTIHIPERTENSIVOS'] + ' + ' + df['ANTIDIABETICOS'] + ' + ' + df['OTROS ANTIDIABETICOS'] + ' + ' + df['OTROS TRATAMIENTOS']
-
-        # Drop the original columns.
-        df = df.drop(['FARMACOS ANTIHIPERTENSIVOS', 'OTROS FARMACOS ANTIHIPERTENSIVOS', 'ANTIDIABETICOS', 'OTROS ANTIDIABETICOS', 'OTROS TRATAMIENTOS'], axis=1)
-
-        accepted_strings = {'NO APLICA':"",
-                            'OTRO':"", 
-                            'NO':"", 
-                            'SIN DATO':""}
-
-        df['FARMACOS'] = df['FARMACOS'].replace(accepted_strings)
-
-        # Fill in any missing values with "NO APLICA".
-        df['FARMACOS'] = df['FARMACOS'].fillna("NO APLICA")
-
-        # Add IECA or ARA to the farmacos column if the patient receives that medication.
+        
+        unwanted_phrases = ['NO APLICA', 'OTRO', 'NO', 'SIN DATO','PARA MANEJO NO FARMACOLÓGICO','PARA MANEJO NO FARMACOLOGICO','PARA MANEJO FARMACOLÓGICO', 'PARA MANEJO FARMACOLOGICO', 'OTROS FÁRMACOS', 'OTROS FARMACOS']
+        
+        # Split each 'FARMACOS' entry by ' + ' separator, filter out unwanted phrases, and join back with ' + ' separator
+        df['FARMACOS'] = df['FARMACOS'].apply(lambda x: ' + '.join([word for word in x.split(' + ') if word.upper().strip() not in unwanted_phrases]))
+        
+        # Add 'IECA' or 'ARA' if the patient receives that medication
         for i, row in df.iterrows():
             if row['RECIBE IECA'] == 'SI' and 'IECA' not in row['FARMACOS']:
-                df.at[i, 'FARMACOS'] += '+IECA'
-
-                if row['RECIBE ARA II'] == 'SI' and 'ARA' not in row['FARMACOS']:
-                    df.at[i, 'FARMACOS'] += '+ARA'
-
-        # Drop the "RECIBE IECA" and "RECIBE ARA II" columns.
-        df = df.drop(['RECIBE IECA', 'RECIBE ARA II'], axis=1)
-
+                df.at[i, 'FARMACOS'] += ' + IECA'
+            if row['RECIBE ARA II'] == 'SI' and 'ARA' not in row['FARMACOS']:
+                df.at[i, 'FARMACOS'] += ' + ARA'
+        
+        # Drop the original columns and 'RECIBE IECA', 'RECIBE ARA II'
+        columns_to_drop = ['FARMACOS ANTIHIPERTENSIVOS', 'OTROS FARMACOS ANTIHIPERTENSIVOS', 'ANTIDIABETICOS', 'OTROS ANTIDIABETICOS', 'OTROS TRATAMIENTOS', 'RECIBE IECA', 'RECIBE ARA II']
+        df.drop(columns_to_drop, axis=1, inplace=True)
+        
+        print(df['FARMACOS'].unique())
         return df
 
     def run (self, df):
         self.load_data(df)
         print(self.eng_df.isna().any())
         self.eng_df = self.deseases_column_join(self.eng_df)
-        self.eng_df = self.drugs_column_join(self.eng_df)
+        self.eng_df = self.join_and_clean_drugs_columns(self.eng_df)
 
         return self.eng_df
 
