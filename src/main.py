@@ -10,7 +10,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
-target = 'Calculo_ERC'
+target = 'nivel_riesgo'
 
 # load data
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

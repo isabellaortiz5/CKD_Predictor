@@ -226,60 +226,82 @@ class Transform:
         df['ALBUMINURIA/CREATINURIA'] = df_mice_imputed['ALBUMINURIA/CREATINURIA']
         return df
     
-    def calculate_erc_stage(self, df):
-        df["Calculo_ERC"] = np.nan
-
-        for i,row in df.iterrows():
-            if(not (row['CALCULO TFG'] is np.nan )):
-                if( row['CALCULO TFG'] > 90):
-                    df['Calculo_ERC'][i] = 1
-
+    @staticmethod
+    def calculate_erc_stage(df):
+        def calculate(row):
+            if not pd.isna(row['CALCULO TFG']):
+                if row['CALCULO TFG'] > 90:
+                    return 1
+                elif row['CALCULO TFG'] > 59:
+                    return 2
+                elif row['CALCULO TFG'] > 44:
+                    return 3.1
+                elif row['CALCULO TFG'] > 29:
+                    return 3.2
+                elif row['CALCULO TFG'] > 15:
+                    return 4
                 else:
-                    if( row['CALCULO TFG'] > 59):
-                        df['Calculo_ERC'][i] = 2
-
-                    else:
-                        if( row['CALCULO TFG'] > 44 ):
-                            df['Calculo_ERC'][i] = 3.1
-
-                        else:
-                            if( row['CALCULO TFG'] > 29):
-                                df['Calculo_ERC'][i] = 3.2
-
-                            else:
-                                if( row['CALCULO TFG'] > 15):
-                                    df['Calculo_ERC'][i] = 4
-
-                                else:
-                                    df['Calculo_ERC'][i] = 5
-
+                    return 5
             else:
-                df['Calculo_ERC'][i] = np.nan 
-        
-        df.drop('CLASIFICACIÓN ESTADIO', axis=1)
+                return np.nan
+        df = df.reset_index(drop=True)
+        df["Calculo_ERC"] = df.apply(calculate, axis=1)
+        return df
 
+    @staticmethod
+    def calculate_erc_stage_albuminuria(df):
+        def calculate(row):
+            if not pd.isna(row['ALBUMINURIA/CREATINURIA']):
+                if row['ALBUMINURIA/CREATINURIA'] < 30:
+                    return 1
+                elif row['ALBUMINURIA/CREATINURIA'] <= 300:
+                    return 2
+                else:
+                    return 3
+            else:
+                return np.nan
+        df = df.reset_index(drop=True)
+        df["Calculo_ERC_ALBUMINURIA"] = df.apply(calculate, axis=1)
+        df = df.drop('ALBUMINURIA/CREATINURIA', axis=1)
         return df
     
-    def calculate_erc_stage_albuminuria(self, df):
-        df["Calculo_ERC_ALBUMINURIA"] = np.nan
-
-        for i,row in df.iterrows():
-            if(not (row['ALBUMINURIA/CREATINURIA'] is np.nan )):
-                if( row['ALBUMINURIA/CREATINURIA'] < 30):
-                    df['Calculo_ERC_ALBUMINURIA'][i] = 1
-
+    @staticmethod
+    def asignar_riesgo(df):
+        def calcular_nivel_riesgo(row):
+            if row['CALCULO TFG'] >= 90:
+                if row['Calculo_ERC_ALBUMINURIA'] < 30:
+                    return 'bajo'
+                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
+                    return 'moderado'
                 else:
-                    if( row['ALBUMINURIA/CREATINURIA'] <= 300):
-                        df['Calculo_ERC_ALBUMINURIA'][i] = 2
-
-                    else:
-                        df['Calculo_ERC_ALBUMINURIA'][i] = 3
-
+                    return 'muy alto'
+            elif row['CALCULO TFG'] >= 60:
+                if row['Calculo_ERC_ALBUMINURIA'] < 30:
+                    return 'bajo'
+                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
+                    return 'moderado'
+                else:
+                    return 'muy alto'
+            elif row['CALCULO TFG'] >= 30:
+                if row['Calculo_ERC_ALBUMINURIA'] < 30:
+                    return 'moderado'
+                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
+                    return 'alto'
+                else:
+                    return 'muy alto'
+            elif row['CALCULO TFG'] >= 15:
+                if row['Calculo_ERC_ALBUMINURIA'] < 30:
+                    return 'moderado'
+                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
+                    return 'alto'
+                else:
+                    return 'muy alto'
             else:
-                df['Calculo_ERC_ALBUMINURIA'][i] = np.nan 
+                return 'muy alto'
 
+        df['nivel_riesgo'] = df.apply(calcular_nivel_riesgo, axis=1)
         return df
-
+    
     def dummifying(self):
         self.df_transform = pd.get_dummies(self.df_transform, columns=['CodDepto'])
         self.df_transform = pd.get_dummies(self.df_transform, columns=['Tipo de Discapacidad'])
@@ -317,8 +339,8 @@ class Transform:
 
     def splitting(self):
         ckd_df = self.df_transform
-        X = ckd_df.drop('Calculo_ERC', axis=1)
-        y = ckd_df['Calculo_ERC']
+        X = ckd_df.drop('nivel_riesgo', axis=1)
+        y = ckd_df['nivel_riesgo']
         
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -457,6 +479,7 @@ class Transform:
         self.df_transform = self.fe.run(self.df_transform)
         self.df_transform = self.calculate_erc_stage(self.df_transform)
         self.df_transform = self.calculate_erc_stage_albuminuria(self.df_transform)
+        self.df_transform = self.asignar_riesgo(self.df_transform)
         self.df_transform = self.create_comorbidity_columns(self.df_transform)
         self.df_transform = self.create_farmacos_columns(self.df_transform)
 
@@ -466,9 +489,12 @@ class Transform:
         
         self.one_hot_encoding()
         self.changing_data_type()
+        self.df_transform = self.df_transform.drop(['Calculo_ERC'], axis=1) 
+        self.df_transform = self.df_transform.drop(['Calculo_ERC_ALBUMINURIA'], axis=1)
+        self.df_transform = self.df_transform.drop(['CALCULO TFG'], axis=1)
         self.scaling()
-        self.splitting()
         #TODO: cast all df to float
+        self.splitting()
         msno.matrix(self.df_transform, sparkline=False)
         self.save()
         print("------------------------------------------------")
