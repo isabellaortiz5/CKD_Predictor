@@ -251,18 +251,18 @@ class Transform:
     @staticmethod
     def calculate_erc_stage_albuminuria(df):
         def calculate(row):
-            if not pd.isna(row['ALBUMINURIA/CREATINURIA']):
-                if row['ALBUMINURIA/CREATINURIA'] < 30:
+            if not pd.isna(row['MICROALBINURIA']):
+                if row['MICROALBINURIA'] < 30:
                     return 1
-                elif row['ALBUMINURIA/CREATINURIA'] <= 300:
-                    return 2
+                elif row['MICROALBINURIA'] <= 300:
+                    return 2 
                 else:
                     return 3
             else:
                 return np.nan
         df = df.reset_index(drop=True)
         df["Calculo_ERC_ALBUMINURIA"] = df.apply(calculate, axis=1)
-        df = df.drop('ALBUMINURIA/CREATINURIA', axis=1)
+        df = df.drop('MICROALBINURIA', axis=1)
         return df
     
     @staticmethod
@@ -492,6 +492,8 @@ class Transform:
         self.df_transform = self.df_transform.drop(['Calculo_ERC'], axis=1) 
         self.df_transform = self.df_transform.drop(['Calculo_ERC_ALBUMINURIA'], axis=1)
         self.df_transform = self.df_transform.drop(['CALCULO TFG'], axis=1)
+        self.df_transform = self.df_transform.drop(['CREATINURIA'], axis=1)
+        self.df_transform = self.df_transform.drop(['ALBUMINURIA/CREATINURIA'], axis=1)
         self.scaling()
         #TODO: cast all df to float
         self.splitting()
