@@ -18,7 +18,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 file_path = os.path.join(project_root, 'data', 'processed', 'transformed_data', 'transformed_data.csv')
 dataset = pd.read_csv(file_path, delimiter=",")
 
-
+dataset = dataset.drop(["Unnamed: 0"], axis=1)
 # split data into X and y
 X = dataset.drop(target, axis=1)
 Y = dataset[target]

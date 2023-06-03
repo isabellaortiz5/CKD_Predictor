@@ -486,6 +486,19 @@ class Cleaning:
 
         print("Fixed unique values in column:")
         print("**{}**".format(self.df['OTROS FARMACOS ANTIHIPERTENSIVOS'].unique()))
+        numerical_cols = self.df.select_dtypes(include=['int64','float64']).columns
+
+        for col in numerical_cols:
+            self.df[col] = self.df[col].apply(lambda x: np.nan if x == 999 else x)
+            self.df[col] = self.df[col].apply(lambda x: np.nan if x == 9999 else x)
+            self.df[col] = self.df[col].apply(lambda x: np.nan if x >= 9999 else x)
+
+        for i, value in enumerate(self.df['ALBUMINURIA/CREATINURIA']):
+            try:
+                if int(value) == 999 or int(value) == 9999 or float(value) >= 9999:
+                    self.df.at[i, 'ALBUMINURIA/CREATINURIA'] = np.nan
+            except ValueError:
+                pass
 
         return self.df
 
