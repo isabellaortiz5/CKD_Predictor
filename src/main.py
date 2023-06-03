@@ -1,14 +1,15 @@
-from numpy import loadtxt
-import xgboost as xgb
 from joblib import dump
 from joblib import load
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from model_training.xgb_model import XGBModel
+from model_training.svm_model import SVMModel
+from model_training.random_forest_model import RFModel
+from model_training.decision_tree_Model import DTModel
 import os
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-import numpy as np
+import time
 
 target = 'nivel_riesgo'
 
@@ -31,16 +32,104 @@ le = LabelEncoder()
 y_train = le.fit_transform(y_train)
 y_test = le.transform(y_test)
 y_val = le.transform(y_val)
+
+"""
+************************ DT ************************
+"""
+print("************************ DT ************************")
+dt_model = DTModel(X_train, y_train, X_test, X_val, y_test, y_val)
+pred, model = dt_model.run()
+
+# save model
+dump(model, "rf.dat")
+print("Saved model to: rf.dat")
+
+time.sleep( 5 )
+
+# load model
+loaded_model = load("rf.dat")
+print("Loaded model from: rf.dat")
+
+
+predictions = loaded_model.predict(X_val)
+accuracy = accuracy_score(y_val, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+pred = None 
+model = None
+loaded_model = None
+predictions = None
+accuracy = None
+
+"""
+************************ RF ************************
+"""
+print("************************ RF ************************")
+rf_model = RFModel(X_train, y_train, X_test, X_val, y_test, y_val)
+pred, model = rf_model.run()
+
+# save model
+dump(model, "rf.dat")
+print("Saved model to: rf.dat")
+
+time.sleep( 5 )
+
+# load model
+loaded_model = load("rf.dat")
+print("Loaded model from: rf.dat")
+
+
+predictions = loaded_model.predict(X_val)
+accuracy = accuracy_score(y_val, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+pred = None 
+model = None
+loaded_model = None
+predictions = None
+accuracy = None
+
+"""
+************************ SVM ************************
+"""
+print("************************ SVM ************************")
+svm_model = SVMModel(X_train, y_train, X_test, X_val, y_test, y_val)
+pred, model = svm_model.run()
+
+# save model
+dump(model, "svm.dat")
+print("Saved model to: svm.dat")
+ 
+time.sleep( 5 )
+
+# load model
+loaded_model = load("svm.dat")
+print("Loaded model from: svm.dat")
+
+
+predictions = loaded_model.predict(X_val)
+accuracy = accuracy_score(y_val, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+pred = None 
+model = None
+loaded_model = None
+predictions = None
+accuracy = None
+
+"""
+************************ XGB ************************
+"""
+print("************************ XGB ************************")
 # fit model on training data
 xgb_model = XGBModel(X_train, y_train, X_test, X_val, y_test, y_val)
 pred, model = xgb_model.run()
 # save model to file
-dump(model, "pima.joblib.dat")
-print("Saved model to: pima.joblib.dat")
+dump(model, "xgb.dat")
+print("Saved model to: xgb.dat")
  
+time.sleep( 5 )
+
 # load model from file
-loaded_model = load("pima.joblib.dat")
-print("Loaded model from: pima.joblib.dat")
+loaded_model = load("xgb.dat")
+print("Loaded model from: xgb.dat")
 # make predictions for validation data
 predictions = loaded_model.predict(X_val)
 # evaluate predictions

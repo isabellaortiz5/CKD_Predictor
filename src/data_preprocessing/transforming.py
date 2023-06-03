@@ -492,8 +492,6 @@ class Transform:
         self.df_transform = self.df_transform.drop(['Calculo_ERC'], axis=1) 
         self.df_transform = self.df_transform.drop(['Calculo_ERC_ALBUMINURIA'], axis=1)
         self.df_transform = self.df_transform.drop(['CALCULO TFG'], axis=1)
-        self.df_transform = self.df_transform.drop(['CREATINURIA'], axis=1)
-        self.df_transform = self.df_transform.drop(['ALBUMINURIA/CREATINURIA'], axis=1)
         self.scaling()
         #TODO: cast all df to float
         self.splitting()
