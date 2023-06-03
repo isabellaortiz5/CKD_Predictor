@@ -271,29 +271,36 @@ class Transform:
             if row['CALCULO TFG'] >= 90:
                 if row['Calculo_ERC_ALBUMINURIA'] < 30:
                     return 'bajo'
+                
                 elif row['Calculo_ERC_ALBUMINURIA'] < 300:
                     return 'moderado'
+                
                 else:
-                    return 'muy alto'
+                    return 'alto'
+                
             elif row['CALCULO TFG'] >= 60:
                 if row['Calculo_ERC_ALBUMINURIA'] < 30:
                     return 'bajo'
+                
                 elif row['Calculo_ERC_ALBUMINURIA'] < 300:
                     return 'moderado'
+                
+                else:
+                    return 'alto'
+                
+            elif row['CALCULO TFG'] >= 45:
+                if row['Calculo_ERC_ALBUMINURIA'] < 30:
+                    return 'moderado'
+                
+                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
+                    return 'alto'
                 else:
                     return 'muy alto'
+                
             elif row['CALCULO TFG'] >= 30:
                 if row['Calculo_ERC_ALBUMINURIA'] < 30:
-                    return 'moderado'
-                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
                     return 'alto'
-                else:
-                    return 'muy alto'
-            elif row['CALCULO TFG'] >= 15:
-                if row['Calculo_ERC_ALBUMINURIA'] < 30:
-                    return 'moderado'
-                elif row['Calculo_ERC_ALBUMINURIA'] < 300:
-                    return 'alto'
+
                 else:
                     return 'muy alto'
             else:

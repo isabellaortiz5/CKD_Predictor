@@ -33,7 +33,7 @@ y_train = le.fit_transform(y_train)
 y_test = le.transform(y_test)
 y_val = le.transform(y_val)
 
-"""
+
 """
 #************************ DT ************************
 """
@@ -114,7 +114,7 @@ model = None
 loaded_model = None
 predictions = None
 accuracy = None
-"""
+
 """
 ************************ XGB ************************
 """
