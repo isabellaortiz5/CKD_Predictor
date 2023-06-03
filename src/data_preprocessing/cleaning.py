@@ -69,6 +69,14 @@ class Cleaning:
         global narino_drops
         global putumayo_drops
 
+        drops = [len(common_drops), len(narino_putumayo_drops), len(narino_drops), len(putumayo_drops)]
+        print("Number of drops defined:")
+        print("common_drops len: {}".format(len(common_drops)))
+        print("narino_putumayo_drops len: {}".format(len(narino_putumayo_drops)))
+        print("narino_drops len: {}".format(len(narino_drops)))
+        print("putumayo_drops len: {}".format(len(putumayo_drops)))
+        print("total drops: {}".format(sum(drops)))
+        
         self.saving_path = saving_path
         self.caqueta_df = None
         self.narino_df = None
@@ -517,7 +525,8 @@ class Cleaning:
         self.fixed_data()
         self.fixed_data2()
         self.data_types()
-        # self.drop_nan()
+        self.drop_nan()
+        self.df = self.df.sample(frac=1).reset_index(drop=True)
         print("Data successfully cleaned!")
         self.save_df()
         print("------------------------------------------------")
