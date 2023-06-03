@@ -41,14 +41,14 @@ dt_model = DTModel(X_train, y_train, X_test, X_val, y_test, y_val)
 pred, model = dt_model.run()
 
 # save model
-dump(model, "rf.dat")
-print("Saved model to: rf.dat")
+dump(model, "dt.dat")
+print("Saved model to: dt.dat")
 
 time.sleep( 5 )
 
 # load model
-loaded_model = load("rf.dat")
-print("Loaded model from: rf.dat")
+loaded_model = load("dt.dat")
+print("Loaded model from: dt.dat")
 
 
 predictions = loaded_model.predict(X_val)
