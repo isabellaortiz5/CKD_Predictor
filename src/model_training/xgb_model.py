@@ -64,6 +64,33 @@ class XGBModel:
         print("Best hyperparameters: {}".format(grid_search.best_params_))
         return grid_search.cv_results_
     
+
+
+    def plot_confusion_matrix(self, y_pred):
+        conf_matrix = confusion_matrix(self.y_test, y_pred)
+        sns.heatmap(conf_matrix, annot=True, fmt='d')
+        plt.title('Confusion Matrix')
+        plt.xlabel('Predicted')
+        plt.ylabel('Actual')
+        plt.show()
+
+    def plot_learning_curve(self):
+        results = self.xgb_model.evals_result()
+        epochs = len(results['validation_0']['mlogloss'])
+        x_axis = range(0, epochs)
+        fig, ax = plt.subplots()
+        ax.plot(x_axis, results['validation_0']['mlogloss'], label='Train')
+        ax.plot(x_axis, results['validation_1']['mlogloss'], label='Test')
+        ax.legend()
+        plt.ylabel('Log Loss')
+        plt.title('XGBoost Log Loss')
+        plt.show()
+
+    def plot_feature_importance(self):
+        xgb.plot_importance(self.xgb_model)
+        plt.title('Feature Importance')
+        plt.show()
+
     def plot_hyperparameters(self, cv_results):
         cv_results_df = pd.DataFrame(cv_results)
         param_columns = [column for column in cv_results_df.columns if column.startswith('param_')]
@@ -72,7 +99,7 @@ class XGBModel:
 
         for param in self.param_grid.keys():
             plt.figure(figsize=(10, 6))
-            sns.heatmap(cv_results_df.pivot('param_'+param, 'rank_test_score', 'mean_test_score'),
+            sns.heatmap(cv_results_df.pivot(index='rank_test_score', columns='param_'+param, values='mean_test_score'),
                         annot=True, cmap="YlGnBu", cbar=True)
             plt.title('Hyperparameters tuning')
             plt.xlabel('Rank')
@@ -83,8 +110,7 @@ class XGBModel:
         # Set the number of threads to the number of cores for XGBoost
         params = {'n_jobs': -1}
         self.xgb_model = xgb.XGBClassifier(**params)
-
-        self.xgb_model.fit(self.X_train, self.y_train, eval_set=[(self.X_test, self.y_test)], verbose=False)
+        self.xgb_model.fit(self.X_train, self.y_train,  eval_set=[(self.X_train, self.y_train), (self.X_val, self.y_val)], eval_metric="mlogloss", verbose=False)
 
         # Save the trained model to file
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,9 +122,10 @@ class XGBModel:
         self.train()
         y_pred = self.test()
         cv_results = self.tune_hyperparameters()
-        self.plot_hyperparameters(cv_results)
         self.train()
         y_pred = self.test()
-
-        y_pred = self.xgb_model.predict(self.X_test)
+        self.plot_confusion_matrix(y_pred)
+        self.plot_learning_curve()
+        self.plot_feature_importance()
+        self.plot_hyperparameters(cv_results)
         return y_pred, self.xgb_model

@@ -34,7 +34,8 @@ y_test = le.transform(y_test)
 y_val = le.transform(y_val)
 
 """
-************************ DT ************************
+"""
+#************************ DT ************************
 """
 print("************************ DT ************************")
 dt_model = DTModel(X_train, y_train, X_test, X_val, y_test, y_val)
@@ -61,7 +62,7 @@ predictions = None
 accuracy = None
 
 """
-************************ RF ************************
+#************************ RF ************************
 """
 print("************************ RF ************************")
 rf_model = RFModel(X_train, y_train, X_test, X_val, y_test, y_val)
@@ -88,7 +89,7 @@ predictions = None
 accuracy = None
 
 """
-************************ SVM ************************
+#************************ SVM ************************
 """
 print("************************ SVM ************************")
 svm_model = SVMModel(X_train, y_train, X_test, X_val, y_test, y_val)
@@ -113,7 +114,7 @@ model = None
 loaded_model = None
 predictions = None
 accuracy = None
-
+"""
 """
 ************************ XGB ************************
 """
