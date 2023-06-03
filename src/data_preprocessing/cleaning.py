@@ -76,7 +76,7 @@ class Cleaning:
         print("narino_drops len: {}".format(len(narino_drops)))
         print("putumayo_drops len: {}".format(len(putumayo_drops)))
         print("total drops: {}".format(sum(drops)))
-        
+
         self.saving_path = saving_path
         self.caqueta_df = None
         self.narino_df = None
@@ -122,6 +122,7 @@ class Cleaning:
 
     def concat_dfs(self):
         self.df = pd.concat([self.putumayo_df, self.narino_df, self.caqueta_df], axis=0)
+        self.df = self.df.sample(frac=1).reset_index(drop=True)
         self.unified_df = self.df
 
     def replace_blanks(self):
@@ -526,7 +527,6 @@ class Cleaning:
         self.fixed_data2()
         self.data_types()
         self.drop_nan()
-        self.df = self.df.sample(frac=1).reset_index(drop=True)
         print("Data successfully cleaned!")
         self.save_df()
         print("------------------------------------------------")
@@ -555,7 +555,8 @@ class Cleaning:
         return self.df
     
     def get_unified_df(self):
-        return self.df
+        return self.unified_df
+    
     
     def get_df_clean(self):
         return self.df_clean
