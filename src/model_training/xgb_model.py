@@ -41,7 +41,7 @@ class XGBModel:
         }
 
         """
-        param_grid = {'learning_rate': [0.1, 0.01], 'max_depth': [3, 5]}
+        param_grid = {'learning_rate': [0.1], 'max_depth': [3]}
         self.param_grid = param_grid
         self.xgb_model = XGBClassifier(n_jobs=-1, early_stopping_rounds=10)
 
@@ -64,15 +64,13 @@ class XGBModel:
         print("Best hyperparameters: {}".format(grid_search.best_params_))
         return grid_search.cv_results_
     
-
-
     def plot_confusion_matrix(self, y_pred):
         conf_matrix = confusion_matrix(self.y_test, y_pred)
         sns.heatmap(conf_matrix, annot=True, fmt='d')
         plt.title('Confusion Matrix')
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
-        plt.show()
+        plt.savefig('xgbConfusion.png')
 
     def plot_learning_curve(self):
         results = self.xgb_model.evals_result()
@@ -84,27 +82,12 @@ class XGBModel:
         ax.legend()
         plt.ylabel('Log Loss')
         plt.title('XGBoost Log Loss')
-        plt.show()
+        plt.savefig('xgbLearning.png')
 
     def plot_feature_importance(self):
         xgb.plot_importance(self.xgb_model)
         plt.title('Feature Importance')
-        plt.show()
-
-    def plot_hyperparameters(self, cv_results):
-        cv_results_df = pd.DataFrame(cv_results)
-        param_columns = [column for column in cv_results_df.columns if column.startswith('param_')]
-        for column in param_columns:
-            cv_results_df[column] = cv_results_df[column].astype(float)
-
-        for param in self.param_grid.keys():
-            plt.figure(figsize=(10, 6))
-            sns.heatmap(cv_results_df.pivot(index='rank_test_score', columns='param_'+param, values='mean_test_score'),
-                        annot=True, cmap="YlGnBu", cbar=True)
-            plt.title('Hyperparameters tuning')
-            plt.xlabel('Rank')
-            plt.ylabel(param)
-            plt.show()
+        plt.savefig('xgbFeature.png')
     
     def train(self):
         # Set the number of threads to the number of cores for XGBoost
@@ -127,5 +110,4 @@ class XGBModel:
         self.plot_confusion_matrix(y_pred)
         self.plot_learning_curve()
         self.plot_feature_importance()
-        self.plot_hyperparameters(cv_results)
         return y_pred, self.xgb_model
