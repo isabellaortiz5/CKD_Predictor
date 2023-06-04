@@ -28,18 +28,14 @@ class XGBModel:
         self.y_val = self.le.fit_transform(y_val)
 
         """
-        param_grid = {
-            'learning_rate': [0.1, 0.01, 0.001],
-            'max_depth': [3, 6, 9],
-            'n_estimators': [100, 200, 300],
-            'min_child_weight': [1, 3, 5],
-            'gamma': [0, 0.1, 0.2],
-            'subsample': [0.8, 1],
-            'colsample_bytree': [0.8, 1],
-            'reg_alpha': [0, 0.1, 0.5],
-            'reg_lambda': [1, 1.5, 2]
+        xgb_params = {
+            'n_estimators': [50, 100, 200],
+            'max_depth': [3, 5, 7, 9],
+            'learning_rate': [0.01, 0.1, 0.2],
+            'subsample': [0.5, 0.7, 1.0],
+            'colsample_bytree': [0.5, 0.7, 1.0],
+            'gamma': [0, 0.5, 1]
         }
-
         """
         param_grid = {'learning_rate': [0.1], 'max_depth': [3]}
         self.param_grid = param_grid
@@ -71,6 +67,7 @@ class XGBModel:
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.savefig('xgbConfusion.png')
+        plt.clf()
 
     def plot_learning_curve(self):
         results = self.xgb_model.evals_result()
@@ -83,11 +80,14 @@ class XGBModel:
         plt.ylabel('Log Loss')
         plt.title('XGBoost Log Loss')
         plt.savefig('xgbLearning.png')
+        plt.clf()
 
     def plot_feature_importance(self):
+        plt.rcParams['figure.figsize'] = [10, 10]
         xgb.plot_importance(self.xgb_model)
         plt.title('Feature Importance')
         plt.savefig('xgbFeature.png')
+        plt.clf()
     
     def train(self):
         params = {'n_jobs': -1}

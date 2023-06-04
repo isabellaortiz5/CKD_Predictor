@@ -23,7 +23,17 @@ class DTModel:
         self.X_val = X_val
 
         self.y_val = self.le.fit_transform(y_val)
+        """
+        dt_params = {
+            'criterion': ['gini', 'entropy'],
+            'splitter': ['best', 'random'],
+            'max_depth': [None, 10, 20, 30],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4],
+            'max_features': ['auto', 'sqrt', 'log2']
+        }
 
+        """
         param_grid = {'criterion': ['gini', 'entropy'], 
                       'max_depth': [None, 2, 3, 5, 10],
                       'min_samples_split': [2, 5, 10]}
@@ -62,12 +72,14 @@ class DTModel:
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.savefig('dtConfusion.png')
+        plt.clf()
 
     def plot_tree_structure(self):
         plt.figure(figsize=(20,10))
         plot_tree(self.dt_model, filled=True)
         plt.title('Decision Tree Structure')
         plt.savefig('dtTree.png')
+        plt.clf()
 
     def run(self):
         self.train()

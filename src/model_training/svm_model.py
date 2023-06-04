@@ -19,7 +19,16 @@ class SVMModel:
         self.y_test = self.le.fit_transform(y_test)
         self.X_val = X_val
         self.y_val = self.le.fit_transform(y_val)
+        """
+        param_grid = {
+            'C': [0.1, 1, 10, 100],
+            'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
+            'degree': [2, 3, 4, 5],
+            'gamma': ['scale', 'auto', 0.01, 0.1, 1],
+            'coef0': [0, 1, 2, 3]
+        }
 
+        """
         param_grid = {'gamma': ['scale', 'auto']}
         self.param_grid = param_grid
         self.svm_model = SVC()
@@ -52,6 +61,7 @@ class SVMModel:
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.savefig('svmConfusion.png')
+        plt.clf()
 
     def plot_learning_curve(self):
         train_sizes, train_scores, test_scores = learning_curve(self.svm_model, self.X_train, self.y_train, cv=5)
@@ -66,6 +76,7 @@ class SVMModel:
         plt.legend(loc="best")
         plt.grid()
         plt.savefig('svmLearning.png')
+        plt.clf()
 
     def run(self):
         self.train()

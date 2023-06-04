@@ -19,7 +19,16 @@ class RFModel:
         self.y_test = self.le.fit_transform(y_test)
         self.X_val = X_val
         self.y_val = self.le.fit_transform(y_val)
-
+        """
+        rf_params = {
+            'n_estimators': [50, 100, 200],
+            'max_features': ['auto', 'sqrt', 'log2'],
+            'max_depth': [10, 20, 30, None],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4],
+            'bootstrap': [True, False]
+        }
+        """
         param_grid = {'n_estimators': [50, 100, 200], 'max_depth': [3, 5, 7]}
         self.param_grid = param_grid
         self.rf_model = RandomForestClassifier(n_jobs=-1)
@@ -65,13 +74,16 @@ class RFModel:
         plt.legend(loc="best")
         plt.grid()
         plt.savefig('rfLearning.png')
+        plt.clf()
 
     def plot_feature_importance(self):
         plt.figure()
+        plt.rcParams['figure.figsize'] = [15, 25]
         plt.bar(self.X_train.columns, self.rf_model.feature_importances_)
         plt.title('Feature Importance')
         plt.xticks(rotation='vertical')
         plt.savefig('rfFeature.png')
+        
 
     def run(self):
         self.train()
