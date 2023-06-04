@@ -90,12 +90,10 @@ class XGBModel:
         plt.savefig('xgbFeature.png')
     
     def train(self):
-        # Set the number of threads to the number of cores for XGBoost
         params = {'n_jobs': -1}
         self.xgb_model = xgb.XGBClassifier(**params)
         self.xgb_model.fit(self.X_train, self.y_train,  eval_set=[(self.X_train, self.y_train), (self.X_val, self.y_val)], eval_metric="mlogloss", verbose=False)
 
-        # Save the trained model to file
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         file_path = os.path.join(project_root, 'models')
         model_file = f'{file_path}\model.bin'

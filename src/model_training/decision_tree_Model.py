@@ -1,10 +1,12 @@
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 from joblib import dump
 import os
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class DTModel:
     def __init__(self, X_train, y_train, X_test, X_val, y_test, y_val):
@@ -33,6 +35,7 @@ class DTModel:
 
         accuracy = accuracy_score(self.y_test, y_pred)
         print("Accuracy score: {:.2f}".format(accuracy))
+        return y_pred
 
     def tune_hyperparameters(self):
         dt_classifier = DecisionTreeClassifier()
@@ -40,6 +43,7 @@ class DTModel:
         grid_search.fit(self.X_train, self.y_train)
         self.dt_model = grid_search.best_estimator_
         print("Best hyperparameters: {}".format(grid_search.best_params_))
+        return grid_search.cv_results_
 
     def train(self):
         self.dt_model.fit(self.X_train, self.y_train)
@@ -50,12 +54,28 @@ class DTModel:
         model_file = f'{file_path}\model.bin'
         dump(self.dt_model, model_file)
 
+    
+    def plot_confusion_matrix(self, y_pred):
+        conf_matrix = confusion_matrix(self.y_test, y_pred)
+        sns.heatmap(conf_matrix, annot=True, fmt='d')
+        plt.title('Confusion Matrix')
+        plt.xlabel('Predicted')
+        plt.ylabel('Actual')
+        plt.savefig('dtConfusion.png')
+
+    def plot_tree_structure(self):
+        plt.figure(figsize=(20,10))
+        plot_tree(self.dt_model, filled=True)
+        plt.title('Decision Tree Structure')
+        plt.savefig('dtTree.png')
+
     def run(self):
         self.train()
-        self.test()
-        self.tune_hyperparameters()
+        y_pred = self.test()
+        cv_results = self.tune_hyperparameters()
         self.train()
-        self.test()
-
-        y_pred = self.dt_model.predict(self.X_test)
+        y_pred = self.test()
+        self.plot_confusion_matrix(y_pred)
+        self.plot_tree_structure()
         return y_pred, self.dt_model
+

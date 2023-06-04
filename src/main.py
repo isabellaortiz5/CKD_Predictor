@@ -34,6 +34,87 @@ y_test = le.transform(y_test)
 y_val = le.transform(y_val)
 
 """
+#************************ DT ************************
+"""
+print("************************ DT ************************")
+dt_model = DTModel(X_train, y_train, X_test, X_val, y_test, y_val)
+pred, model = dt_model.run()
+
+# save model
+dump(model, "dt.dat")
+print("Saved model to: dt.dat")
+
+time.sleep( 5 )
+
+# load model
+loaded_model = load("dt.dat")
+print("Loaded model from: dt.dat")
+
+
+predictions = loaded_model.predict(X_val)
+accuracy = accuracy_score(y_val, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+pred = None 
+model = None
+loaded_model = None
+predictions = None
+accuracy = None
+
+"""
+#************************ RF ************************
+"""
+print("************************ RF ************************")
+rf_model = RFModel(X_train, y_train, X_test, X_val, y_test, y_val)
+pred, model = rf_model.run()
+
+# save model
+dump(model, "rf.dat")
+print("Saved model to: rf.dat")
+
+time.sleep( 5 )
+
+# load model
+loaded_model = load("rf.dat")
+print("Loaded model from: rf.dat")
+
+
+predictions = loaded_model.predict(X_val)
+accuracy = accuracy_score(y_val, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+pred = None 
+model = None
+loaded_model = None
+predictions = None
+accuracy = None
+
+"""
+#************************ SVM ************************
+"""
+print("************************ SVM ************************")
+svm_model = SVMModel(X_train, y_train, X_test, X_val, y_test, y_val)
+pred, model = svm_model.run()
+
+# save model
+dump(model, "svm.dat")
+print("Saved model to: svm.dat")
+ 
+time.sleep( 5 )
+
+# load model
+loaded_model = load("svm.dat")
+print("Loaded model from: svm.dat")
+
+
+predictions = loaded_model.predict(X_val)
+accuracy = accuracy_score(y_val, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+pred = None 
+model = None
+loaded_model = None
+predictions = None
+accuracy = None
+
+"""
 ************************ XGB ************************
 """
 print("************************ XGB ************************")
